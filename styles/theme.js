@@ -1,9 +1,9 @@
 import { extendTheme, theme as baseTheme } from '@chakra-ui/react';
 
-const theme = extendTheme({
+export const theme = extendTheme({
 	fonts: {
-		heading: `Open Sans, ${baseTheme.fonts.body}`,
-		body: `Open Sans, ${baseTheme.fonts.body}`,
+		heading: `Open Sans`,
+		body: `Open Sans`,
 	},
 });
 
