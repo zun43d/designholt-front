@@ -1,3 +1,5 @@
+/* eslint-disable react/display-name */
+import React from 'react';
 import {
 	Button as ChakraButton,
 	FormLabel as ChakraFormLabel,
@@ -7,7 +9,8 @@ import {
 	IconButton as ChakraIconButton,
 } from '@chakra-ui/react';
 
-const focusBoxShadow = '0 0 0 3px #D6BCFA';
+// const focusBoxShadow = '0 0 0 3px #D6BCFA';
+const focusBoxShadow = '0 0 0 3px rgba(159, 122, 234, 0.6)';
 
 export const Button = ({ children, ...rest }) => (
 	<ChakraButton
@@ -40,9 +43,13 @@ export const Input = (props) => (
 	<ChakraInput focusBorderColor="purple.300" {...props} />
 );
 
-export const InputGroup = ({ icon, ...rest }) => (
-	<ChakraInputGroup>
-		<ChakraInputLeftElement pointerEvents="none">{icon}</ChakraInputLeftElement>
-		<ChakraInput focusBorderColor="purple.300" {...rest} />
-	</ChakraInputGroup>
-);
+export const InputGroup = React.forwardRef(({ icon, ...rest }, ref) => {
+	return (
+		<ChakraInputGroup>
+			<ChakraInputLeftElement pointerEvents="none">
+				{icon}
+			</ChakraInputLeftElement>
+			<ChakraInput focusBorderColor="purple.300" {...rest} ref={ref} />
+		</ChakraInputGroup>
+	);
+});

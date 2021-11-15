@@ -1,4 +1,8 @@
+import { useEffect } from 'react';
 import Head from 'next/head';
+import { useAuth } from '@/context/AuthUserContext';
+import { useForm } from 'react-hook-form';
+
 import Layout, { siteTitle } from '@/layout/layout';
 import {
 	Box,
@@ -7,66 +11,146 @@ import {
 	FormControl,
 	FormErrorMessage,
 	Spacer,
-	// InputGroup,
-	// InputLeftElement,
 	Stack,
+	useToast,
 } from '@chakra-ui/react';
-import { EmailIcon, LockIcon } from '@chakra-ui/icons';
 import {
 	Button,
 	FormLabel,
 	Input,
 	InputGroup,
 } from '@/components/uiComponents';
-
-const handleLogin = (e) => {
-	e.preventDefault();
-};
+import { EmailIcon, LockIcon } from '@chakra-ui/icons';
+import { useRouter } from 'next/router';
 
 export default function SellerLogin() {
-	return (
-		<Layout>
-			<Head>
-				<title>Seller Login | {siteTitle}</title>
-			</Head>
+	const { authUser, loading, signInWithEmail } = useAuth();
+	const router = useRouter();
+	const toast = useToast();
+	const {
+		register,
+		handleSubmit,
+		formState: { errors, isSubmitting },
+		reset,
+	} = useForm();
 
-			<Box
-				h="xl"
-				mx="5"
-				display="flex"
-				justifyContent="space-between"
-				alignItems="center"
-			>
-				<Box>
-					<Heading as="h2">Seller login panel</Heading>
-					<Text mt="1" color="gray.500">
-						Login to make yourself motivated!
-					</Text>
-					<Stack as="form" mt="10" w="sm" maxW="xl" spacing={3}>
-						<FormControl id="email">
-							<FormLabel>Email</FormLabel>
-							<InputGroup
-								icon={<EmailIcon color="gray.300" w="5" h="5" />}
-								placeholder="Enter your email"
-								type="email"
-							/>
-						</FormControl>
+	useEffect(() => {
+		if (!loading && authUser) {
+			router.push('/seller/dashboard');
+		}
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [authUser, loading]);
 
-						<FormControl id="pass">
-							<FormLabel>Password</FormLabel>
-							<InputGroup
-								icon={<LockIcon color="gray.300" w="5" h="5" />}
-								placeholder="Enter your password"
-								type="password"
-							/>
-						</FormControl>
-						<Spacer />
-						<Button onClick={handleLogin} type="submit" colorScheme="purple">
-							Log In
-						</Button>
-					</Stack>
+	const handleLogin = async (data) => {
+		try {
+			const res = await signInWithEmail(data.email, data.password);
+			res &&
+				toast({
+					title: 'Log in success',
+					status: 'success',
+					duration: 3000,
+					isClosable: true,
+				});
+		} catch (error) {
+			toast({
+				title: 'No such user found!',
+				description: 'Try to login again with proper account details',
+				status: 'error',
+				duration: 5000,
+				isClosable: true,
+			});
+		}
+	};
+
+	if (!loading && !authUser) {
+		return (
+			<Layout>
+				<Head>
+					<title>Seller Login | {siteTitle}</title>
+				</Head>
+
+				<Box
+					h="xl"
+					mx="5"
+					display="flex"
+					justifyContent="space-between"
+					alignItems="center"
+				>
+					<Box>
+						<Heading as="h2">Seller login panel</Heading>
+						<Text mt="1" color="gray.500">
+							Login to make yourself motivated!
+						</Text>
+						<Stack
+							as="form"
+							mt="10"
+							w="sm"
+							maxW="xl"
+							spacing={3}
+							onSubmit={handleSubmit(handleLogin)}
+						>
+							<FormControl id="email" isInvalid={errors.email}>
+								<FormLabel>Email</FormLabel>
+								<InputGroup
+									icon={<EmailIcon color="gray.300" w="5" h="5" />}
+									placeholder="Enter your email"
+									type="email"
+									{...register('email', {
+										required: 'You email is required to login',
+										pattern: {
+											value:
+												/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+											message: 'Enter a valid email',
+										},
+									})}
+								/>
+
+								<FormErrorMessage>
+									{errors.email && errors.email.message}
+								</FormErrorMessage>
+							</FormControl>
+
+							<FormControl id="pass" isInvalid={errors.password}>
+								<FormLabel>Password</FormLabel>
+								<InputGroup
+									icon={<LockIcon color="gray.300" w="5" h="5" />}
+									placeholder="Enter your password"
+									type="password"
+									{...register('password', {
+										required: 'Enter your password',
+										minLength: {
+											value: 6,
+											message: 'Password must be 6 character long',
+										},
+									})}
+								/>
+								<FormErrorMessage>
+									{errors.password && errors.password.message}
+								</FormErrorMessage>
+							</FormControl>
+							<Spacer />
+							<Button
+								type="submit"
+								colorScheme="purple"
+								isLoading={isSubmitting}
+							>
+								Log In
+							</Button>
+						</Stack>
+					</Box>
+					<Box maxW="2xl">
+						<Heading>Some informational text goes here!</Heading>
+						<br />
+						<Text>
+							This will be a section containing all information about buyer and
+							seller. Who needs to create account and who doesn&apos;t need to
+							create or login with an account.
+						</Text>
+						<Text>#TODO</Text>
+					</Box>
 				</Box>
-			</Box>
-		</Layout>
-	);
+			</Layout>
+		);
+	}
+	return null;
 }
