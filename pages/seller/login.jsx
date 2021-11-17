@@ -119,8 +119,8 @@ export default function SellerLogin() {
 									{...register('password', {
 										required: 'Enter your password',
 										minLength: {
-											value: 6,
-											message: 'Password must be 6 character long',
+											value: 8,
+											message: 'Password must be 8 character long',
 										},
 									})}
 								/>
