@@ -1,10 +1,11 @@
-import * as React from 'react';
+import React from 'react';
 
-function SvgComponent(props) {
+const BrandingSVG = React.forwardRef((props, ref) => {
 	const { isDark, ...restOfProps } = props;
 
 	return (
 		<svg
+			ref={ref}
 			width={165}
 			height={44}
 			fill="none"
@@ -49,6 +50,7 @@ function SvgComponent(props) {
 			</defs>
 		</svg>
 	);
-}
+});
+BrandingSVG.displayName = 'BradingSVG';
 
-export default SvgComponent;
+export default BrandingSVG;

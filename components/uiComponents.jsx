@@ -7,10 +7,15 @@ import {
 	InputGroup as ChakraInputGroup,
 	InputLeftElement as ChakraInputLeftElement,
 	IconButton as ChakraIconButton,
+	Radio as ChakraRadio,
+	RadioGroup as ChakraRadioGroup,
+	Stack as ChakraStack,
+	Select as ChakraSelect,
 } from '@chakra-ui/react';
 
 // const focusBoxShadow = '0 0 0 3px #D6BCFA';
 const focusBoxShadow = '0 0 0 3px rgba(159, 122, 234, 0.6)';
+const focusBorderColor = 'purple.300';
 
 export const Button = ({ children, ...rest }) => (
 	<ChakraButton
@@ -39,9 +44,9 @@ export const FormLabel = ({ children }) => (
 	</ChakraFormLabel>
 );
 
-export const Input = (props) => (
-	<ChakraInput focusBorderColor="purple.300" {...props} />
-);
+export const Input = React.forwardRef((props, ref) => (
+	<ChakraInput focusBorderColor={focusBorderColor} {...props} ref={ref} />
+));
 
 export const InputGroup = React.forwardRef(({ icon, ...rest }, ref) => {
 	return (
@@ -49,7 +54,42 @@ export const InputGroup = React.forwardRef(({ icon, ...rest }, ref) => {
 			<ChakraInputLeftElement pointerEvents="none">
 				{icon}
 			</ChakraInputLeftElement>
-			<ChakraInput focusBorderColor="purple.300" {...rest} ref={ref} />
+			<ChakraInput focusBorderColor={focusBorderColor} {...rest} ref={ref} />
 		</ChakraInputGroup>
 	);
 });
+
+export const Radio = React.forwardRef(({ children, value, ...rest }, ref) => (
+	<ChakraRadio
+		colorScheme="purple"
+		value={value}
+		{...rest}
+		ref={ref}
+		_focus={{
+			boxShadow: focusBoxShadow,
+		}}
+	>
+		{children}
+	</ChakraRadio>
+));
+
+export const RadioGroup = React.forwardRef(({ children, ...rest }, ref) => (
+	<ChakraRadioGroup defaultValue="2" {...rest}>
+		<ChakraStack spacing={5} direction="row">
+			{children}
+		</ChakraStack>
+	</ChakraRadioGroup>
+));
+
+export const Select = React.forwardRef(
+	({ children, placeholder, ...rest }, ref) => (
+		<ChakraSelect
+			focusBorderColor={focusBorderColor}
+			placeholder={placeholder}
+			{...rest}
+			ref={ref}
+		>
+			{children}
+		</ChakraSelect>
+	)
+);

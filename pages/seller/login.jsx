@@ -31,7 +31,6 @@ export default function SellerLogin() {
 		register,
 		handleSubmit,
 		formState: { errors, isSubmitting },
-		reset,
 	} = useForm();
 
 	useEffect(() => {
@@ -83,6 +82,7 @@ export default function SellerLogin() {
 						</Text>
 						<Stack
 							as="form"
+							name="seller-login"
 							mt="10"
 							w="sm"
 							maxW="xl"

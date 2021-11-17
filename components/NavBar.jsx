@@ -41,8 +41,15 @@ export default function NavBar({ home }) {
 				alignItems="center"
 				justifyContent="space-between"
 			>
-				<Flex mt="-1">
-					<Branding isDark={colorMode === 'dark' ? true : false} />
+				<Flex mt="-1" cursor="pointer">
+					<NextLink href="/">
+						<Branding
+							isDark={colorMode === 'dark' ? true : false}
+							style={{
+								curson: 'pointer',
+							}}
+						/>
+					</NextLink>
 				</Flex>
 				<Spacer />
 				<HStack as="nav" spacing="4" ml="8" fontWeight="normal">
@@ -59,12 +66,12 @@ export default function NavBar({ home }) {
 						<Menu id="seller-menu" isLazy>
 							<MenuButton>Seller portal</MenuButton>
 							<MenuList>
-								<NextLink href={'/seller-signup'} passHref>
+								<NextLink href={'/seller/signup'} passHref>
 									<Link w="full" h="full">
 										<MenuItem>Become a seller</MenuItem>
 									</Link>
 								</NextLink>
-								<NextLink href={'/seller-login'} passHref>
+								<NextLink href={'/seller/login'} passHref>
 									<Link w="full" h="full">
 										<MenuItem>Seller login</MenuItem>
 									</Link>
@@ -74,7 +81,7 @@ export default function NavBar({ home }) {
 					)}
 				</HStack>
 				<Spacer />
-				<HStack spacing={2}>
+				<HStack spacing={4}>
 					{/* <IconButton
 						icon={colorMode === 'light' ? <MoonIcon /> : <SunIcon />}
 						color="gray.400"
