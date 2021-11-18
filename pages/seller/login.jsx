@@ -151,6 +151,9 @@ export default function SellerLogin() {
 				</Box>
 			</Layout>
 		);
+	} else if (!loading && authUser) {
+		return <Text>Redirecting...</Text>;
 	}
-	return null;
+
+	return <Layout></Layout>;
 }

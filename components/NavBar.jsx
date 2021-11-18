@@ -92,7 +92,7 @@ export default function NavBar({ home }) {
 							onClick={onOpen}
 							leftIcon={<Icon as={HiShoppingCart} w={5} h={5} />}
 						>
-							Open Cart
+							View Cart
 						</Button>
 						<Portal>
 							<SideDrawer
