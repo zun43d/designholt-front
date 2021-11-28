@@ -51,7 +51,6 @@ export default function NavBar({ home }) {
 						/>
 					</NextLink>
 				</Flex>
-				<Spacer />
 				<HStack as="nav" spacing="4" ml="8" fontWeight="normal">
 					<NextLink href={'/all-logos'} passHref>
 						<Link>All Items</Link>

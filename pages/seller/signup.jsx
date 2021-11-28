@@ -53,7 +53,7 @@ export default function SignUp() {
 
 	if (!loading && !authUser) {
 		return (
-			<Layout>
+			<Layout maxW="8xl" px={[4, 8, 8, 8, 4]}>
 				<Head>
 					<title>Seller Signup | {siteTitle}</title>
 				</Head>

@@ -13,6 +13,8 @@ import {
 	Spacer,
 	Stack,
 	useToast,
+	Center,
+	Spinner,
 } from '@chakra-ui/react';
 import {
 	Button,
@@ -63,7 +65,7 @@ export default function SellerLogin() {
 
 	if (!loading && !authUser) {
 		return (
-			<Layout>
+			<Layout maxW="8xl" px={[4, 8, 8, 8, 4]}>
 				<Head>
 					<title>Seller Login | {siteTitle}</title>
 				</Head>
@@ -155,5 +157,11 @@ export default function SellerLogin() {
 		return <Text>Redirecting...</Text>;
 	}
 
-	return <Layout></Layout>;
+	return (
+		<Layout>
+			<Center h="70vh">
+				<Spinner color="purple.500" />
+			</Center>
+		</Layout>
+	);
 }

@@ -5,7 +5,7 @@ import NavBar from '@/components/NavBar.jsx';
 export const siteTitle = 'DesignHolt';
 export const subHeading = 'Get professional logo that suits you the most';
 
-export default function Layout({ noNav, children }) {
+export default function Layout({ noNav, children, ...rest }) {
 	return (
 		<Box>
 			<Head>
@@ -17,7 +17,7 @@ export default function Layout({ noNav, children }) {
 				</header>
 			)}
 			<main>
-				<Box maxW="8xl" mx="auto" my="8" px={[4, 8, 8, 8, 4]}>
+				<Box mx="auto" my="8" {...rest}>
 					{children}
 				</Box>
 			</main>

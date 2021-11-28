@@ -49,9 +49,9 @@ export const Input = React.forwardRef((props, ref) => (
 	<ChakraInput focusBorderColor={focusBorderColor} {...props} ref={ref} />
 ));
 
-export const InputGroup = React.forwardRef(({ icon, ...rest }, ref) => {
+export const InputGroup = React.forwardRef(({ icon, size, ...rest }, ref) => {
 	return (
-		<ChakraInputGroup>
+		<ChakraInputGroup size={size}>
 			<ChakraInputLeftElement pointerEvents="none">
 				{icon}
 			</ChakraInputLeftElement>
