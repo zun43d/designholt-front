@@ -11,6 +11,7 @@ import {
 	RadioGroup as ChakraRadioGroup,
 	Stack as ChakraStack,
 	Select as ChakraSelect,
+	Link as ChakraLink,
 } from '@chakra-ui/react';
 
 // const focusBoxShadow = '0 0 0 3px #D6BCFA';
@@ -94,3 +95,15 @@ export const Select = React.forwardRef(
 		</ChakraSelect>
 	)
 );
+
+export const Link = React.forwardRef(({ children, ...rest }, ref) => (
+	<ChakraLink
+		ref={ref}
+		{...rest}
+		_focus={{
+			border: 'none',
+		}}
+	>
+		{children}
+	</ChakraLink>
+));
