@@ -18,7 +18,6 @@ export async function getStaticProps() {
 }
 
 export default function AllItems({ products }) {
-	console.log(products);
 	return (
 		<Layout maxW="8xl">
 			<Box w="full" px="7">

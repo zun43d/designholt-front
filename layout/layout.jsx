@@ -17,7 +17,7 @@ export default function Layout({ noNav, children, ...rest }) {
 				</header>
 			)}
 			<main>
-				<Box mx="auto" my="8" {...rest}>
+				<Box mx="auto" {...rest}>
 					{children}
 				</Box>
 			</main>

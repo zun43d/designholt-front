@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import Head from 'next/head';
+import { useRouter } from 'next/router';
 import { useAuth } from '@/context/AuthUserContext';
 import { useForm } from 'react-hook-form';
 
@@ -23,7 +24,6 @@ import {
 	InputGroup,
 } from '@/components/uiComponents';
 import { EmailIcon, LockIcon } from '@chakra-ui/icons';
-import { useRouter } from 'next/router';
 
 export default function SellerLogin() {
 	const { authUser, loading, signInWithEmail } = useAuth();

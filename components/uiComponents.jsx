@@ -1,5 +1,5 @@
 /* eslint-disable react/display-name */
-import React from 'react';
+import React, { useState } from 'react';
 import {
 	Button as ChakraButton,
 	FormLabel as ChakraFormLabel,
@@ -12,7 +12,9 @@ import {
 	Stack as ChakraStack,
 	Select as ChakraSelect,
 	Link as ChakraLink,
+	Checkbox as ChakraCheckbox,
 } from '@chakra-ui/react';
+import { WithContext as ReactTags } from 'react-tag-input';
 
 // const focusBoxShadow = '0 0 0 3px #D6BCFA';
 const focusBoxShadow = '0 0 0 3px rgba(159, 122, 234, 0.6)';
@@ -96,6 +98,14 @@ export const Select = React.forwardRef(
 	)
 );
 
+export const Checkbox = React.forwardRef(
+	({ children, value, ...rest }, ref) => (
+		<ChakraCheckbox value={value} {...rest} ref={ref}>
+			{children}
+		</ChakraCheckbox>
+	)
+);
+
 export const Link = React.forwardRef(({ children, ...rest }, ref) => (
 	<ChakraLink
 		ref={ref}
@@ -107,3 +117,46 @@ export const Link = React.forwardRef(({ children, ...rest }, ref) => (
 		{children}
 	</ChakraLink>
 ));
+
+export const Tag = ({ suggestions }) => {
+	const [tags, setTags] = useState([]);
+
+	const KeyCodes = {
+		comma: 188,
+		enter: 13,
+	};
+
+	const delimiters = [KeyCodes.comma, KeyCodes.enter];
+
+	const handleDelete = (i) => {
+		setTags(tags.filter((tag, index) => index !== i));
+	};
+
+	const handleAddition = (tag) => {
+		setTags([...tags, tag]);
+	};
+
+	const handleDrag = (tag, currPos, newPos) => {
+		const newTags = tags.slice();
+
+		newTags.splice(currPos, 1);
+		newTags.splice(newPos, 0, tag);
+
+		// re-render
+		setTags(newTags);
+	};
+
+	return (
+		<ReactTags
+			tags={tags}
+			// suggestions={suggestions}
+			delimiters={delimiters}
+			handleDelete={handleDelete}
+			handleAddition={handleAddition}
+			handleDrag={handleDrag}
+			handleTagClick={handleTagClick}
+			inputFieldPosition="bottom"
+			// autocomplete
+		/>
+	);
+};
