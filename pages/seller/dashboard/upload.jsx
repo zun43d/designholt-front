@@ -13,8 +13,9 @@ import {
 	FormLabel,
 	Select,
 	Checkbox,
-	Tags,
+	Uploader,
 } from '@/components/uiComponents';
+import Dropzone from 'react-dropzone';
 
 export default function Upload() {
 	return (
@@ -42,8 +43,8 @@ export default function Upload() {
 					<FormControl>
 						<FormLabel>
 							Logo category{' '}
-							<Text fontWeight="normal" fontSize="sm" color="gray.300">
-								<i>(Multiple category can be selected)</i>
+							<Text fontWeight="normal" fontSize="sm" color="gray.400">
+								<i>(Multiple categories can be selected)</i>
 							</Text>
 						</FormLabel>
 						<CheckboxGroup colorScheme="purple">
@@ -62,9 +63,72 @@ export default function Upload() {
 					</FormControl>
 					<br />
 					<FormControl>
-						<FormLabel>Tags</FormLabel>
-						{/* <Tags /> */}
+						<FormLabel>
+							Tags
+							<Text fontWeight="normal" fontSize="sm" color="gray.400">
+								<i>
+									(Enter comma seperated tags.Tags are generally used for search
+									query.)
+								</i>
+							</Text>
+						</FormLabel>
+						<Input
+							placeholder="(eg. animal, logo, yellow, ...)"
+							_placeholder={{ fontStyle: 'italic' }}
+						/>
 					</FormControl>
+					<br />
+					<FormControl>
+						<FormLabel>Title</FormLabel>
+						<Input placeholder="Enter logo title" />
+					</FormControl>
+					<br />
+					<FormControl>
+						<FormLabel>Description</FormLabel>
+						<Input placeholder="Enter a description about the logo" />
+					</FormControl>
+					<br />
+					<FormControl>
+						<FormLabel>Thumbnail preview of your logo</FormLabel>
+						<Uploader />
+
+						<Box mt="3">
+							<li>Only jpg format is supported.</li>
+							<li>This image is basically a thumbnail of your logo</li>
+						</Box>
+					</FormControl>
+					<br />
+					<FormControl>
+						<FormLabel>Presentation for the logo</FormLabel>
+						<Uploader />
+						<Box mt="3">
+							<li>Only jpg format is supported.</li>
+							<li>Presentation will represent your logo to the buyer.</li>
+						</Box>
+					</FormControl>
+					<br />
+					<FormControl>
+						<FormLabel>
+							Alternative text for presentation image
+							<Text fontWeight="normal" fontSize="sm" color="gray.400">
+								<i>
+									(Carefully enter the text, this is for improving the logo
+									search results)
+								</i>
+							</Text>
+						</FormLabel>
+						<Input placeholder="Presentation ALT text" />
+					</FormControl>
+					<br />
+					<FormControl>
+						<FormLabel>Upload main zip file for the logo</FormLabel>
+						<Uploader />{' '}
+						{/* Gotta make the uploader reusable and all format supportable */}
+					</FormControl>
+					<br />
+					<Button colorScheme="purple" size="lg" w="full">
+						Submit
+					</Button>
 				</Box>
 			</Box>
 		</VendorPanel>

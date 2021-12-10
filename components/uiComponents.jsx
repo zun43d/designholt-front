@@ -1,6 +1,8 @@
 /* eslint-disable react/display-name */
-import React, { useState } from 'react';
+import React, { useCallback } from 'react';
 import {
+	Box,
+	Text,
 	Button as ChakraButton,
 	FormLabel as ChakraFormLabel,
 	Input as ChakraInput,
@@ -14,7 +16,8 @@ import {
 	Link as ChakraLink,
 	Checkbox as ChakraCheckbox,
 } from '@chakra-ui/react';
-import { WithContext as ReactTags } from 'react-tag-input';
+import { useDropzone } from 'react-dropzone';
+// import { WithContext as ReactTags } from 'react-tag-input';
 
 // const focusBoxShadow = '0 0 0 3px #D6BCFA';
 const focusBoxShadow = '0 0 0 3px rgba(159, 122, 234, 0.6)';
@@ -118,45 +121,83 @@ export const Link = React.forwardRef(({ children, ...rest }, ref) => (
 	</ChakraLink>
 ));
 
-export const Tag = ({ suggestions }) => {
-	const [tags, setTags] = useState([]);
+export const Uploader = React.forwardRef(({ passedFiles }, ref) => {
+	const extensionValidate = (file) => {
+		console.log(file);
+		let extension = file.name.split('.').pop().toLowerCase();
+		let isSuccess = extension === 'jpg' || extension === 'jpeg';
 
-	const KeyCodes = {
-		comma: 188,
-		enter: 13,
+		if (!isSuccess) {
+			return {
+				code: 'extention-does-not-match',
+				message: "Don't upload anything other than jpg/jpeg files",
+			};
+		}
+
+		return null;
 	};
+	const { acceptedFiles, fileRejections, getRootProps, getInputProps } =
+		useDropzone({ maxFiles: 1, validator: extensionValidate });
 
-	const delimiters = [KeyCodes.comma, KeyCodes.enter];
+	const acceptedFileItems = acceptedFiles.map((file) => (
+		<Text key={file.path}>{file.path}</Text>
+	));
 
-	const handleDelete = (i) => {
-		setTags(tags.filter((tag, index) => index !== i));
-	};
-
-	const handleAddition = (tag) => {
-		setTags([...tags, tag]);
-	};
-
-	const handleDrag = (tag, currPos, newPos) => {
-		const newTags = tags.slice();
-
-		newTags.splice(currPos, 1);
-		newTags.splice(newPos, 0, tag);
-
-		// re-render
-		setTags(newTags);
-	};
+	const rejectedReason = fileRejections.map(({ errors }) => {
+		return errors.map((e) => <Text key={e.code}>{e.message}</Text>);
+	});
 
 	return (
-		<ReactTags
-			tags={tags}
-			// suggestions={suggestions}
-			delimiters={delimiters}
-			handleDelete={handleDelete}
-			handleAddition={handleAddition}
-			handleDrag={handleDrag}
-			handleTagClick={handleTagClick}
-			inputFieldPosition="bottom"
-			// autocomplete
-		/>
+		<Box>
+			<Box {...getRootProps()} display="flex" alignItems="center">
+				<input {...getInputProps()} />
+				<Button>Choose File</Button>
+				<Text px="2">{acceptedFileItems}</Text>
+				<Text color="red.400">{rejectedReason}</Text>
+			</Box>
+		</Box>
 	);
-};
+});
+
+// export const Tag = ({ suggestions }) => {
+// 	const [tags, setTags] = useState([]);
+
+// 	const KeyCodes = {
+// 		comma: 188,
+// 		enter: 13,
+// 	};
+
+// 	const delimiters = [KeyCodes.comma, KeyCodes.enter];
+
+// 	const handleDelete = (i) => {
+// 		setTags(tags.filter((tag, index) => index !== i));
+// 	};
+
+// 	const handleAddition = (tag) => {
+// 		setTags([...tags, tag]);
+// 	};
+
+// 	const handleDrag = (tag, currPos, newPos) => {
+// 		const newTags = tags.slice();
+
+// 		newTags.splice(currPos, 1);
+// 		newTags.splice(newPos, 0, tag);
+
+// 		// re-render
+// 		setTags(newTags);
+// 	};
+
+// 	return (
+// 		<ReactTags
+// 			tags={tags}
+// 			// suggestions={suggestions}
+// 			delimiters={delimiters}
+// 			handleDelete={handleDelete}
+// 			handleAddition={handleAddition}
+// 			handleDrag={handleDrag}
+// 			handleTagClick={handleTagClick}
+// 			inputFieldPosition="bottom"
+// 			// autocomplete
+// 		/>
+// 	);
+// };

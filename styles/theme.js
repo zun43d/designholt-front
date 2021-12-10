@@ -8,7 +8,7 @@ const colorMode = {
 export const theme = extendTheme({
 	fonts: {
 		heading: ` ${baseTheme.fonts.heading}`,
-		body: ` ${baseTheme.fonts.body}`,
+		body: `InterVariable, ${baseTheme.fonts.body}`,
 	},
 	colorMode,
 });
