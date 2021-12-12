@@ -1,3 +1,4 @@
+import { useAuth } from '@/context/AuthUserContext';
 import VendorPanel from '@/layout/vendorPanel';
 import {
 	Heading,
@@ -14,6 +15,8 @@ import {
 } from '@chakra-ui/react';
 
 export default function Portfolio() {
+	const { authUser } = useAuth();
+
 	return (
 		<VendorPanel maxW="container.lg" my="10" mx="auto">
 			<Box
@@ -23,8 +26,8 @@ export default function Portfolio() {
 				alignItems="center"
 				my="5"
 			>
-				<Avatar src="#" size="2xl" />
-				<Heading my="3">User Name</Heading>
+				<Avatar src={authUser?.photoUrl} size="2xl" />
+				<Heading my="3">{authUser?.name}</Heading>
 			</Box>
 			<Tabs variant="enclosed" isLazy>
 				<TabList>

@@ -107,7 +107,7 @@ export default function NavBar({ home }) {
 					{authUser && (
 						<Menu>
 							<MenuButton>
-								<Avatar w={10} h={10} />
+								<Avatar src={authUser?.photoUrl} w={10} h={10} />
 							</MenuButton>
 							<MenuList>
 								<MenuGroup title="My Account">
