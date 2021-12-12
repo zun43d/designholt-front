@@ -15,7 +15,7 @@ export default function ProductList({ products, ...rest }) {
 				<Product
 					key={product._id}
 					id={product._id}
-					image={product?.productImage.previewImage}
+					image={product?.productImage.presentation}
 					alt={product.productImage.imageAlt}
 					title={product.title}
 					creator={product.creator}
