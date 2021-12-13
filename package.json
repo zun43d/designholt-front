@@ -16,6 +16,7 @@
     "@fontsource/raleway": "^4.5.0",
     "@sanity/client": "^2.23.0",
     "firebase": "^9.3.0",
+    "formidable": "^2.0.1",
     "framer-motion": "4",
     "next": "12.0.2",
     "react": "17.0.2",

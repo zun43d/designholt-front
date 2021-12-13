@@ -90,7 +90,9 @@ export default function Upload() {
 					<br />
 					<FormControl>
 						<FormLabel>Thumbnail preview of your logo</FormLabel>
-						<Uploader />
+						<Uploader>
+							<Button>Choose File</Button>
+						</Uploader>
 
 						<Box mt="3">
 							<li>Only jpg format is supported.</li>
@@ -100,7 +102,9 @@ export default function Upload() {
 					<br />
 					<FormControl>
 						<FormLabel>Presentation for the logo</FormLabel>
-						<Uploader />
+						<Uploader>
+							<Button>Choose File</Button>
+						</Uploader>
 						<Box mt="3">
 							<li>Only jpg format is supported.</li>
 							<li>Presentation will represent your logo to the buyer.</li>
@@ -122,7 +126,9 @@ export default function Upload() {
 					<br />
 					<FormControl>
 						<FormLabel>Upload main zip file for the logo</FormLabel>
-						<Uploader />{' '}
+						<Uploader>
+							<Button>Choose File</Button>
+						</Uploader>{' '}
 						{/* Gotta make the uploader reusable and all format supportable */}
 					</FormControl>
 					<br />

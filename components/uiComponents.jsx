@@ -121,43 +121,44 @@ export const Link = React.forwardRef(({ children, ...rest }, ref) => (
 	</ChakraLink>
 ));
 
-export const Uploader = React.forwardRef(({ passedFiles }, ref) => {
-	const extensionValidate = (file) => {
-		console.log(file);
-		let extension = file.name.split('.').pop().toLowerCase();
-		let isSuccess = extension === 'jpg' || extension === 'jpeg';
+export const Uploader = React.forwardRef(
+	({ children, getFiles, showAccepted = true }, ref) => {
+		const extensionValidate = (file) => {
+			let extension = file.name.split('.').pop().toLowerCase();
+			let isSuccess = extension === 'jpg' || extension === 'jpeg';
 
-		if (!isSuccess) {
-			return {
-				code: 'extention-does-not-match',
-				message: "Don't upload anything other than jpg/jpeg files",
-			};
-		}
+			if (!isSuccess) {
+				return {
+					code: 'extention-does-not-match',
+					message: "Don't upload anything other than jpg/jpeg files",
+				};
+			}
+			return null;
+		};
 
-		return null;
-	};
-	const { acceptedFiles, fileRejections, getRootProps, getInputProps } =
-		useDropzone({ maxFiles: 1, validator: extensionValidate });
+		const { acceptedFiles, fileRejections, getRootProps, getInputProps } =
+			useDropzone({ maxFiles: 1, validator: extensionValidate });
 
-	const acceptedFileItems = acceptedFiles.map((file) => (
-		<Text key={file.path}>{file.path}</Text>
-	));
+		const acceptedFileItems = acceptedFiles.map((file) => (
+			<Text key={file.path}>{file.path}</Text>
+		));
 
-	const rejectedReason = fileRejections.map(({ errors }) => {
-		return errors.map((e) => <Text key={e.code}>{e.message}</Text>);
-	});
+		const rejectedReason = fileRejections.map(({ errors }) => {
+			return errors.map((e) => <Text key={e.code}>{e.message}</Text>);
+		});
 
-	return (
-		<Box>
-			<Box {...getRootProps()} display="flex" alignItems="center">
-				<input {...getInputProps()} />
-				<Button>Choose File</Button>
-				<Text px="2">{acceptedFileItems}</Text>
-				<Text color="red.400">{rejectedReason}</Text>
+		return (
+			<Box>
+				<Box {...getRootProps()} display="flex" alignItems="center">
+					<input {...getInputProps()} />
+					{children}
+					{showAccepted && <Text px="2">{acceptedFileItems}</Text>}
+					<Text color="red.400">{rejectedReason}</Text>
+				</Box>
 			</Box>
-		</Box>
-	);
-});
+		);
+	}
+);
 
 // export const Tag = ({ suggestions }) => {
 // 	const [tags, setTags] = useState([]);
