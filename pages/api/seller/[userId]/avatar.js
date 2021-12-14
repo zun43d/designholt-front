@@ -13,19 +13,15 @@ const post = async (req, res) => {
 	const { userId } = req.query;
 	const form = new formidable.IncomingForm();
 	form.parse(req, async function (err, fields, files) {
-		const compressedImgPath = await processImage(files.file, {
+		const imageStream = await processImage(files.file, {
 			width: 200,
 			quality: 80,
 		});
-		console.log(compressedImgPath);
-		if (compressedImgPath) {
-			await changeUserAvatar(userId, compressedImgPath).then(
-				async (response) => {
-					fs.rm(compressedImgPath, { recursive: true }, () => {
-						res.status(201).json({ message: 'Successfully saved', response });
-					});
-				}
-			);
+		console.log(fs.createReadStream(files.file.filepath));
+		if (imageStream) {
+			await changeUserAvatar(userId, imageStream).then(async (response) => {
+				res.status(201).json({ message: 'Successfully saved', response });
+			});
 		}
 	});
 };
