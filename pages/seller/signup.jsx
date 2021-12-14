@@ -44,8 +44,7 @@ export default function SignUp() {
 	const handleSignup = async (values) => {
 		console.log(values);
 		const res = await createUserWithEmail(values).then((res) => {
-			console.log(res);
-			router.push('/seller/login');
+			router.push('/seller/dashboard');
 		});
 
 		return res;

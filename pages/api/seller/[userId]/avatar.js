@@ -17,7 +17,6 @@ const post = async (req, res) => {
 			width: 200,
 			quality: 80,
 		});
-		console.log(fs.createReadStream(files.file.filepath));
 		if (imageStream) {
 			await changeUserAvatar(userId, imageStream).then(async (response) => {
 				res.status(201).json({ message: 'Successfully saved', response });
