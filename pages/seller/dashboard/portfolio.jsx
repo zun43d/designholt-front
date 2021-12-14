@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router';
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { useAuth } from '@/context/AuthUserContext';
 import VendorPanel from '@/layout/vendorPanel';
@@ -34,7 +34,7 @@ export default function Portfolio() {
 			const image = e.target.files[0];
 			const body = new FormData();
 			body.append('file', image);
-			const response = await fetch(`/api/seller/${authUser.uid}/avatar`, {
+			await fetch(`/api/seller/${authUser.uid}/avatar`, {
 				method: 'POST',
 				body,
 			}).then((res) => {

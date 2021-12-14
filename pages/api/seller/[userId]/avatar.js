@@ -1,6 +1,7 @@
 import formidable from 'formidable';
 import fs from 'fs';
 import { changeUserAvatar } from '@/lib/sanityAdmin';
+import { processImage } from '@/utils/processImage';
 
 export const config = {
 	api: {
@@ -12,18 +13,21 @@ const post = async (req, res) => {
 	const { userId } = req.query;
 	const form = new formidable.IncomingForm();
 	form.parse(req, async function (err, fields, files) {
-		console.log(files.file.filepath);
-		await changeUserAvatar(userId, files.file.filepath).then((response) => {
-			return res.status(201).json({ message: 'Successfully saved', response });
+		const compressedImgPath = await processImage(files.file, {
+			width: 200,
+			quality: 80,
 		});
+		console.log(compressedImgPath);
+		if (compressedImgPath) {
+			await changeUserAvatar(userId, compressedImgPath).then(
+				async (response) => {
+					fs.rm(compressedImgPath, { recursive: true }, () => {
+						res.status(201).json({ message: 'Successfully saved', response });
+					});
+				}
+			);
+		}
 	});
-};
-
-const saveFile = async (file) => {
-	const data = fs.readFileSync(file.path);
-	fs.writeFileSync(`./sanityTemp/${file.name}`, data);
-	await fs.unlinkSync(file.path);
-	return;
 };
 
 export default function handler(req, res) {
