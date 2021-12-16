@@ -121,84 +121,38 @@ export const Link = React.forwardRef(({ children, ...rest }, ref) => (
 	</ChakraLink>
 ));
 
-export const Uploader = React.forwardRef(
-	({ children, getFiles, showAccepted = true }, ref) => {
-		const extensionValidate = (file) => {
-			let extension = file.name.split('.').pop().toLowerCase();
-			let isSuccess = extension === 'jpg' || extension === 'jpeg';
-
-			if (!isSuccess) {
-				return {
-					code: 'extention-does-not-match',
-					message: "Don't upload anything other than jpg/jpeg files",
-				};
-			}
-			return null;
-		};
-
-		const { acceptedFiles, fileRejections, getRootProps, getInputProps } =
-			useDropzone({ maxFiles: 1, validator: extensionValidate });
-
-		const acceptedFileItems = acceptedFiles.map((file) => (
-			<Text key={file.path}>{file.path}</Text>
-		));
-
-		const rejectedReason = fileRejections.map(({ errors }) => {
-			return errors.map((e) => <Text key={e.code}>{e.message}</Text>);
-		});
-
-		return (
-			<Box>
-				<Box {...getRootProps()} display="flex" alignItems="center">
-					<input {...getInputProps()} />
-					{children}
-					{showAccepted && <Text px="2">{acceptedFileItems}</Text>}
-					<Text color="red.400">{rejectedReason}</Text>
+export const UploadComponent = React.forwardRef(
+	({ children, accept, watchFile, ...rest }, ref) => (
+		<label>
+			<Text
+				px="3"
+				py="2"
+				bgColor="gray.200"
+				display="inline-block"
+				borderRadius="md"
+				cursor="pointer"
+				fontSize="sm"
+				fontWeight="medium"
+				_active={{
+					boxShadow: '0 0 0 3px rgba(159, 122, 234, 0.6)',
+				}}
+			>
+				{children}
+			</Text>
+			<input
+				{...rest}
+				ref={ref}
+				type="file"
+				accept={accept}
+				style={{
+					display: 'none',
+				}}
+			/>
+			{watchFile && (
+				<Box display="inline-block" mx="2">
+					<Text display="inline-block">{watchFile[0]?.name}</Text>
 				</Box>
-			</Box>
-		);
-	}
+			)}
+		</label>
+	)
 );
-
-// export const Tag = ({ suggestions }) => {
-// 	const [tags, setTags] = useState([]);
-
-// 	const KeyCodes = {
-// 		comma: 188,
-// 		enter: 13,
-// 	};
-
-// 	const delimiters = [KeyCodes.comma, KeyCodes.enter];
-
-// 	const handleDelete = (i) => {
-// 		setTags(tags.filter((tag, index) => index !== i));
-// 	};
-
-// 	const handleAddition = (tag) => {
-// 		setTags([...tags, tag]);
-// 	};
-
-// 	const handleDrag = (tag, currPos, newPos) => {
-// 		const newTags = tags.slice();
-
-// 		newTags.splice(currPos, 1);
-// 		newTags.splice(newPos, 0, tag);
-
-// 		// re-render
-// 		setTags(newTags);
-// 	};
-
-// 	return (
-// 		<ReactTags
-// 			tags={tags}
-// 			// suggestions={suggestions}
-// 			delimiters={delimiters}
-// 			handleDelete={handleDelete}
-// 			handleAddition={handleAddition}
-// 			handleDrag={handleDrag}
-// 			handleTagClick={handleTagClick}
-// 			inputFieldPosition="bottom"
-// 			// autocomplete
-// 		/>
-// 	);
-// };

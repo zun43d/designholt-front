@@ -17,12 +17,14 @@ import {
 	Select,
 	AvatarBadge,
 	useToast,
+	Center,
+	Spinner,
 } from '@chakra-ui/react';
 import { Uploader, Link } from '@/components/uiComponents';
 import { Button } from '@/components/uiComponents';
 
 export default function Portfolio() {
-	const [portfolioItems, setPortfolioItems] = useState([]);
+	const [portfolioItems, setPortfolioItems] = useState(null);
 	const [uploading, setUploading] = useState(false);
 	const { authUser } = useAuth();
 	const toast = useToast();
@@ -86,12 +88,13 @@ export default function Portfolio() {
 							bgImage="url('/camera-ico.png')"
 							bgPos="center"
 							bgRepeat="no-repeat"
-							cursor="pointer"
+							cursor={uploading ? 'not-allowed' : 'pointer'}
 							_hover={{
 								bgColor: 'gray.300',
 							}}
 						/>
 						<input
+							disabled={uploading}
 							type="file"
 							accept=".jpg, .png"
 							style={{ display: 'none' }}
@@ -129,27 +132,33 @@ export default function Portfolio() {
 								</Select>
 							</Box>
 						</Box>
-						<Grid templateColumns="repeat(6, 1fr)" gap={2}>
-							{portfolioItems.map((item) => (
-								<Box
-									key={item._id}
-									bg="black"
-									w="full"
-									h="full"
-									borderRadius="md"
-								>
-									<Image
-										src={item.productImage.thumbnail || ''}
-										placeholder="empty"
-										width="200"
-										height="200"
-										alt={item.productImage.imageAlt}
-										layout="responsive"
-										objectFit="cover"
-									/>
-								</Box>
-							))}
-						</Grid>
+						{portfolioItems ? (
+							<Grid templateColumns="repeat(6, 1fr)" gap={2}>
+								{portfolioItems.map((item) => (
+									<Box
+										key={item._id}
+										bg="black"
+										w="full"
+										h="full"
+										borderRadius="md"
+									>
+										<Image
+											src={item.productImage.thumbnail || ''}
+											placeholder="empty"
+											width="200"
+											height="200"
+											alt={item.productImage.imageAlt}
+											layout="responsive"
+											objectFit="cover"
+										/>
+									</Box>
+								))}
+							</Grid>
+						) : (
+							<Center h="10">
+								<Spinner />
+							</Center>
+						)}
 					</TabPanel>
 				</TabPanels>
 			</Tabs>
