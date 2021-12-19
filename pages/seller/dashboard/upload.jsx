@@ -1,4 +1,7 @@
+import { useRef } from 'react';
 import { useForm } from 'react-hook-form';
+import { useAuth } from '@/context/AuthUserContext';
+import { getAllCategories } from '@/lib/sanityDb';
 import VendorPanel from '@/layout/vendorPanel';
 import {
 	Heading,
@@ -8,6 +11,7 @@ import {
 	CheckboxGroup,
 	Grid,
 	FormErrorMessage,
+	useToast,
 } from '@chakra-ui/react';
 import {
 	Input,
@@ -18,20 +22,89 @@ import {
 	UploadComponent,
 } from '@/components/uiComponents';
 
-export default function Upload() {
+export const getServerSideProps = async () => {
+	const categories = await getAllCategories();
+
+	return {
+		props: {
+			categories,
+		},
+	};
+};
+
+export default function Upload({ categories }) {
 	const {
 		register,
 		handleSubmit,
 		formState: { errors, isSubmitting },
 		watch,
+		reset,
 	} = useForm();
+	const { authUser } = useAuth();
+	const toast = useToast();
 
-	const thumbnail_img = watch('thumbnail_img', '');
-	const presentation_img = watch('presentation_img', '');
-	const main_file = watch('main_file', '');
+	const thumbnail_img_w = watch('thumbnail_img', '');
+	const presentation_img_w = watch('presentation_img', '');
+	const main_file_w = watch('main_file', '');
 
-	const handleUpload = (data) => {
-		console.log(data);
+	const toastIdRef = useRef();
+	function addToast() {
+		toastIdRef.current = toast({
+			description: 'Uploading...',
+			duration: 9000000,
+		});
+	}
+	function closeToast() {
+		if (toastIdRef.current) {
+			toast.close(toastIdRef.current);
+		}
+	}
+
+	const handleUpload = async (data) => {
+		addToast();
+		// console.log(data);
+		const { presentation_img, thumbnail_img, main_file, ...rest } = data;
+
+		const formData = new FormData();
+
+		const newData = {
+			presentation_img: presentation_img[0],
+			thumbnail_img: thumbnail_img[0],
+			main_file: main_file[0],
+			...rest,
+		};
+
+		for (const key in newData) {
+			formData.append(key, newData[key]);
+		}
+
+		await fetch(`/api/seller/${authUser.uid}/uploadLogo`, {
+			method: 'POST',
+			body: formData,
+		}).then(async (res) => {
+			closeToast();
+			const resMsg = await res.json();
+
+			if (res.status === 201) {
+				toast({
+					title: 'Logo Uploaded!',
+					description: resMsg.message,
+					status: 'success',
+					duration: '90000',
+					isClosable: true,
+				});
+				reset();
+				return;
+			}
+
+			toast({
+				title: `Error ${res.status}`,
+				description: resMsg.message,
+				status: 'error',
+				duration: '90000',
+				isClosable: true,
+			});
+		});
 	};
 
 	return (
@@ -46,7 +119,7 @@ export default function Upload() {
 			>
 				Upload Center
 			</Heading>
-			<Box maxW="container.sm" my="10" mx="auto">
+			<Box maxW="container.md" my="10" mx="auto">
 				<Heading size="md">
 					Fill up everything carefully to get your logo approved.
 				</Heading>
@@ -64,79 +137,18 @@ export default function Upload() {
 							</Text>
 						</FormLabel>
 						<CheckboxGroup colorScheme="purple">
-							<Grid templateColumns="repeat(5, 1fr)" gap={2}>
-								<Checkbox
-									{...register('category', {
-										required: 'You must select a category',
-									})}
-									value="animal"
-								>
-									Animal
-								</Checkbox>
-								<Checkbox
-									{...register('category', {
-										required: 'You must select a category',
-									})}
-									value="beauty"
-								>
-									Beauty
-								</Checkbox>
-								<Checkbox
-									{...register('category', {
-										required: 'You must select a category',
-									})}
-									value="realEstate"
-								>
-									Real Estate
-								</Checkbox>
-								<Checkbox
-									{...register('category', {
-										required: 'You must select a category',
-									})}
-									value="abstruct"
-								>
-									Abstruct
-								</Checkbox>
-								<Checkbox
-									{...register('category', {
-										required: 'You must select a category',
-									})}
-									value="letters"
-								>
-									Letters
-								</Checkbox>
-								<Checkbox
-									{...register('category', {
-										required: 'You must select a category',
-									})}
-									value="wellness"
-								>
-									Wellness
-								</Checkbox>
-								<Checkbox
-									{...register('category', {
-										required: 'You must select a category',
-									})}
-									value="nature"
-								>
-									Nature
-								</Checkbox>
-								<Checkbox
-									{...register('category', {
-										required: 'You must select a category',
-									})}
-									value="symbol"
-								>
-									Symbol
-								</Checkbox>
-								<Checkbox
-									{...register('category', {
-										required: 'You must select a category',
-									})}
-									value="pet"
-								>
-									Pet
-								</Checkbox>
+							<Grid templateColumns="repeat(4, 1fr)" gap={2}>
+								{categories.map((category) => (
+									<Checkbox
+										key={category._id}
+										{...register('category', {
+											required: 'You must select a category',
+										})}
+										value={category._id}
+									>
+										{category.categoryName}
+									</Checkbox>
+								))}
 							</Grid>
 						</CheckboxGroup>
 						<Text color="red.500" fontSize="sm" mt="2">
@@ -198,7 +210,7 @@ export default function Upload() {
 								required: 'You must select a thumbnail image',
 							})}
 							accept=".jpg"
-							watchFile={thumbnail_img}
+							watchFile={thumbnail_img_w}
 						>
 							Choose an image
 						</UploadComponent>
@@ -220,7 +232,7 @@ export default function Upload() {
 								required: 'You must enter an image for presentation',
 							})}
 							accept=".jpg"
-							watchFile={presentation_img}
+							watchFile={presentation_img_w}
 						>
 							Choose an image
 						</UploadComponent>
@@ -260,9 +272,16 @@ export default function Upload() {
 						<UploadComponent
 							{...register('main_file', {
 								required: 'You forgot to upload a file',
+								validate: (value) => {
+									const isOk = value[0].size <= 3145728;
+									if (!isOk) {
+										return 'Maximum file size is 3MB.';
+									}
+									return true;
+								},
 							})}
 							accept=".zip"
-							watchFile={main_file}
+							watchFile={main_file_w}
 						>
 							Choose logo zip file
 						</UploadComponent>{' '}
@@ -271,7 +290,13 @@ export default function Upload() {
 						</FormErrorMessage>
 					</FormControl>
 					<br />
-					<Button type="submit" colorScheme="purple" size="lg" w="full">
+					<Button
+						isLoading={isSubmitting}
+						type="submit"
+						colorScheme="purple"
+						size="lg"
+						w="full"
+					>
 						Submit
 					</Button>
 				</Box>
