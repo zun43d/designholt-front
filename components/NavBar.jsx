@@ -52,7 +52,7 @@ export default function NavBar({ home }) {
 					</NextLink>
 				</Flex>
 				<HStack as="nav" spacing="4" ml="8" fontWeight="normal">
-					<NextLink href={'/all-logos'} passHref>
+					<NextLink href={'/products'} passHref>
 						<Link>All Items</Link>
 					</NextLink>
 					<NextLink href={'/'} passHref>
