@@ -57,10 +57,14 @@ export default function ProductPage({ product }) {
 						/>
 					</Box>
 					<Box my="8" px="3">
-						<Heading size="md" mb="2">
-							Description
-						</Heading>
-						<Text>{product.description}</Text>
+						{product.description && (
+							<Box>
+								<Heading size="md" mb="2">
+									Description
+								</Heading>
+								<Text>{product.description}</Text>
+							</Box>
+						)}
 						<br />
 						<Heading size="md" mb="2">
 							Tags
