@@ -15,8 +15,11 @@ import {
 	Select as ChakraSelect,
 	Link as ChakraLink,
 	Checkbox as ChakraCheckbox,
+	Breadcrumb as ChakraBreadcrumb,
+	BreadcrumbItem as ChakraBreadcrumbItem,
+	BreadcrumbLink as ChakraBreadcrumbLink,
 } from '@chakra-ui/react';
-import { useDropzone } from 'react-dropzone';
+import { ChevronRightIcon } from '@chakra-ui/icons';
 // import { WithContext as ReactTags } from 'react-tag-input';
 
 // const focusBoxShadow = '0 0 0 3px #D6BCFA';
@@ -156,3 +159,18 @@ export const UploadComponent = React.forwardRef(
 		</label>
 	)
 );
+
+export const Breadcrumb = React.forwardRef(({ paths, ...rest }, ref) => (
+	<ChakraBreadcrumb
+		spacing="8px"
+		separator={<ChevronRightIcon color="gray.500" />}
+		{...rest}
+		ref={ref}
+	>
+		{paths.map((item, index) => (
+			<ChakraBreadcrumbItem key={index}>
+				<ChakraBreadcrumbLink>{item}</ChakraBreadcrumbLink>
+			</ChakraBreadcrumbItem>
+		))}
+	</ChakraBreadcrumb>
+));
