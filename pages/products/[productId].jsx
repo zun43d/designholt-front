@@ -12,6 +12,7 @@ import {
 	UnorderedList,
 	ListItem,
 	Center,
+	useToast,
 } from '@chakra-ui/react';
 import { Breadcrumb, Link } from '@/components/uiComponents';
 import { Button } from '@/components/uiComponents';
@@ -29,6 +30,17 @@ export const getServerSideProps = async (context) => {
 
 export default function ProductPage({ product }) {
 	const { authUser } = useAuth();
+	const toast = useToast();
+
+	const errorToast = () => {
+		toast({
+			title: 'Not available',
+			description: 'Please come back after some days',
+			status: 'error',
+			duration: 9000,
+			isClosable: true,
+		});
+	};
 
 	return (
 		<Layout>
@@ -144,7 +156,7 @@ export default function ProductPage({ product }) {
 							</Text>
 						</Text>
 						<Box display="flex" gridGap={2}>
-							<Button colorScheme="purple" w="full">
+							<Button colorScheme="purple" w="full" onClick={errorToast}>
 								Download
 							</Button>
 							<Button variant="outline" minW="32">
@@ -245,10 +257,13 @@ export default function ProductPage({ product }) {
 			</Grid>
 			<Center
 				flexDirection="column"
+				borderRadius="lg"
 				maxW="5xl"
 				mx="auto"
-				mt="8"
-				bg="gray.100"
+				my="8"
+				bg="gray.50"
+				border="1px"
+				borderColor="gray.100"
 				p="10"
 			>
 				<Heading mb="5">Payment methods</Heading>

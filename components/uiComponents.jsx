@@ -117,7 +117,7 @@ export const Link = React.forwardRef(({ children, ...rest }, ref) => (
 		ref={ref}
 		{...rest}
 		_focus={{
-			border: 'none',
+			boxShadow: focusBoxShadow,
 		}}
 	>
 		{children}

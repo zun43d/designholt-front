@@ -6,7 +6,6 @@ import {
 	HStack,
 	Container,
 	Text,
-	Link,
 	Spacer,
 	useColorMode,
 	Icon,
@@ -20,7 +19,7 @@ import {
 	Avatar,
 	useDisclosure,
 } from '@chakra-ui/react';
-import { Button, IconButton } from '@/components/uiComponents.jsx';
+import { Button, Link } from '@/components/uiComponents.jsx';
 import SideDrawer from '@/components/SideDrawer';
 import Branding from '@/components/BrandingSVG.jsx';
 import { ChevronDownIcon, MoonIcon, SunIcon } from '@chakra-ui/icons';
