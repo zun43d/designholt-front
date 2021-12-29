@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import Head from 'next/head';
 import { getAllProducts } from '@/lib/sanityDb';
 
 import { Text, Box } from '@chakra-ui/react';
@@ -17,9 +18,13 @@ export async function getStaticProps() {
 	};
 }
 
-export default function AllItems({ products }) {
+export default function AllProducts({ products }) {
 	return (
 		<Layout maxW="8xl">
+			<Head>
+				<title>All Products | DesignHolt</title>
+			</Head>
+
 			<Box w="full" px="7">
 				{/* <ShowCategory maxW="2xs" /> */}
 				<Box mt="8">

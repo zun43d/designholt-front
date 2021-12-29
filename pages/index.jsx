@@ -2,12 +2,21 @@ import { Box, Text } from '@chakra-ui/react';
 import Layout from '@/layout/layout';
 import Hero from '@/components/Home/Hero';
 import Featured from '@/components/Home/Featured';
+import { getFeaturedProducts } from '@/lib/sanityDb';
 
-export default function Home() {
+export const getStaticProps = async () => {
+	return {
+		props: {
+			products: await getFeaturedProducts(6),
+		},
+	};
+};
+
+export default function Home({ products }) {
 	return (
 		<Layout>
 			<Hero />
-			<Featured />
+			<Featured products={products} />
 		</Layout>
 	);
 }

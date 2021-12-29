@@ -1,3 +1,4 @@
+import Head from 'next/head';
 import Image from 'next/image';
 import NextLink from 'next/link';
 import { useAuth } from '@/context/AuthUserContext';
@@ -37,13 +38,17 @@ export default function ProductPage({ product }) {
 			title: 'Not available',
 			description: 'Please come back after some days',
 			status: 'error',
-			duration: 9000,
+			duration: 3000,
 			isClosable: true,
 		});
 	};
 
 	return (
 		<Layout>
+			<Head>
+				<title>{product.title} | DesignHolt</title>
+			</Head>
+
 			<Box bg="gray.100" h="36">
 				<Box maxW="6xl" mx="auto">
 					<Breadcrumb
@@ -87,6 +92,12 @@ export default function ProductPage({ product }) {
 								<Text>{product.description}</Text>
 							</Box>
 						)}
+						<br />
+
+						<Heading size="md" mb="2">
+							Category(s)
+						</Heading>
+						<Text>{product.productCategory.join(', ')}</Text>
 						<br />
 						<Heading size="md" mb="2">
 							Tags

@@ -1,9 +1,10 @@
-import { Flex, Heading, Text, Stack } from '@chakra-ui/react';
+import { Flex, Heading, Text, Box, Stack } from '@chakra-ui/react';
+import ProductList from '../ProductList';
 
-export default function Featured() {
+export default function Featured({ products }) {
 	return (
 		<Flex
-			py="16"
+			py="20"
 			flexDir="column"
 			justifyContent="center"
 			alignItems="center"
@@ -20,6 +21,9 @@ export default function Featured() {
 					team hand-picked the best logos from our entire collection, just for
 					you!
 				</Text>
+				<Box my="10">
+					<ProductList products={products} gridCol="3" />
+				</Box>
 			</Flex>
 		</Flex>
 	);

@@ -1,11 +1,11 @@
 import Product from './Product';
 import { Box, Grid } from '@chakra-ui/react';
 
-export default function ProductList({ products, ...rest }) {
+export default function ProductList({ products, gridCol, ...rest }) {
 	return (
 		<Grid
-			templateColumns="repeat(4, minmax(320px,1fr))"
-			templateRows="repeat(1, 1fr)"
+			templateColumns={`repeat(${gridCol || '4'}, minmax(320px,1fr))`}
+			// templateRows="repeat(1, 1fr)"
 			gridAutoColumns="320px"
 			gap={8}
 			w="min-content"
