@@ -230,6 +230,13 @@ export default function Upload({ categories }) {
 						<UploadComponent
 							{...register('presentation_img', {
 								required: 'You must enter an image for presentation',
+								validate: (value) => {
+									const isOk = value[0].size <= 5242880;
+									if (!isOk) {
+										return 'Maximum file size is 5MB.';
+									}
+									return true;
+								},
 							})}
 							accept=".jpg"
 							watchFile={presentation_img_w}
