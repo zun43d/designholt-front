@@ -208,6 +208,13 @@ export default function Upload({ categories }) {
 						<UploadComponent
 							{...register('thumbnail_img', {
 								required: 'You must select a thumbnail image',
+								validate: (value) => {
+									const isOk = value[0].size <= 5242880;
+									if (!isOk) {
+										return 'Maximum file size is 5MB.';
+									}
+									return true;
+								},
 							})}
 							accept=".jpg"
 							watchFile={thumbnail_img_w}
