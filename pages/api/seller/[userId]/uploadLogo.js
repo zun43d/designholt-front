@@ -20,6 +20,10 @@ const validateFileSize = (file, maxSizeMb) => {
 };
 
 const upload = async (req, res) => {
+	if (req.headers.api_key !== process.env.NEXT_PUBLIC_API_ROUTE_KEY) {
+		return res.status(401).send('Unauthorized');
+	}
+
 	const { userId } = req.query;
 	const form = new formidable.IncomingForm();
 	form.parse(req, async function (errors, fields, files) {

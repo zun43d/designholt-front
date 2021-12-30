@@ -5,7 +5,7 @@ import { Box } from '@chakra-ui/react';
 
 export default function VendorPanel({ children, ...rest }) {
 	return (
-		<Layout>
+		<Layout noFoot={true}>
 			<ProtectedRoute>
 				<VendorNav />
 				<Box {...rest}>{children}</Box>

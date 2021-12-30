@@ -6,7 +6,13 @@ import Footer from '@/components/Footer';
 export const siteTitle = 'DesignHolt';
 export const subHeading = 'Get professional logo that suits you the most';
 
-export default function Layout({ categories, noNav, children, ...rest }) {
+export default function Layout({
+	categories,
+	noNav,
+	noFoot,
+	children,
+	...rest
+}) {
 	return (
 		<Box>
 			<Head>
@@ -22,7 +28,7 @@ export default function Layout({ categories, noNav, children, ...rest }) {
 					{children}
 				</Box>
 			</main>
-			<Footer />
+			{noFoot ? null : <Footer />}
 		</Box>
 	);
 }

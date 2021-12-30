@@ -39,6 +39,9 @@ export default function Portfolio() {
 			await fetch(`/api/seller/${authUser.uid}/avatar`, {
 				method: 'POST',
 				body,
+				headers: {
+					api_key: process.env.NEXT_PUBLIC_API_ROUTE_KEY,
+				},
 			}).then((res) => {
 				setUploading(false);
 				toast({
@@ -54,7 +57,12 @@ export default function Portfolio() {
 
 	useEffect(() => {
 		if (authUser) {
-			fetch(`/api/seller/${authUser.uid}`)
+			fetch(`/api/seller/${authUser.uid}`, {
+				method: 'GET',
+				headers: {
+					API_KEY: process.env.NEXT_PUBLIC_API_ROUTE_KEY,
+				},
+			})
 				.then((res) => res.json())
 				.then((res) => {
 					const items = res.data;

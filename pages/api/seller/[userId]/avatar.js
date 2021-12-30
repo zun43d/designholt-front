@@ -10,12 +10,18 @@ export const config = {
 };
 
 const post = async (req, res) => {
+	if (req.headers.api_key !== process.env.NEXT_PUBLIC_API_ROUTE_KEY) {
+		return res.status(401).send('Unauthorized');
+	}
+
 	const { userId } = req.query;
 	const form = new formidable.IncomingForm();
 	form.parse(req, async function (err, fields, files) {
 		const imageStream = await processImage(files.file, {
 			width: 200,
 			quality: 80,
+		}).catch((err) => {
+			return res.status(400).send('Invalid image');
 		});
 		if (imageStream) {
 			await changeUserAvatar(userId, imageStream).then(async (response) => {

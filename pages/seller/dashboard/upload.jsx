@@ -81,6 +81,9 @@ export default function Upload({ categories }) {
 		await fetch(`/api/seller/${authUser.uid}/uploadLogo`, {
 			method: 'POST',
 			body: formData,
+			headers: {
+				api_key: process.env.NEXT_PUBLIC_API_ROUTE_KEY,
+			},
 		}).then(async (res) => {
 			closeToast();
 			const resMsg = await res.json();

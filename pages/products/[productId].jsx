@@ -3,7 +3,7 @@ import Image from 'next/image';
 import NextLink from 'next/link';
 import { useAuth } from '@/context/AuthUserContext';
 import Layout from '@/layout/layout';
-import { getProductDetails } from '@/lib/sanityDb';
+import { getAllProducts, getProductDetails } from '@/lib/sanityDb';
 import {
 	Text,
 	Box,
@@ -18,7 +18,7 @@ import {
 import { Breadcrumb, Link } from '@/components/uiComponents';
 import { Button } from '@/components/uiComponents';
 
-export const getServerSideProps = async (context) => {
+export const getStaticProps = async (context) => {
 	const pid = context.params.productId;
 	const product = await getProductDetails(pid);
 
@@ -26,6 +26,19 @@ export const getServerSideProps = async (context) => {
 		props: {
 			product: product[0],
 		},
+	};
+};
+
+export const getStaticPaths = async () => {
+	const products = await getAllProducts();
+
+	return {
+		paths: products.map((product) => ({
+			params: {
+				productId: product._id,
+			},
+		})),
+		fallback: true,
 	};
 };
 
