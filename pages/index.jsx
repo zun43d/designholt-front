@@ -9,7 +9,7 @@ export const getStaticProps = async () => {
 		props: {
 			products: await getFeaturedProducts(6),
 		},
-		revalidaate: 3600,
+		revalidate: 3600,
 	};
 };
 
