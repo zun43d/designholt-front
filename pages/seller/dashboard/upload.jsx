@@ -1,3 +1,4 @@
+import { useRouter } from 'next/router';
 import { useRef } from 'react';
 import { useForm } from 'react-hook-form';
 import { useAuth } from '@/context/AuthUserContext';
@@ -42,6 +43,7 @@ export default function Upload({ categories }) {
 	} = useForm();
 	const { authUser } = useAuth();
 	const toast = useToast();
+	const router = useRouter();
 
 	const thumbnail_img_w = watch('thumbnail_img', '');
 	const presentation_img_w = watch('presentation_img', '');
@@ -97,7 +99,7 @@ export default function Upload({ categories }) {
 					isClosable: true,
 				});
 				reset();
-				return;
+				return router.push('/seller/dashboard/portfolio');
 			}
 
 			toast({

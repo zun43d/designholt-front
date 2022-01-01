@@ -31,8 +31,8 @@ const upload = async (req, res) => {
 			const presentation_img_stream = await processImage(
 				files.presentation_img,
 				{
-					width: 600,
-					quality: 80,
+					width: 800,
+					quality: 90,
 				}
 			);
 			const thumbnail_img_stream = await processImage(files.thumbnail_img, {
