@@ -14,6 +14,7 @@ import {
 	ListItem,
 	Center,
 	useToast,
+	Avatar,
 } from '@chakra-ui/react';
 import { Breadcrumb, Link } from '@/components/uiComponents';
 import { Button } from '@/components/uiComponents';
@@ -97,10 +98,14 @@ export default function ProductPage({ product }) {
 								</Text>
 							</Box>
 							<Image
-								src={product.productImage.presentation}
-								alt={product.title}
-								width="670"
-								height="1450"
+								src={product?.productImage?.presentation}
+								alt={
+									product.productImage.imageAlt ||
+									product.title ||
+									'Presentation of the logo'
+								}
+								width="800"
+								height="1726"
 								layout="responsive"
 							/>
 						</Box>
@@ -210,13 +215,16 @@ export default function ProductPage({ product }) {
 							gridGap={4}
 						>
 							<Box minW="16" borderRadius="md" overflow="hidden">
-								<Image
-									src={product.creator.profilePic}
+								{/* {product.creator.profilePic && ( */}
+								{/* <Image
+									src={product.creator.profilePic || '/avatar.png'}
 									alt={product.creator.fullName}
 									width="100"
 									height="100"
 									layout="responsive"
-								/>
+								/> */}
+								{/* )} */}
+								<Avatar size="lg" src={product.creator.profilePic} />
 							</Box>
 							<Box>
 								<Heading size="md" mb="1">

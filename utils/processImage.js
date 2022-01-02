@@ -2,24 +2,43 @@ import fs from 'fs';
 import Jimp from 'jimp';
 import { bufferToStream } from './bufferToStream';
 
-const path = './imageTmp/processed.jpg';
-
-export const processImage = async (imageFile, config) => {
+export const processImage = async (imageFile, config, watermarkPath) => {
 	const { width, height, quality } = config;
 	if ((width || height) && quality) {
-		// let output;
 		const inpImg = await Jimp.read(imageFile.filepath);
-		const output = await inpImg
-			.resize(width || Jimp.AUTO, height || Jimp.AUTO)
-			.quality(quality)
-			.getBufferAsync(Jimp.MIME_JPEG, (err, buffer) => {
-				if (err) throw err;
-				return buffer;
-			});
 
-		const readableStream = bufferToStream(output);
+		let imgTmp;
 
-		return readableStream;
+		try {
+			imgTmp = inpImg.resize(width || Jimp.AUTO, height || Jimp.AUTO);
+		} catch (err) {
+			console.log('#18', err);
+		}
+
+		if (watermarkPath) {
+			const watermarkImg = await Jimp.read(watermarkPath);
+
+			try {
+				imgTmp.composite(watermarkImg, 0, 0, {
+					mode: Jimp.BLEND_SOURCE_OVER,
+					opacityDest: 1,
+					opacitySource: 0.25,
+				});
+			} catch (err) {
+				console.log('#24', err);
+			}
+		}
+
+		try {
+			imgTmp.quality(quality);
+		} catch (err) {
+			console.log('#30', err);
+		}
+
+		return await imgTmp.getBufferAsync(Jimp.MIME_JPEG).then((buffer) => {
+			console.log('Got the image output buffer');
+			return bufferToStream(buffer);
+		});
 	}
 
 	throw new Error('Width || height && quality required!');

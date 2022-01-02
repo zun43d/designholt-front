@@ -9,6 +9,8 @@ export const config = {
 	},
 };
 
+const watermarkPath = './public/watermark.png';
+
 const commaSeparator = (stringList) => {
 	const arrayRaw = stringList.split(',');
 	return arrayRaw.map((item) => item.trim());
@@ -32,12 +34,13 @@ const upload = async (req, res) => {
 				files.presentation_img,
 				{
 					width: 800,
-					quality: 90,
-				}
+					quality: 100,
+				},
+				watermarkPath
 			);
 			const thumbnail_img_stream = await processImage(files.thumbnail_img, {
 				width: 160,
-				quality: 60,
+				quality: 70,
 			});
 			const main_file_stream = fs.createReadStream(files.main_file.filepath);
 

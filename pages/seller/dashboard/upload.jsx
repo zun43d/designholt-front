@@ -95,7 +95,7 @@ export default function Upload({ categories }) {
 					title: 'Logo Uploaded!',
 					description: resMsg.message,
 					status: 'success',
-					duration: '90000',
+					duration: '5000',
 					isClosable: true,
 				});
 				reset();
