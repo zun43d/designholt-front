@@ -9,7 +9,7 @@ export const config = {
 	},
 };
 
-const watermarkPath = './public/watermark.png';
+const watermarkPath = '/watermark.png';
 
 const commaSeparator = (stringList) => {
 	const arrayRaw = stringList.split(',');
