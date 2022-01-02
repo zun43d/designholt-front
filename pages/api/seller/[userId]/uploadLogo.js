@@ -9,7 +9,7 @@ export const config = {
 	},
 };
 
-const watermarkPath = '/watermark.png';
+const watermarkPath = 'https://www.designholt.com/watermark.png';
 
 const commaSeparator = (stringList) => {
 	const arrayRaw = stringList.split(',');
