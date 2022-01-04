@@ -22,6 +22,7 @@ import {
 	Checkbox,
 	UploadComponent,
 } from '@/components/uiComponents';
+import { Textarea } from '@/components/uiComponents';
 
 export const getServerSideProps = async () => {
 	const categories = await getAllCategories();
@@ -198,9 +199,10 @@ export default function Upload({ categories }) {
 					<br />
 					<FormControl isInvalid={errors.description}>
 						<FormLabel>Description</FormLabel>
-						<Input
+						<Textarea
 							{...register('description')}
 							placeholder="Enter a description about the logo"
+							rows="8"
 						/>
 
 						<FormErrorMessage>
