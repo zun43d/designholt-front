@@ -57,8 +57,24 @@ export default function ProductPage({ product }) {
 		});
 	};
 
+	const descriptionBuilder = (description) => {
+		// const descriptionArray = description.split('\n');
+		// const descriptionList = descriptionArray.map((item, index) => (
+		// 	<p key={index}>
+		// 		{item}
+		// 		<br />
+		// 	</p>
+		// ));
+		// return descriptionList;
+
+		return description.split('\n').reduce((children, textSegment, index) => {
+			return [...children, index > 0 && <br key={index} />, textSegment];
+		}, []);
+	};
+
 	return (
 		<Layout>
+			{console.log(product)}
 			<Head>
 				<title>{product.title || ''} | DesignHolt</title>
 			</Head>
@@ -66,7 +82,7 @@ export default function ProductPage({ product }) {
 			<Box bg="gray.100" h="36">
 				<Box maxW="6xl" mx="auto">
 					<Breadcrumb
-						paths={['Home', 'Products', product.title || '']}
+						paths={['Home', 'Logo Templates', product.title || '']}
 						py="5"
 						px="3"
 						fontSize="sm"
@@ -115,7 +131,7 @@ export default function ProductPage({ product }) {
 									<Heading size="md" mb="2">
 										Description
 									</Heading>
-									<Text>{product.description}</Text>
+									<Text>{descriptionBuilder(product.description)}</Text>
 								</Box>
 							)}
 							<br />

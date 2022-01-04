@@ -20,7 +20,7 @@ import {
 	useDisclosure,
 } from '@chakra-ui/react';
 import { Button, Link } from '@/components/uiComponents.jsx';
-import SideDrawer from '@/components/SideDrawer';
+import CartDrawer from '@/components/CartDrawer';
 import Branding from '@/components/BrandingSVG.jsx';
 import { ChevronDownIcon, MoonIcon, SunIcon } from '@chakra-ui/icons';
 import { HiShoppingCart } from 'react-icons/hi';
@@ -93,7 +93,7 @@ export default function NavBar({ home }) {
 							View Cart
 						</Button>
 						<Portal>
-							<SideDrawer
+							<CartDrawer
 								size="sm"
 								isOpen={isOpen}
 								onClose={onClose}
