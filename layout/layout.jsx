@@ -13,6 +13,14 @@ export default function Layout({
 	children,
 	...rest
 }) {
+	const triggerCart = (cartButton) => {
+		console.log(cartButton);
+
+		if (cartButton.current) {
+			cartButton.current.click();
+		}
+	};
+
 	return (
 		<Box>
 			<Head>
@@ -20,7 +28,7 @@ export default function Layout({
 			</Head>
 			{noNav ? null : (
 				<header>
-					<NavBar />
+					<NavBar triggerCart={triggerCart} />
 				</header>
 			)}
 			<main>

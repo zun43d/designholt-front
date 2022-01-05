@@ -1,5 +1,5 @@
 import { ChakraProvider } from '@chakra-ui/react';
-import { CartProvider, useCart } from 'react-use-cart';
+import { CartProvider } from 'react-use-cart';
 import AuthProvider from '@/context/AuthUserContext';
 import { theme } from '@/styles/theme';
 import '@fontsource/inter/variable-full.css';

@@ -1,8 +1,9 @@
 import Image from 'next/image';
 import NextLink from 'next/link';
 import { useAuth } from '@/context/AuthUserContext';
+import { useCart } from 'react-use-cart';
 
-import { Box, Text, Heading } from '@chakra-ui/react';
+import { Box, Text, Heading, useToast } from '@chakra-ui/react';
 import { Button, Link } from '@/components/uiComponents';
 
 export default function Product({
@@ -12,9 +13,12 @@ export default function Product({
 	creator,
 	price,
 	id,
+	thumbnail,
 	...rest
 }) {
 	const { authUser } = useAuth();
+	const { addItem, inCart } = useCart();
+	const toast = useToast();
 
 	const productUrl = `/products/${id}`;
 
@@ -62,6 +66,24 @@ export default function Product({
 						colorScheme="purple"
 						size="sm"
 						isDisabled={creator._id === authUser?.uid}
+						onClick={() => {
+							if (!inCart(id)) {
+								addItem({ id, title, price, thumbnail });
+								return toast({
+									title: 'Added to cart',
+									status: 'success',
+									duration: 5000,
+									isClosable: true,
+								});
+							}
+
+							toast({
+								title: 'Already in cart',
+								status: 'warning',
+								duration: 5000,
+								isClosable: true,
+							});
+						}}
 					>
 						Add to cart
 					</Button>

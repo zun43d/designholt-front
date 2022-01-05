@@ -18,6 +18,7 @@ import {
 } from '@chakra-ui/react';
 import { Breadcrumb, Link } from '@/components/uiComponents';
 import { Button } from '@/components/uiComponents';
+import { DownloadIcon } from '@chakra-ui/icons';
 
 export const getStaticProps = async (context) => {
 	const pid = context.params.productId;
@@ -58,15 +59,6 @@ export default function ProductPage({ product }) {
 	};
 
 	const descriptionBuilder = (description) => {
-		// const descriptionArray = description.split('\n');
-		// const descriptionList = descriptionArray.map((item, index) => (
-		// 	<p key={index}>
-		// 		{item}
-		// 		<br />
-		// 	</p>
-		// ));
-		// return descriptionList;
-
 		return description.split('\n').reduce((children, textSegment, index) => {
 			return [...children, index > 0 && <br key={index} />, textSegment];
 		}, []);
@@ -74,7 +66,6 @@ export default function ProductPage({ product }) {
 
 	return (
 		<Layout>
-			{console.log(product)}
 			<Head>
 				<title>{product.title || ''} | DesignHolt</title>
 			</Head>
@@ -209,7 +200,13 @@ export default function ProductPage({ product }) {
 								</Text>
 							</Text>
 							<Box display="flex" gridGap={2}>
-								<Button colorScheme="purple" w="full" onClick={errorToast}>
+								<Button
+									leftIcon={<DownloadIcon />}
+									colorScheme="green"
+									w="full"
+									noOutline={true}
+									onClick={errorToast}
+								>
 									Download
 								</Button>
 								<Button variant="outline" minW="32">

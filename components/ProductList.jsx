@@ -17,6 +17,7 @@ export default function ProductList({ products, gridCol, ...rest }) {
 					id={product._id}
 					image={product?.productImage.presentation}
 					alt={product.productImage.imageAlt}
+					thumbnail={product?.productImage.thumbnail}
 					title={product.title}
 					creator={product.creator}
 					price={product.price}

@@ -93,14 +93,7 @@ export default function NavBar({ home }) {
 							View Cart
 						</Button>
 						<Portal>
-							<CartDrawer
-								size="sm"
-								isOpen={isOpen}
-								onClose={onClose}
-								header="Cart Items"
-								pButton="Secure Checkout"
-								sButton="Browse more"
-							/>
+							<CartDrawer size="sm" isOpen={isOpen} onClose={onClose} />
 						</Portal>
 					</Box>
 					{authUser && (
