@@ -1,3 +1,5 @@
+import { useRouter } from 'next/router';
+import { useForm } from 'react-hook-form';
 import {
 	Container,
 	Heading,
@@ -11,6 +13,12 @@ import { SearchIcon } from '@chakra-ui/icons';
 
 export default function Hero() {
 	const toast = useToast();
+	const router = useRouter();
+	const { register, handleSubmit, errors } = useForm();
+
+	const handleSearch = (data) => {
+		router.push(`/products/search?query=${data.search}`);
+	};
 
 	return (
 		// <Container>
@@ -32,19 +40,16 @@ export default function Hero() {
 				brilliant designers.
 			</Text>
 			<Center maxW="lg">
-				<InputGroup
-					w="lg"
-					size="lg"
-					icon={<SearchIcon color="gray.500" />}
-					variant="filled"
-					placeholder="Search anything, don't hold back"
-					onSubmit={() => {
-						toast({
-							status: 'info',
-							title: 'Right now we are working on this, try later!',
-						});
-					}}
-				/>
+				<form onSubmit={handleSubmit(handleSearch)}>
+					<InputGroup
+						{...register('search', { required: true })}
+						w="lg"
+						size="lg"
+						icon={<SearchIcon color="gray.500" />}
+						variant="filled"
+						placeholder="Search anything, don't hold back"
+					/>
+				</form>
 			</Center>
 		</Flex>
 		// </Container>

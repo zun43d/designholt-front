@@ -4,6 +4,10 @@ const getSearchResult = async (req, res) => {
 	const allProducts = await getAllProducts();
 	const { search } = req.query;
 
+	if (!search || search === '') {
+		return res.status(200).json({ searchResult: allProducts });
+	}
+
 	const searchResult = allProducts.filter((product) => {
 		const { title, tags } = product;
 		const titleString = title.toLowerCase();
