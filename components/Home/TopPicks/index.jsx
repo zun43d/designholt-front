@@ -1,9 +1,5 @@
 import { Flex, Heading, Text, Box, Spacer } from '@chakra-ui/react';
-import ProductList from '@/components/ProductList';
-import { Link } from '@/components/uiComponents';
-import { Button } from '@/components/uiComponents';
-import { ChevronRightIcon } from '@chakra-ui/icons';
-import ProductSection from './productSection';
+import ProductSection from './ProductSection';
 
 export default function TopPicks({ products }) {
 	const sectionNames = [
