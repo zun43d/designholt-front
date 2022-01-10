@@ -24,7 +24,6 @@ export default function TopPicks({ products }) {
 						Best of our collection, hand-picked by our design team.
 					</Text>
 				</Box>
-				{/* {console.log(products.map((product) => product))} */}
 				{products &&
 					products?.map((product, index) => {
 						if (product.length > 0) {

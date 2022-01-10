@@ -6,11 +6,10 @@ import { getAllCategories } from '@/lib/sanityDb';
 import Branding from '@/components/BrandingSVG.jsx';
 
 export default function Footer({ categories }) {
-	console.log(categories);
 	return (
 		<Box borderTop="1px" borderColor="gray.100" bg="gray.50">
 			<Box maxW="8xl" mx="auto">
-				<Box display="flex" justifyContent="space-evenly" mt="12" mb="5">
+				<Box display="flex" justifyContent="space-evenly" mt="12">
 					<Box>
 						<Branding
 							isDark={false}
