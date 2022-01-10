@@ -38,7 +38,7 @@ export default function Product({
 				</Link>
 			</NextLink>
 			<Box px="4">
-				<Box py="3">
+				<Box py="3" textAlign="left">
 					<NextLink href={productUrl} passHref>
 						<Link>
 							<Heading as="h4" size="sm" isTruncated>
