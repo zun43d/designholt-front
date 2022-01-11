@@ -27,8 +27,8 @@ export default function Dashboard() {
 			</Heading>
 			<Box maxW="container.lg" my="10" mx="auto">
 				<Box display="flex" justifyContent="space-evenly" my="8">
-					<DashboardInfoCard heading="Approved Logo(s)" digits="15" />
-					<DashboardInfoCard heading="Pending Approval" digits="56" />
+					<DashboardInfoCard heading="Approved Logo(s)" digits="0" />
+					<DashboardInfoCard heading="Pending Approval" digits="0" />
 					<DashboardInfoCard heading="Earnings" digits="$0.00" />
 				</Box>
 			</Box>

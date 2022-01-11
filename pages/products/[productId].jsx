@@ -50,9 +50,9 @@ export default function ProductPage({ product }) {
 
 	const errorToast = () => {
 		toast({
-			title: 'Not available',
-			description: 'Please come back after some days',
-			status: 'error',
+			title: 'Almost there...',
+			description: 'A few more days and we will be ready.',
+			status: 'info',
 			duration: 3000,
 			isClosable: true,
 		});

@@ -13,9 +13,9 @@ export default function VendorNav() {
 				alignItems="center"
 			>
 				<HStack as="nav" spacing="6">
-					<NextLink href="/seller/dashboard" passHref>
+					{/* <NextLink href="/seller/dashboard" passHref>
 						<Link>Dashboard</Link>
-					</NextLink>
+					</NextLink> */}
 					<NextLink href="/seller/dashboard/portfolio" passHref>
 						<Link>Portfolio</Link>
 					</NextLink>

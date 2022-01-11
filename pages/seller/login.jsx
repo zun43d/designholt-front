@@ -39,7 +39,7 @@ export default function SellerLogin() {
 
 	useEffect(() => {
 		if (!loading && authUser) {
-			router.push('/seller/dashboard');
+			router.push('/seller/dashboard/portfolio');
 		}
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [authUser, loading]);
@@ -140,7 +140,7 @@ export default function SellerLogin() {
 							>
 								Log In
 							</Button>
-							<NextLink href="/seller/reset-password" passHref>
+							<NextLink href="/seller/forgot-password" passHref>
 								<Link color="purple.500" fontSize="sm" w="max-content">
 									Can&apos;t remember your password?
 								</Link>

@@ -102,19 +102,17 @@ export default function NavBar({ home }) {
 								<Avatar src={authUser?.photoUrl} w={10} h={10} />
 							</MenuButton>
 							<MenuList>
-								<MenuGroup title="My Account">
-									<NextLink href="/seller/dashboard" passHref>
+								<MenuGroup title={authUser?.name}>
+									{/* <NextLink href="/seller/dashboard" passHref>
 										<MenuItem as="a">Dashboard</MenuItem>
-									</NextLink>
-									<NextLink href={`/seller/${authUser?.uid}`} passHref>
-										<MenuItem as="a">Profile</MenuItem>
+									</NextLink> */}
+									<NextLink href={`/seller/dashboard/portfolio`} passHref>
+										<MenuItem as="a">Portfolio</MenuItem>
 									</NextLink>
 								</MenuGroup>
-								<MenuDivider />
-								<MenuGroup title="Quick Links">
-									<MenuItem>Upload New Logo</MenuItem>
-									<MenuItem>All Contents</MenuItem>
-								</MenuGroup>
+								<NextLink href={`/seller/dashboard/upload`} passHref>
+									<MenuItem as="a">Upload new logo</MenuItem>
+								</NextLink>
 								<MenuDivider />
 								<MenuItem onClick={signUserOut}>Log Out</MenuItem>
 							</MenuList>
