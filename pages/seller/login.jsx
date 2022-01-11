@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+import NextLink from 'next/link';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 import { useAuth } from '@/context/AuthUserContext';
@@ -22,6 +23,7 @@ import {
 	FormLabel,
 	Input,
 	InputGroup,
+	Link,
 } from '@/components/uiComponents';
 import { EmailIcon, LockIcon } from '@chakra-ui/icons';
 
@@ -138,6 +140,11 @@ export default function SellerLogin() {
 							>
 								Log In
 							</Button>
+							<NextLink href="/seller/reset-password" passHref>
+								<Link color="purple.500" fontSize="sm" w="max-content">
+									Can&apos;t remember your password?
+								</Link>
+							</NextLink>
 						</Stack>
 					</Box>
 					<Box maxW="2xl">
