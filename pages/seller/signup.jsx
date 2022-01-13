@@ -42,7 +42,6 @@ export default function SignUp() {
 	}, [authUser, loading]);
 
 	const handleSignup = async (values) => {
-		console.log(values);
 		const res = await createUserWithEmail(values).then((res) => {
 			router.push('/seller/dashboard/portfolio');
 		});
