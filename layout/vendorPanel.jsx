@@ -32,7 +32,7 @@ export default function VendorPanel({ children, ...rest }) {
 			.catch((err) => {
 				setIsLoading(false);
 				toast({
-					title: 'Error! Try after some moment.',
+					title: "Error! Wait up, we've just sent you an email.",
 					description: err.message,
 					status: 'error',
 					duration: 9000,
