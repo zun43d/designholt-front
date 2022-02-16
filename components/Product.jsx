@@ -26,13 +26,29 @@ export default function Product({
 		<Box w="full" boxShadow="md" borderRadius="sm" overflow="hidden" {...rest}>
 			<NextLink href={productUrl} passHref>
 				<Link>
-					<Box w="full" height="xs" overflow="hidden">
+					<Box w="full" height="xs" overflow="hidden" position="relative">
+						<Box
+							w="full"
+							h="full"
+							position="absolute"
+							bgGradient="linear-gradient(0deg,rgba(0,0,0,.2) 0,transparent 80px)"
+							opacity="0.5"
+							transition="all"
+							transitionDuration="0.4s"
+							zIndex="1"
+							_hover={{
+								opacity: '1',
+								// backgroundImage:
+								// 	'linear-gradient(0deg,rgba(0,0,0,.2) 0,transparent 80px)',
+							}}
+						></Box>
 						<Image
 							src={image}
 							width={128}
 							height={278}
 							layout="responsive"
 							alt={alt}
+							draggable={false}
 						/>
 					</Box>
 				</Link>
@@ -68,7 +84,7 @@ export default function Product({
 						isDisabled={creator._id === authUser?.uid}
 						onClick={() => {
 							if (!inCart(id)) {
-								addItem({ id, title, price, thumbnail });
+								addItem({ id, title, price, thumbnail, creator });
 								return toast({
 									title: 'Added to cart',
 									status: 'success',

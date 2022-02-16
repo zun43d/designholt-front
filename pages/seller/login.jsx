@@ -148,14 +148,14 @@ export default function SellerLogin() {
 						</Stack>
 					</Box>
 					<Box maxW="2xl">
-						<Heading>Some informational text goes here!</Heading>
+						<Heading>Welcome Back!</Heading>
 						<br />
-						<Text>
-							This will be a section containing all information about buyer and
-							seller. Who needs to create account and who doesn&apos;t need to
-							create or login with an account.
+						<Text color="gray.500">
+							&quot;Creativity is inventing, experimenting, growing, taking
+							risks, breaking rules, making mistakes, and having fun.&quot;
+							<br />
+							<Box mt="2">- Mary Lou Cook</Box>
 						</Text>
-						<Text>#TODO</Text>
 					</Box>
 				</Box>
 			</Layout>

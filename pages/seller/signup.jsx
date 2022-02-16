@@ -61,7 +61,7 @@ export default function SignUp() {
 					justifyContent="space-between"
 					alignItems="center"
 					mx="10"
-					mt="20"
+					my="20"
 				>
 					<Box w="xl">
 						<Heading>Create seller account</Heading>
@@ -194,17 +194,12 @@ export default function SignUp() {
 						</Stack>
 					</Box>
 					<Box w="xl">
-						<Heading>
-							I don&apos;t really know what&apos;ll really go here.
-						</Heading>
+						<Heading>Start turning your creativity into Dollars!</Heading>
 						<br />
 						<Text>
-							Maybe some informational text will go here. Which will explain how
-							to signup and stuff... blah blah. Well I dont really have time to
-							think about it and come up with something. Thats really a drag for
-							me. Also I dont want to just put a random lorem ipsum text here.
-							That freaking text triggers my OCD issue. Anyways, I think this
-							much text will be enough for me to test the UI designing stuff.
+							If you believe that you&apos;ve the capiblity to create mind
+							blowing unique designs, join our designer community to sell your
+							those worldwide.
 						</Text>
 					</Box>
 				</Box>

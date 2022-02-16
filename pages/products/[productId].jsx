@@ -1,7 +1,9 @@
+import { useRouter } from 'next/router';
 import Head from 'next/head';
 import Image from 'next/image';
 import NextLink from 'next/link';
 import { useAuth } from '@/context/AuthUserContext';
+import { useCart } from 'react-use-cart';
 import Layout from '@/layout/layout';
 import { getAllProducts, getProductDetails } from '@/lib/sanityDb';
 import {
@@ -45,17 +47,34 @@ export const getStaticPaths = async () => {
 };
 
 export default function ProductPage({ product }) {
+	const {
+		_id,
+		title,
+		price,
+		productImage: { thumbnail },
+		creator,
+	} = product;
+	const router = useRouter();
 	const { authUser } = useAuth();
 	const toast = useToast();
+	const { addItem, emptyCart, inCart } = useCart();
 
-	const errorToast = () => {
-		toast({
-			title: 'Almost there...',
-			description: 'A few more days and we will be ready.',
-			status: 'info',
-			duration: 3000,
-			isClosable: true,
-		});
+	const itemsToAdd = { id: _id, title, price, thumbnail, creator };
+
+	// const errorToast = () => {
+	// 	toast({
+	// 		title: 'Almost there...',
+	// 		description: 'A few more days and we will be ready.',
+	// 		status: 'info',
+	// 		duration: 3000,
+	// 		isClosable: true,
+	// 	});
+	// };
+
+	const onBuy = () => {
+		emptyCart();
+		addItem(itemsToAdd);
+		router.push('/checkout');
 	};
 
 	const descriptionBuilder = (description) => {
@@ -83,7 +102,12 @@ export default function ProductPage({ product }) {
 			{product && (
 				<Grid templateColumns="672px auto" maxW="6xl" mx="auto" gridGap={8}>
 					<GridItem minW="2xl" mt="-20">
-						<Box bg="gray.50" borderRadius="lg" p="3" boxShadow="lg">
+						<Box
+							bg="gray.50"
+							borderRadius="lg"
+							p="3"
+							boxShadow="0px 1px 8px 3px rgb(0 0 0 / 10%)"
+						>
 							<Box
 								borderTopRadius="lg"
 								bg="white"
@@ -143,7 +167,7 @@ export default function ProductPage({ product }) {
 							w="full"
 							bg="gray.50"
 							border="1px"
-							borderColor="gray.100"
+							borderColor="gray.200"
 							mt="8"
 							py="6"
 							px="8"
@@ -205,11 +229,32 @@ export default function ProductPage({ product }) {
 									colorScheme="green"
 									w="full"
 									noOutline={true}
-									onClick={errorToast}
+									onClick={onBuy}
 								>
 									Download
 								</Button>
-								<Button variant="outline" minW="32">
+								<Button
+									variant="outline"
+									minW="32"
+									onClick={() =>
+										inCart(_id)
+											? toast({
+													title: 'Already in cart',
+													status: 'warning',
+													duration: 5000,
+													isClosable: true,
+											  })
+											: (() => {
+													addItem(itemsToAdd);
+													toast({
+														title: 'Added to cart',
+														status: 'success',
+														duration: 5000,
+														isClosable: true,
+													});
+											  })()
+									}
+								>
 									Add to cart
 								</Button>
 							</Box>
@@ -218,7 +263,7 @@ export default function ProductPage({ product }) {
 							w="full"
 							bg="gray.50"
 							border="1px"
-							borderColor="gray.100"
+							borderColor="gray.200"
 							mt="8"
 							py="6"
 							px="8"
@@ -254,7 +299,7 @@ export default function ProductPage({ product }) {
 							w="full"
 							bg="gray.50"
 							border="1px"
-							borderColor="gray.100"
+							borderColor="gray.200"
 							mt="8"
 							py="6"
 							px="8"
@@ -319,7 +364,7 @@ export default function ProductPage({ product }) {
 				my="8"
 				bg="gray.50"
 				border="1px"
-				borderColor="gray.100"
+				borderColor="gray.200"
 				p="10"
 			>
 				<Heading mb="5">Payment methods</Heading>

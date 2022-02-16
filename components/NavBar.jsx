@@ -25,7 +25,7 @@ import Branding from '@/components/BrandingSVG.jsx';
 import { ChevronDownIcon, MoonIcon, SunIcon } from '@chakra-ui/icons';
 import { HiShoppingCart } from 'react-icons/hi';
 
-export default function NavBar({ home }) {
+export default function NavBar({ home, noCart }) {
 	const { colorMode, toggleColorMode } = useColorMode();
 	const { isOpen, onOpen, onClose } = useDisclosure();
 	const { authUser, signUserOut } = useAuth();
@@ -85,17 +85,19 @@ export default function NavBar({ home }) {
 						color="gray.400"
 						onClick={toggleColorMode}
 					/> */}
-					<Box>
-						<Button
-							onClick={onOpen}
-							leftIcon={<Icon as={HiShoppingCart} w={5} h={5} />}
-						>
-							View Cart
-						</Button>
-						<Portal>
-							<CartDrawer size="sm" isOpen={isOpen} onClose={onClose} />
-						</Portal>
-					</Box>
+					{noCart ? null : (
+						<Box>
+							<Button
+								onClick={onOpen}
+								leftIcon={<Icon as={HiShoppingCart} w={5} h={5} />}
+							>
+								View Cart
+							</Button>
+							<Portal>
+								<CartDrawer size="sm" isOpen={isOpen} onClose={onClose} />
+							</Portal>
+						</Box>
+					)}
 					{authUser && (
 						<Menu>
 							<MenuButton>

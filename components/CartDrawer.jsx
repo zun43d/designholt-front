@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react';
 import Image from 'next/image';
 import { useCart } from 'react-use-cart';
 import {
@@ -15,15 +16,21 @@ import {
 } from '@chakra-ui/react';
 import { Button, Input, IconButton } from './uiComponents';
 import { MinusIcon } from '@chakra-ui/icons';
+import router from 'next/router';
 
 export default function SideDrawer(props) {
 	// const { isOpen, onOpen, onClose } = useDisclosure();
 	const { size, isOpen, onClose, header, children, pButton, sButton } = props;
-	const { isEmpty, totalUniqueItems, items, removeItem } = useCart();
+	const [openDrawer, setOpenDrawer] = useState(false);
 
-	const totalPrice = items.reduce((acc, item) => {
-		return (items.length * item.price).toFixed(2);
-	}, 0);
+	const {
+		isEmpty,
+		totalUniqueItems,
+		items,
+		removeItem,
+		cartTotal,
+		totalItems,
+	} = useCart();
 
 	return (
 		<>
@@ -31,7 +38,7 @@ export default function SideDrawer(props) {
         Open
       </Button> */}
 			<Drawer
-				isOpen={isOpen}
+				isOpen={isOpen || openDrawer}
 				placement="right"
 				onClose={onClose}
 				size={size}
@@ -116,14 +123,20 @@ export default function SideDrawer(props) {
 							>
 								<Text>Total</Text>
 								<Spacer />
-								<Text fontWeight="semibold">{totalPrice}$</Text>
+								<Text fontWeight="semibold">{cartTotal.toFixed(2)}$</Text>
 							</Box>
 						)}
 					</DrawerBody>
 
 					{!isEmpty && (
 						<DrawerFooter display="flex" flexDir="column">
-							<Button colorScheme="purple" size="lg" w="full" mb="2">
+							<Button
+								colorScheme="purple"
+								size="lg"
+								w="full"
+								mb="2"
+								onClick={() => router.push('/checkout')}
+							>
 								Secure Checkout
 							</Button>
 							<Button variant="ghost" onClick={onClose} size="md" w="full">
