@@ -53,7 +53,7 @@ export default function Product({
 					</Box>
 				</Link>
 			</NextLink>
-			<Box px="4">
+			<Box px="4" bg="white">
 				<Box py="3" textAlign="left">
 					<NextLink href={productUrl} passHref>
 						<Link>
