@@ -64,7 +64,7 @@ export default function CheckOut() {
 		if (details) {
 			axios({
 				method: 'POST',
-				url: `http://localhost:3000/api/order/create`,
+				url: `/api/order/create`,
 				headers: {
 					'Content-Type': 'application/json',
 					Authorization: `Bearer ${process.env.NEXT_PUBLIC_API_ROUTE_KEY}`,
