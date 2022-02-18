@@ -50,7 +50,10 @@ export default function SeachResults() {
 	return (
 		<Layout maxW="8xl">
 			<Head>
-				<title>All Products | DesignHolt</title>
+				<title>
+					Search results {products.length > 0 ? `for ${query}` : ''} |
+					DesignHolt
+				</title>
 			</Head>
 
 			<Box w="full" px="7">
