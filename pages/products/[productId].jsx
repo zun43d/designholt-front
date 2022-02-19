@@ -368,7 +368,7 @@ export default function ProductPage({ product }) {
 							<Accordion allowToggle>
 								<AccordionItem>
 									<h2>
-										<AccordionButton>
+										<AccordionButton py="4">
 											<Box flex="1" textAlign="left" fontSize="lg">
 												What is a stock logo template?
 											</Box>
@@ -384,7 +384,7 @@ export default function ProductPage({ product }) {
 
 								<AccordionItem>
 									<h2>
-										<AccordionButton>
+										<AccordionButton py="4">
 											<Box flex="1" textAlign="left" fontSize="lg">
 												What are the benefits of buying a stock logo template?
 											</Box>
@@ -404,7 +404,7 @@ export default function ProductPage({ product }) {
 
 								<AccordionItem>
 									<h2>
-										<AccordionButton>
+										<AccordionButton py="4">
 											<Box flex="1" textAlign="left" fontSize="lg">
 												Can I customize the logo template?
 											</Box>
@@ -419,7 +419,7 @@ export default function ProductPage({ product }) {
 
 								<AccordionItem>
 									<h2>
-										<AccordionButton>
+										<AccordionButton py="4">
 											<Box flex="1" textAlign="left" fontSize="lg">
 												Can you customize the logo template for me?
 											</Box>
@@ -437,7 +437,7 @@ export default function ProductPage({ product }) {
 
 								<AccordionItem>
 									<h2>
-										<AccordionButton>
+										<AccordionButton py="4">
 											<Box flex="1" textAlign="left" fontSize="lg">
 												Can I use the logo in unlimited ways?
 											</Box>
