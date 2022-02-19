@@ -17,6 +17,11 @@ import {
 	Center,
 	useToast,
 	Avatar,
+	Accordion,
+	AccordionItem,
+	AccordionButton,
+	AccordionPanel,
+	AccordionIcon,
 } from '@chakra-ui/react';
 import { Breadcrumb, Link } from '@/components/uiComponents';
 import { Button } from '@/components/uiComponents';
@@ -352,6 +357,66 @@ export default function ProductPage({ product }) {
 									<Text fontWeight="bold">Resizable</Text>
 								</ListItem>
 							</UnorderedList>
+						</Box>
+						<Box
+							mt="8"
+							borderRadius="md"
+							borderRight="1px"
+							borderLeft="1px"
+							borderColor="gray.200"
+						>
+							<Accordion allowToggle>
+								<AccordionItem>
+									<h2>
+										<AccordionButton>
+											<Box flex="1" textAlign="left" fontSize="lg">
+												Section 1 title
+											</Box>
+											<AccordionIcon />
+										</AccordionButton>
+									</h2>
+									<AccordionPanel pb={4}>
+										Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
+										do eiusmod tempor incididunt ut labore et dolore magna
+										aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+										ullamco laboris nisi ut aliquip ex ea commodo consequat.
+									</AccordionPanel>
+								</AccordionItem>
+
+								<AccordionItem>
+									<h2>
+										<AccordionButton>
+											<Box flex="1" textAlign="left" fontSize="lg">
+												Section 2 title
+											</Box>
+											<AccordionIcon />
+										</AccordionButton>
+									</h2>
+									<AccordionPanel pb={4}>
+										Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
+										do eiusmod tempor incididunt ut labore et dolore magna
+										aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+										ullamco laboris nisi ut aliquip ex ea commodo consequat.
+									</AccordionPanel>
+								</AccordionItem>
+
+								<AccordionItem>
+									<h2>
+										<AccordionButton>
+											<Box flex="1" textAlign="left" fontSize="lg">
+												Section 2 title
+											</Box>
+											<AccordionIcon />
+										</AccordionButton>
+									</h2>
+									<AccordionPanel pb={4}>
+										Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
+										do eiusmod tempor incididunt ut labore et dolore magna
+										aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+										ullamco laboris nisi ut aliquip ex ea commodo consequat.
+									</AccordionPanel>
+								</AccordionItem>
+							</Accordion>
 						</Box>
 					</GridItem>
 				</Grid>
