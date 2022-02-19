@@ -16,7 +16,7 @@ export default async function handler(req, res) {
 
 			const msg = {
 				to: email,
-				from: 'funnyclub2015@gmail.com',
+				from: 'admin@designholt.com',
 				subject: 'Your download is ready',
 				// text: 'sdasdawd',
 				html: `
