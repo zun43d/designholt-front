@@ -43,7 +43,7 @@ export default function Hero() {
 						Get modern and premium logos only for $37
 					</Heading>
 					<Text maxW="xl" fontSize="lg" mb="10" color="gray.700">
-						Introduce youtr brand to the global audience with our hand picked
+						Introduce your brand to the global audience with our hand picked
 						modern logos by expert designers.
 					</Text>
 					<Box
