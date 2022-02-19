@@ -370,16 +370,15 @@ export default function ProductPage({ product }) {
 									<h2>
 										<AccordionButton>
 											<Box flex="1" textAlign="left" fontSize="lg">
-												Section 1 title
+												What is a stock logo template?
 											</Box>
 											<AccordionIcon />
 										</AccordionButton>
 									</h2>
 									<AccordionPanel pb={4}>
-										Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-										do eiusmod tempor incididunt ut labore et dolore magna
-										aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-										ullamco laboris nisi ut aliquip ex ea commodo consequat.
+										Stock Logo Template is a pre-designed editable logo with
+										replaceable text that you can purchase and use as your
+										company logo.
 									</AccordionPanel>
 								</AccordionItem>
 
@@ -387,16 +386,19 @@ export default function ProductPage({ product }) {
 									<h2>
 										<AccordionButton>
 											<Box flex="1" textAlign="left" fontSize="lg">
-												Section 2 title
+												What are the benefits of buying a stock logo template?
 											</Box>
 											<AccordionIcon />
 										</AccordionButton>
 									</h2>
 									<AccordionPanel pb={4}>
-										Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-										do eiusmod tempor incididunt ut labore et dolore magna
-										aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-										ullamco laboris nisi ut aliquip ex ea commodo consequat.
+										There&apos;re so many benefits of buying a stock logo. You
+										can see the logo before buying & get various options. Which
+										is not possible by hiring a logo designer. If you want to
+										know more about stock logo templates,{' '}
+										<NextLink href="/blogs" passHref>
+											<Link color="purple.600">read our blog here</Link>
+										</NextLink>
 									</AccordionPanel>
 								</AccordionItem>
 
@@ -404,16 +406,52 @@ export default function ProductPage({ product }) {
 									<h2>
 										<AccordionButton>
 											<Box flex="1" textAlign="left" fontSize="lg">
-												Section 2 title
+												Can I customize the logo template?
 											</Box>
 											<AccordionIcon />
 										</AccordionButton>
 									</h2>
 									<AccordionPanel pb={4}>
-										Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-										do eiusmod tempor incididunt ut labore et dolore magna
-										aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-										ullamco laboris nisi ut aliquip ex ea commodo consequat.
+										Yes, you can. For customizing the logo template, you&apos;ve
+										to know the essential tools of Adobe Illustrator.
+									</AccordionPanel>
+								</AccordionItem>
+
+								<AccordionItem>
+									<h2>
+										<AccordionButton>
+											<Box flex="1" textAlign="left" fontSize="lg">
+												Can you customize the logo template for me?
+											</Box>
+											<AccordionIcon />
+										</AccordionButton>
+									</h2>
+									<AccordionPanel pb={4}>
+										Yes, we would love to do that. If you want to change the
+										color & text of the logo template, we&apos;ll do it for you.
+										You have to tick the &quot;Customize it for me&quot; box &
+										send us a short message about your customization
+										requirements. Our team will do it at a reasonable fee.
+									</AccordionPanel>
+								</AccordionItem>
+
+								<AccordionItem>
+									<h2>
+										<AccordionButton>
+											<Box flex="1" textAlign="left" fontSize="lg">
+												Can I use the logo in unlimited ways?
+											</Box>
+											<AccordionIcon />
+										</AccordionButton>
+									</h2>
+									<AccordionPanel pb={4}>
+										Yes, you can use one final version of the logo in unlimited
+										ways. You can print the logo, use it on your website, use it
+										on social media & other business purposes. For more
+										information, read our{' '}
+										<NextLink href="/logo-license" passHref>
+											<Link color="purple.600">Stock Logo License here</Link>
+										</NextLink>
 									</AccordionPanel>
 								</AccordionItem>
 							</Accordion>
