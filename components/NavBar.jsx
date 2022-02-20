@@ -187,7 +187,7 @@ export default function NavBar({ home, noCart /*categories*/ }) {
 								gridAutoFlow="column"
 								justifyContent="start"
 								alignItems="start"
-								zIndex="1"
+								zIndex="2"
 								transform="scale(0.95) translateX(-12px) translateY(-2px)"
 								transition="visibility 0.3s linear, opacity 0.2s linear, transform 0.2s ease-in-out"
 								transitionDelay="0.1s"
