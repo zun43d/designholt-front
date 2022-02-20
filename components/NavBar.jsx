@@ -119,7 +119,7 @@ export default function NavBar({ home, noCart /*categories*/ }) {
 									transform: 'scale(1)',
 								}}
 							>
-								{categories.map((category) => (
+								{categories?.map((category) => (
 									<CategoryItem
 										key={category._id}
 										title={category.categoryName}
