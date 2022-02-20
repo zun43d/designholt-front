@@ -6,7 +6,26 @@ class MyDocument extends Document {
 	render() {
 		return (
 			<Html>
-				<Head></Head>
+				<Head>
+					<link
+						rel="preload"
+						href="/fonts/Axiforma/Axiforma-Regular.ttf"
+						as="font"
+						crossOrigin=""
+					/>
+					<link
+						rel="preload"
+						href="/fonts/Axiforma/Axiforma-Medium.ttf"
+						as="font"
+						crossOrigin=""
+					/>
+					<link
+						rel="preload"
+						href="/fonts/Axiforma/Axiforma-Bold.ttf"
+						as="font"
+						crossOrigin=""
+					/>
+				</Head>
 				<body>
 					<ColorModeScript initialColorMode={theme.config.initialColorMode} />
 					<Main />

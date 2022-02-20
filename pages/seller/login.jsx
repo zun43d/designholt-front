@@ -75,10 +75,22 @@ export default function SellerLogin() {
 				<Box
 					h="xl"
 					mx="5"
+					my="12"
 					display="flex"
-					justifyContent="space-between"
+					justifyContent="space-around"
 					alignItems="center"
 				>
+					<Box maxW="xl" mr="5">
+						<Heading>Welcome Back!</Heading>
+						<br />
+						<Text color="gray.500">
+							&quot;Creativity is inventing, experimenting, growing, taking
+							risks, breaking rules, making mistakes, and having fun.&quot;
+							<br />
+							<Box mt="2">- Mary Lou Cook</Box>
+						</Text>
+					</Box>
+
 					<Box>
 						<Heading as="h2">Seller login panel</Heading>
 						<Text mt="1" color="gray.500">
@@ -146,16 +158,6 @@ export default function SellerLogin() {
 								</Link>
 							</NextLink>
 						</Stack>
-					</Box>
-					<Box maxW="2xl">
-						<Heading>Welcome Back!</Heading>
-						<br />
-						<Text color="gray.500">
-							&quot;Creativity is inventing, experimenting, growing, taking
-							risks, breaking rules, making mistakes, and having fun.&quot;
-							<br />
-							<Box mt="2">- Mary Lou Cook</Box>
-						</Text>
 					</Box>
 				</Box>
 			</Layout>

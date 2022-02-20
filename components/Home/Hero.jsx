@@ -20,8 +20,8 @@ export default function Hero() {
 		<Flex
 			minH="sm"
 			h="45vh"
-			// bgGradient="linear(to-br, purple.200, purple.200)"
-			bg="gray.200"
+			bgGradient="linear(to-br, gray.100, gray.200)"
+			// bg="gray.200"
 			// color="white"
 		>
 			<Box
@@ -37,12 +37,12 @@ export default function Hero() {
 					display="flex"
 					flexDir="column"
 					justifyContent="center"
-					w="50%"
+					w="60%"
 				>
-					<Heading size="2xl" mb="6">
+					<Heading size="2xl" mb="4" lineHeight="shorter">
 						Get modern and premium logos only for $37
 					</Heading>
-					<Text maxW="xl" fontSize="lg" mb="10" color="gray.700">
+					<Text maxW="xl" fontSize="lg" mb="8" color="gray.700">
 						Introduce your brand to the global audience with our hand picked
 						modern logos by expert designers.
 					</Text>

@@ -198,8 +198,8 @@ export default function SignUp() {
 						<br />
 						<Text>
 							If you believe that you&apos;ve the capiblity to create mind
-							blowing unique designs, join our designer community to sell your
-							those worldwide.
+							blowing unique designs, join our designer community to sell those
+							worldwide.
 						</Text>
 					</Box>
 				</Box>

@@ -18,14 +18,22 @@ import {
 	Portal,
 	Avatar,
 	useDisclosure,
+	Grid,
+	GridItem,
 } from '@chakra-ui/react';
-import { Button, Link } from '@/components/uiComponents.jsx';
+import { Button, Link, IconButton } from '@/components/uiComponents.jsx';
+import CategoryItem from '@/components/CategoryItem';
 import CartDrawer from '@/components/CartDrawer';
 import Branding from '@/components/BrandingSVG.jsx';
-import { ChevronDownIcon, MoonIcon, SunIcon } from '@chakra-ui/icons';
-import { HiShoppingCart } from 'react-icons/hi';
+import {
+	MdOutlineShoppingCart,
+	MdOutlineSell,
+	MdLogin,
+	MdPersonAdd,
+	MdKeyboardArrowDown,
+} from 'react-icons/md';
 
-export default function NavBar({ home, noCart }) {
+export default function NavBar({ home, noCart, categories }) {
 	const { colorMode, toggleColorMode } = useColorMode();
 	const { isOpen, onOpen, onClose } = useDisclosure();
 	const { authUser, signUserOut } = useAuth();
@@ -50,58 +58,149 @@ export default function NavBar({ home, noCart }) {
 						/>
 					</NextLink>
 				</Flex>
-				<HStack as="nav" spacing="4" ml="8" fontWeight="normal">
+				<HStack as="nav" spacing="" ml="8">
 					<NextLink href={'/products'} passHref>
-						<Link>All Items</Link>
+						<Button
+							as="a"
+							variant="ghost"
+							h="10"
+							px="3"
+							borderRadius="xl"
+							fontSize="sm"
+						>
+							All Items
+						</Button>
 					</NextLink>
-					<NextLink href={'/'} passHref>
-						<Link>
+					<Box role="group">
+						<Button
+							variant="ghost"
+							h="10"
+							px="3"
+							iconSpacing="0"
+							rightIcon={<MdKeyboardArrowDown size={18} />}
+							borderRadius="xl"
+							fontSize="sm"
+							position="relative"
+							top="1"
+							noOutline
+						>
 							Categories
-							<ChevronDownIcon />
-						</Link>
-					</NextLink>
-					{!authUser && (
+						</Button>
+						<Box pt="2">
+							<Grid
+								visibility="hidden"
+								opacity="0"
+								position="absolute"
+								bgColor="white"
+								border="1px"
+								borderColor="gray.200"
+								borderRadius="lg"
+								boxShadow="xl"
+								// mt="2"
+								ml="-4"
+								px="3"
+								py="3"
+								gridTemplateRows="auto auto auto auto auto"
+								gridAutoFlow="column"
+								justifyContent="start"
+								alignItems="start"
+								zIndex="1"
+								transform="scale(0.95) translateX(-12px) translateY(-2px)"
+								transition="visibility 0.3s linear, opacity 0.2s linear, transform 0.2s ease-in-out"
+								transitionDelay="0.1s"
+								_groupHover={{
+									visibility: 'visible',
+									opacity: '1',
+									transform: 'scale(1)',
+								}}
+							>
+								{categories.map((category) => (
+									<CategoryItem
+										key={category._id}
+										title={category.categoryName}
+										slug={category.slug}
+									/>
+								))}
+							</Grid>
+						</Box>
+					</Box>
+					{/* {!authUser && (
 						<Menu id="seller-menu" isLazy>
 							<MenuButton>Seller portal</MenuButton>
 							<MenuList>
 								<NextLink href={'/seller/signup'} passHref>
-									<Link w="full" h="full">
-										<MenuItem>Become a seller</MenuItem>
-									</Link>
+									<MenuItem as="a">Become a seller</MenuItem>
 								</NextLink>
 								<NextLink href={'/seller/login'} passHref>
-									<Link w="full" h="full">
-										<MenuItem>Seller login</MenuItem>
-									</Link>
+									<MenuItem as="a">Seller login</MenuItem>
 								</NextLink>
 							</MenuList>
 						</Menu>
-					)}
+					)} */}
 				</HStack>
 				<Spacer />
-				<HStack spacing={4}>
+				<HStack spacing={2}>
 					{/* <IconButton
 						icon={colorMode === 'light' ? <MoonIcon /> : <SunIcon />}
 						color="gray.400"
 						onClick={toggleColorMode}
 					/> */}
+
 					{noCart ? null : (
 						<Box>
-							<Button
+							<IconButton
 								onClick={onOpen}
-								leftIcon={<Icon as={HiShoppingCart} w={5} h={5} />}
-							>
-								View Cart
-							</Button>
+								variant="outline"
+								icon={<Icon as={MdOutlineShoppingCart} w={6} h={6} />}
+							/>
 							<Portal>
 								<CartDrawer size="sm" isOpen={isOpen} onClose={onClose} />
 							</Portal>
 						</Box>
 					)}
+					{!authUser && (
+						<Menu id="seller-menu" position="relative">
+							<MenuButton
+								as={Button}
+								colorScheme="purple"
+								// variant="outline"
+								leftIcon={<MdOutlineSell size="20" />}
+							>
+								Sell logo
+							</MenuButton>
+							<Box position="relative" right="32" top="7">
+								<MenuList>
+									<NextLink href={'/seller/signup'} passHref>
+										<MenuItem as="a" icon={<MdPersonAdd size={22} />}>
+											Become a seller
+										</MenuItem>
+									</NextLink>
+									<NextLink href={'/seller/login'} passHref>
+										<MenuItem as="a" icon={<MdLogin size={20} />}>
+											Login as seller
+										</MenuItem>
+									</NextLink>
+								</MenuList>
+							</Box>
+						</Menu>
+					)}
+
 					{authUser && (
 						<Menu>
 							<MenuButton>
-								<Avatar src={authUser?.photoUrl} w={10} h={10} />
+								<Button
+									rightIcon={<MdKeyboardArrowDown />}
+									variant="outline"
+									iconSpacing="0"
+									px="0"
+								>
+									<Avatar
+										borderRadius="md"
+										src={authUser?.photoUrl}
+										w={10}
+										h={10}
+									/>
+								</Button>
 							</MenuButton>
 							<MenuList>
 								<MenuGroup title={authUser?.name}>

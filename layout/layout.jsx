@@ -27,7 +27,11 @@ export default function Layout({
 			</Head>
 			{noNav ? null : (
 				<header>
-					<NavBar triggerCart={triggerCart} noCart={noCart ? true : false} />
+					<NavBar
+						categories={categories}
+						triggerCart={triggerCart}
+						noCart={noCart ? true : false}
+					/>
 				</header>
 			)}
 			<main>

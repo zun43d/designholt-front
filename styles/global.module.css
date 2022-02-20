@@ -1,4 +1,47 @@
 @font-face {
-	font-family: 'Open Sans';
-	src: url('/fonts/OpenSans-var.ttf');
+	font-family: 'Axiforma';
+	src: url('/fonts/Axiforma/Axiforma-Regular.ttf');
+	font-style: normal;
+	font-weight: 400;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'Axiforma';
+	src: url('/fonts/Axiforma/Axiforma-Medium.ttf');
+	font-style: medium;
+	font-weight: 500;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'Axiforma';
+	src: url('/fonts/Axiforma/Axiforma-SemiBold.ttf');
+	font-style: semibold;
+	font-weight: 600;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'Axiforma';
+	src: url('/fonts/Axiforma/Axiforma-Bold.ttf');
+	font-style: bold;
+	font-weight: 700;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'Axiforma';
+	src: url('/fonts/Axiforma/Axiforma-ExtraBold.ttf');
+	font-style: extrabold;
+	font-weight: 800;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'Axiforma';
+	src: url('/fonts/Axiforma/Axiforma-Black.ttf');
+	font-style: black;
+	font-weight: 900;
+	font-display: swap;
 }

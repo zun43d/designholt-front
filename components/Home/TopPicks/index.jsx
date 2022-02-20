@@ -14,7 +14,13 @@ export default function TopPicks({ products }) {
 	];
 
 	return (
-		<Flex py="20" flexDir="column" justifyContent="center" alignItems="center">
+		<Flex
+			py="20"
+			flexDir="column"
+			justifyContent="center"
+			alignItems="center"
+			bgColor="gray.50"
+		>
 			<Flex maxW="8xl" flexDir="column">
 				<Box textAlign="center">
 					<Heading size="2xl" mb="5">
