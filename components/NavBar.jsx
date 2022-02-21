@@ -44,7 +44,12 @@ export default function NavBar({ home, noCart /*categories*/ }) {
 	} = useContext(AppContext);
 
 	return (
-		<Box color="gray.700" boxShadow="sm">
+		<Box
+			color="gray.700"
+			boxShadow="sm"
+			borderBottom="1px"
+			borderColor="gray.200"
+		>
 			<Container
 				maxW="8xl"
 				h="20"

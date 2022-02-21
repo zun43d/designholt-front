@@ -9,7 +9,7 @@ export default function Featured({ products }) {
 			justifyContent="center"
 			alignItems="center"
 			textAlign="center"
-			// bgColor="gray.50"
+			bgColor="gray.50"
 		>
 			<Flex maxW="container.xl" flexDir="column">
 				<Heading size="2xl" mb="4">

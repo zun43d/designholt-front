@@ -19,7 +19,7 @@ export default function TopPicks({ products }) {
 			flexDir="column"
 			justifyContent="center"
 			alignItems="center"
-			bgColor="gray.50"
+			// bgColor="gray.50"
 		>
 			<Flex maxW="8xl" flexDir="column">
 				<Box textAlign="center">
