@@ -128,7 +128,7 @@ export default function NavBar({ home, noCart /*categories*/ }) {
 									<CategoryItem
 										key={category._id}
 										title={category.categoryName}
-										// slug={category.slug}
+										slug={category.slug}
 									/>
 								))}
 							</Grid>
