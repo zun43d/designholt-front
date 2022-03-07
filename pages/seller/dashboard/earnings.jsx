@@ -30,7 +30,6 @@ export default function Earnings() {
 				uid: authUser.uid,
 			},
 		}).then((res) => {
-			console.log(res.data);
 			setEarnings(res.data.earnings.toString());
 			setTotalSales(res.data.totalSales.toString());
 		});

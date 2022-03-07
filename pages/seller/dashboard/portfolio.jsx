@@ -145,7 +145,7 @@ export default function Portfolio() {
 								{portfolioItems.map((item) => (
 									<Box
 										key={item._id}
-										bg="black"
+										bg="gray.300"
 										w="full"
 										h="full"
 										borderRadius="md"
