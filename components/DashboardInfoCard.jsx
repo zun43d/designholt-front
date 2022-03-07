@@ -11,7 +11,7 @@ export default function DashboardInfoCard({ heading, digits, currency }) {
 			mx="2"
 		>
 			<Text fontWeight="semibold">{heading}</Text>
-			<Text fontSize="3xl" fontWeight="bold">
+			<Text as="div" fontSize="3xl" fontWeight="bold">
 				{digits && currency ? '$' : ''}
 				{digits || <Spinner />}
 			</Text>

@@ -199,6 +199,7 @@ export default function NavBar({ home, noCart /*categories*/ }) {
 						<Menu>
 							<MenuButton>
 								<Button
+									as="div"
 									rightIcon={<MdKeyboardArrowDown />}
 									variant="outline"
 									iconSpacing="0"

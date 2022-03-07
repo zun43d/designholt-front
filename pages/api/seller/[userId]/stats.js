@@ -29,24 +29,23 @@ const getStats = async (req, res) => {
 
 		const sell = await getUserItems(uid)
 			.then((res) => {
-				return res.length > 0
-					? res.forEach((item) => {
-							if (item?.totalSell) {
-								return item.totalSales;
-							}
-					  })
-					: 0;
+				let sells = 0;
+				res.length > 0 &&
+					res.forEach((item) => {
+						if (item.totalSell) {
+							sells += item.totalSell;
+						}
+					});
+				return sells;
 			})
 			.catch((err) => console.log('sats => getUserItems\n', err));
 
-		return res
-			.status(200)
-			.json({ earnings: await earn, totalSales: await sell });
+		return res.status(200).json({ earnings: earn, totalSales: sell });
 	}
 };
 
 export default async function handler(req, res) {
 	req.method == 'POST'
-		? getStats(req, res)
+		? await getStats(req, res)
 		: res.status(404).send('Method not allowed');
 }

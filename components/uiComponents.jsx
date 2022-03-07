@@ -27,16 +27,19 @@ import { ChevronRightIcon } from '@chakra-ui/icons';
 const focusBoxShadow = '0 0 0 3px rgba(159, 122, 234, 0.6)';
 const focusBorderColor = 'purple.300';
 
-export const Button = ({ children, colorScheme, noOutline, ...rest }) => (
-	<ChakraButton
-		colorScheme={colorScheme}
-		{...rest}
-		_focus={{
-			boxShadow: noOutline ? 'none' : focusBoxShadow,
-		}}
-	>
-		{children}
-	</ChakraButton>
+export const Button = React.forwardRef(
+	({ children, colorScheme, noOutline, ...rest }, ref) => (
+		<ChakraButton
+			ref={ref}
+			colorScheme={colorScheme}
+			{...rest}
+			_focus={{
+				boxShadow: noOutline ? 'none' : focusBoxShadow,
+			}}
+		>
+			{children}
+		</ChakraButton>
+	)
 );
 
 export const IconButton = ({ children, icon, ...rest }) => (
