@@ -14,7 +14,6 @@ export default function Product({
 	price,
 	id,
 	thumbnail,
-	openModal,
 	...rest
 }) {
 	const { authUser } = useAuth();
@@ -86,7 +85,6 @@ export default function Product({
 						onClick={() => {
 							if (!inCart(id)) {
 								addItem({ id, title, price, thumbnail, creator });
-								openModal();
 								return toast({
 									title: 'Added to cart',
 									status: 'success',

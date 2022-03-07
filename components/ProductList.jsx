@@ -1,10 +1,7 @@
 import Product from './Product';
-import { Box, Grid, useDisclosure } from '@chakra-ui/react';
-import AfterCartModal from './AfterCartModal';
+import { Box, Grid } from '@chakra-ui/react';
 
 export default function ProductList({ products, gridCol, ...rest }) {
-	const { isOpen, onOpen, onClose } = useDisclosure();
-
 	return (
 		<Grid
 			templateColumns={`repeat(${gridCol || '4'}, minmax(320px,1fr))`}
@@ -24,10 +21,8 @@ export default function ProductList({ products, gridCol, ...rest }) {
 					title={product.title}
 					creator={product.creator}
 					price={product.price}
-					openModal={onOpen}
 				/>
 			))}
-			<AfterCartModal isOpen={isOpen} onClose={onClose} />
 		</Grid>
 	);
 }

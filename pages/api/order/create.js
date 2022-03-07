@@ -19,12 +19,6 @@ export default async function handler(req, res) {
 			return unauthorized();
 		}
 
-		let secondCount = 0;
-		const timeCount = setInterval(() => {
-			secondCount += 0.5;
-			console.log(secondCount);
-		}, 500);
-
 		return await createBuyer(userInfo)
 			.then(async (id) => {
 				// update item list in buyer's document
@@ -41,7 +35,7 @@ export default async function handler(req, res) {
 					.catch((err) => console.log('updateBoughtItem\n', err));
 
 				// send the logo to the user
-				await axios({
+				return await axios({
 					method: 'POST',
 					url: 'https://designholt.com/api/order/sendEmail',
 					data: {
@@ -55,11 +49,6 @@ export default async function handler(req, res) {
 						res.status(200).json({ message: 'Confirmed' });
 					})
 					.catch((err) => console.log('sendEmailApi\n', err));
-
-				return (
-					clearInterval(timeCount) &&
-					console.log('Timeout ends in /api/order/create')
-				);
 			})
 			.catch((err) => console.log('createBuyer\n', err));
 	} else {

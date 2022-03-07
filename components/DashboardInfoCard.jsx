@@ -1,6 +1,6 @@
-import { Box, Text } from '@chakra-ui/react';
+import { Box, Text, Spinner } from '@chakra-ui/react';
 
-export default function DashboardInfoCard({ heading, digits }) {
+export default function DashboardInfoCard({ heading, digits, currency }) {
 	return (
 		<Box
 			w="full"
@@ -12,7 +12,8 @@ export default function DashboardInfoCard({ heading, digits }) {
 		>
 			<Text fontWeight="semibold">{heading}</Text>
 			<Text fontSize="3xl" fontWeight="bold">
-				{digits}
+				{digits && currency ? '$' : ''}
+				{digits || <Spinner />}
 			</Text>
 		</Box>
 	);

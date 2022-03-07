@@ -1,3 +1,6 @@
+import { useState, useEffect } from 'react';
+import axios from 'axios';
+import { useAuth } from '@/context/AuthUserContext';
 import VendorPanel from '@/layout/vendorPanel';
 import {
 	Heading,
@@ -11,6 +14,37 @@ import { Button } from '@/components/uiComponents';
 import DashboardInfoCard from '@/components/DashboardInfoCard';
 
 export default function Earnings() {
+	const { authUser } = useAuth();
+
+	const [earnings, setEarnings] = useState('');
+	const [totalSales, setTotalSales] = useState('');
+
+	const getEarnings = async () => {
+		await axios({
+			method: 'POST',
+			url: `/api/seller/${authUser.uid}/stats`,
+			headers: {
+				Authorization: 'Bearer ' + process.env.NEXT_PUBLIC_API_ROUTE_KEY,
+			},
+			data: {
+				uid: authUser.uid,
+			},
+		}).then((res) => {
+			console.log(res.data);
+			setEarnings(res.data.earnings.toString());
+			setTotalSales(res.data.totalSales.toString());
+		});
+	};
+
+	useEffect(() => {
+		authUser && getEarnings();
+		return () => {
+			setEarnings('');
+			setTotalSales('');
+		};
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [authUser]);
+
 	return (
 		<VendorPanel>
 			<Heading
@@ -25,9 +59,17 @@ export default function Earnings() {
 			</Heading>
 			<Box maxW="container.md" my="10" mx="auto">
 				<Box display="grid" gridTemplateColumns="repeat(3, 1fr)" gridGap={4}>
-					<DashboardInfoCard heading="Total Sales" digits="19" />
-					<DashboardInfoCard heading="Total Earning" digits="$351.5" />
-					<DashboardInfoCard heading="Withdrawable" digits="$351.5" />
+					<DashboardInfoCard heading="Total Sales" digits={totalSales} />
+					<DashboardInfoCard
+						heading="Total Earning"
+						digits={earnings}
+						currency={true}
+					/>
+					<DashboardInfoCard
+						heading="Withdrawable"
+						digits={+earnings < 50 ? '0' : earnings}
+						currency={true}
+					/>
 				</Box>
 				<br />
 				<Divider />
