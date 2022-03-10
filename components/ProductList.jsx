@@ -1,7 +1,12 @@
+import { useState } from 'react';
 import Product from './Product';
 import { Box, Grid } from '@chakra-ui/react';
+import CartPopUp from './CartPopUp';
 
 export default function ProductList({ products, gridCol, ...rest }) {
+	const [isCartOpen, setIsCartOpen] = useState(false);
+	const [itemDetails, setItemDetails] = useState(null);
+
 	return (
 		<Grid
 			templateColumns={`repeat(${gridCol || '4'}, minmax(320px,1fr))`}
@@ -21,8 +26,17 @@ export default function ProductList({ products, gridCol, ...rest }) {
 					title={product.title}
 					creator={product.creator}
 					price={product.price}
+					setIsCartOpen={setIsCartOpen}
+					setItemDetails={setItemDetails}
 				/>
 			))}
+			{isCartOpen && (
+				<CartPopUp
+					open={isCartOpen}
+					setOpen={setIsCartOpen}
+					itemDetails={itemDetails}
+				/>
+			)}
 		</Grid>
 	);
 }
