@@ -5,12 +5,6 @@ sgEmail.setApiKey(process.env.SENDGRID_API_KEY);
 
 export default async function handler(req, res) {
 	if (req.method === 'POST') {
-		let secondCount = 0;
-		const timeCount = setInterval(() => {
-			secondCount += 0.5;
-			console.log(secondCount);
-		}, 500);
-
 		try {
 			const { email, name, items } = req.body;
 
@@ -86,8 +80,6 @@ export default async function handler(req, res) {
 				.send(msg)
 				.then((data) => {
 					res.status(200).json({ message: 'Email sent' });
-					clearInterval(timeCount) &&
-						console.log('Timeout ends in /api/order/sendEmail');
 				})
 				.catch((err) => console.log(err));
 
