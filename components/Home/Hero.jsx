@@ -39,7 +39,12 @@ export default function Hero() {
 					justifyContent="center"
 					w="60%"
 				>
-					<Heading size="2xl" mb="4" lineHeight="shorter">
+					<Heading
+						size="2xl"
+						mb="4"
+						lineHeight="shorter"
+						fontWeight="extrabold"
+					>
 						Get modern and premium logos only for $37
 					</Heading>
 					<Text maxW="xl" fontSize="lg" mb="8" color="gray.700">

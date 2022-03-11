@@ -7,7 +7,8 @@ const colorMode = {
 
 export const theme = extendTheme({
 	fonts: {
-		heading: `Axiforma, ${baseTheme.fonts.heading}`,
+		// gotta change the font to open sans
+		heading: `Mulish, ${baseTheme.fonts.heading}`,
 		body: `InterVariable, ${baseTheme.fonts.body}`,
 	},
 	colorMode,

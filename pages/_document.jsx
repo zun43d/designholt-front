@@ -7,23 +7,11 @@ class MyDocument extends Document {
 		return (
 			<Html>
 				<Head>
+					<link rel="preconnect" href="https://fonts.googleapis.com" />
+					<link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin />
 					<link
-						rel="preload"
-						href="/fonts/Axiforma/Axiforma-Regular.ttf"
-						as="font"
-						crossOrigin=""
-					/>
-					<link
-						rel="preload"
-						href="/fonts/Axiforma/Axiforma-Medium.ttf"
-						as="font"
-						crossOrigin=""
-					/>
-					<link
-						rel="preload"
-						href="/fonts/Axiforma/Axiforma-Bold.ttf"
-						as="font"
-						crossOrigin=""
+						href="https://fonts.googleapis.com/css2?family=Mulish:wght@400;600;700;800&display=swap"
+						rel="stylesheet"
 					/>
 				</Head>
 				<body>
