@@ -18,12 +18,12 @@ const getStats = async (req, res) => {
 		// Gotta return an object with earnings and totalSales value
 		const { uid } = req.body;
 
-		const earn = await getUserFromSanity(uid)
+		const { totalEarn, bal } = await getUserFromSanity(uid)
 			.then((res) => {
-				if (res?.earnings) {
-					return res.earnings;
+				if (res.earnings != undefined) {
+					return { totalEarn: res.earnings, bal: res.balance };
 				}
-				return 0;
+				return { totalEarn: 0, bal: 0 };
 			})
 			.catch((err) => console.log('sats => getUserFromSanity\n', err));
 
@@ -40,7 +40,9 @@ const getStats = async (req, res) => {
 			})
 			.catch((err) => console.log('sats => getUserItems\n', err));
 
-		return res.status(200).json({ earnings: earn, totalSales: sell });
+		return res
+			.status(200)
+			.json({ totalEarnings: totalEarn, balance: bal, totalSales: sell });
 	}
 };
 
