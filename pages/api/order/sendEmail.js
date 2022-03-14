@@ -79,13 +79,16 @@ export default async function handler(req, res) {
 			await sgEmail
 				.send(msg)
 				.then((data) => {
+					console.log('sendEmail function worked');
 					res.status(200).json({ message: 'Email sent' });
 				})
 				.catch((err) => console.log(err));
 
+			console.log('Here in the middle');
+
 			return await productsAndVendors(items)
 				.then((result) => {
-					console.log('Products and vendors data udated');
+					console.log('Products and vendors data updated');
 				})
 				.catch((err) => {
 					console.log('productsAndVendors\n', err);

@@ -13,6 +13,14 @@ import {
 	FormControl,
 	FormLabel,
 	Select,
+	Modal,
+	ModalOverlay,
+	ModalContent,
+	ModalHeader,
+	ModalFooter,
+	ModalBody,
+	ModalCloseButton,
+	useDisclosure,
 } from '@chakra-ui/react';
 import { Button, Input } from '@/components/uiComponents';
 import DashboardInfoCard from '@/components/DashboardInfoCard';
@@ -31,6 +39,8 @@ export default function Earnings() {
 
 	const [method, setMethod] = useState();
 	const [paymentAddr, setPaymentAddr] = useState();
+
+	const { isOpen, onOpen, onClose } = useDisclosure();
 
 	const getEarnings = async () => {
 		setLoading(true);
@@ -62,6 +72,7 @@ export default function Earnings() {
 
 	const handledSubmit = async (e) => {
 		e.preventDefault();
+		setLoading(true);
 
 		const data = {
 			uid: authUser.uid,
@@ -69,6 +80,21 @@ export default function Earnings() {
 			paymentAddr,
 		};
 		console.log(data);
+
+		await axios({
+			method: 'POST',
+			url: `/api/seller/${authUser.uid}/payout`,
+			headers: {
+				Authorization: 'Bearer ' + process.env.NEXT_PUBLIC_API_ROUTE_KEY,
+			},
+			data,
+		}).then((res) => {
+			if (res.data.success) {
+				onClose();
+				setLoading(false);
+				getEarnings();
+			}
+		});
 	};
 
 	return (
@@ -99,7 +125,7 @@ export default function Earnings() {
 				</Box>
 				<br />
 				<Divider />
-				<Box as="form" my="4" onSubmit={handledSubmit}>
+				<Box my="4">
 					<Text>
 						You currently have ${balance} in your balance.{' '}
 						{balance >= 50 ? (
@@ -226,16 +252,37 @@ export default function Earnings() {
 						policies.
 					</Text>
 					<Button
-						type="submit"
+						onClick={onOpen}
 						colorScheme="purple"
-						disabled={
-							(loading && !error) || !paymentAddr || !method || balance < 50
-						}
+						// disabled={
+						// 	(loading && !retypeErr) || !paymentAddr || !method || balance < 50
+						// }
 					>
 						Proceed to withdraw
 					</Button>
 				</Box>
 			</Box>
+
+			<Modal isOpen={isOpen} onClose={onClose}>
+				<ModalOverlay />
+				<ModalContent>
+					<ModalHeader>Place a withdraw request?</ModalHeader>
+					<ModalCloseButton />
+					<ModalBody>
+						<Text>
+							We process the payout in the first week of every month. Are you
+							sure you want to place a withdraw request?
+						</Text>
+					</ModalBody>
+
+					<ModalFooter>
+						<Button variant="ghost">Cancel</Button>
+						<Button colorScheme="purple" ml={3} onClick={handledSubmit}>
+							Place request
+						</Button>
+					</ModalFooter>
+				</ModalContent>
+			</Modal>
 		</VendorPanel>
 	);
 }
