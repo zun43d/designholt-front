@@ -52,6 +52,8 @@ export default function Earnings() {
 			},
 			data: {
 				uid: authUser.uid,
+				method,
+				paymentAddr,
 			},
 		}).then((res) => {
 			setTotalEarnings(res.data.totalEarnings.toString());
@@ -89,7 +91,8 @@ export default function Earnings() {
 			},
 			data,
 		}).then((res) => {
-			if (res.data.success) {
+			console.log(res.status);
+			if (res.status === 200) {
 				onClose();
 				setLoading(false);
 				getEarnings();
@@ -254,9 +257,9 @@ export default function Earnings() {
 					<Button
 						onClick={onOpen}
 						colorScheme="purple"
-						// disabled={
-						// 	(loading && !retypeErr) || !paymentAddr || !method || balance < 50
-						// }
+						disabled={
+							(loading && !retypeErr) || !paymentAddr || !method || balance < 50
+						}
 					>
 						Proceed to withdraw
 					</Button>
@@ -277,7 +280,12 @@ export default function Earnings() {
 
 					<ModalFooter>
 						<Button variant="ghost">Cancel</Button>
-						<Button colorScheme="purple" ml={3} onClick={handledSubmit}>
+						<Button
+							colorScheme="purple"
+							ml={3}
+							onClick={handledSubmit}
+							isLoading={loading}
+						>
 							Place request
 						</Button>
 					</ModalFooter>
