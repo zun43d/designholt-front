@@ -23,11 +23,13 @@ const handlePayout = async (req, res) => {
 		payAddr: paymentAddr,
 	};
 
-	return await sendPayoutReq(uid, details).then((result) => {
-		console.log('payout Api done');
-		res.status(200).json({ message: 'Payout request sent!' });
-		return result;
-	});
+	return details.amount >= 50
+		? await sendPayoutReq(uid, details).then((result) => {
+				console.log('payout Api done');
+				res.status(200).json({ message: 'Payout request sent!' });
+				return result;
+		  })
+		: res.status(400).json({ message: 'Insufficient balance' });
 };
 
 export default async function handler(req, res) {

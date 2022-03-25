@@ -53,7 +53,7 @@ export default function NavBar({ home, noCart /*categories*/ }) {
 			<Container
 				maxW="8xl"
 				h="20"
-				px={[4, 8, 8, 8, 4]}
+				px={[4, 4, 8, 8, 8, 4]}
 				display="flex"
 				alignItems="center"
 				justifyContent="space-between"
@@ -69,7 +69,7 @@ export default function NavBar({ home, noCart /*categories*/ }) {
 					</NextLink>
 				</Flex>
 				<HStack as="nav" spacing="" ml="8">
-					<NextLink href={'/products'} passHref>
+					<NextLink href={'/'} passHref>
 						<Button
 							as="a"
 							variant="ghost"
@@ -78,7 +78,7 @@ export default function NavBar({ home, noCart /*categories*/ }) {
 							borderRadius="xl"
 							fontSize="sm"
 						>
-							All Items
+							Home
 						</Button>
 					</NextLink>
 					<Box role="group">

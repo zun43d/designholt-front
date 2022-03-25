@@ -21,6 +21,7 @@ import {
 	ModalBody,
 	ModalCloseButton,
 	useDisclosure,
+	useToast,
 } from '@chakra-ui/react';
 import { Button, Input } from '@/components/uiComponents';
 import DashboardInfoCard from '@/components/DashboardInfoCard';
@@ -41,6 +42,8 @@ export default function Earnings() {
 	const [paymentAddr, setPaymentAddr] = useState();
 
 	const { isOpen, onOpen, onClose } = useDisclosure();
+
+	const toast = useToast();
 
 	const getEarnings = async () => {
 		setLoading(true);
@@ -81,7 +84,6 @@ export default function Earnings() {
 			method,
 			paymentAddr,
 		};
-		console.log(data);
 
 		await axios({
 			method: 'POST',
@@ -91,10 +93,16 @@ export default function Earnings() {
 			},
 			data,
 		}).then((res) => {
-			console.log(res.status);
 			if (res.status === 200) {
 				onClose();
 				setLoading(false);
+				toast({
+					title: 'Payout request sent!',
+					description: 'We process payments at the first week of every month.',
+					status: 'success',
+					duration: 9000,
+					isClosable: true,
+				});
 				getEarnings();
 			}
 		});

@@ -8,6 +8,7 @@ import {
 	Input as ChakraInput,
 	InputGroup as ChakraInputGroup,
 	InputLeftElement as ChakraInputLeftElement,
+	InputRightElement as ChakraInputRightElement,
 	IconButton as ChakraIconButton,
 	Textarea as ChakraTextarea,
 	Radio as ChakraRadio,
@@ -62,16 +63,21 @@ export const Input = React.forwardRef((props, ref) => (
 	<ChakraInput focusBorderColor={focusBorderColor} {...props} ref={ref} />
 ));
 
-export const InputGroup = React.forwardRef(({ icon, size, ...rest }, ref) => {
-	return (
-		<ChakraInputGroup size={size}>
-			<ChakraInputLeftElement pointerEvents="none">
-				{icon}
-			</ChakraInputLeftElement>
-			<ChakraInput focusBorderColor={focusBorderColor} {...rest} ref={ref} />
-		</ChakraInputGroup>
-	);
-});
+export const InputGroup = React.forwardRef(
+	({ icon, size, rightButton, ...rest }, ref) => {
+		return (
+			<ChakraInputGroup size={size}>
+				{icon && (
+					<ChakraInputLeftElement pointerEvents="none">
+						{icon}
+					</ChakraInputLeftElement>
+				)}
+				<ChakraInput focusBorderColor={focusBorderColor} {...rest} ref={ref} />
+				<ChakraInputRightElement>{rightButton}</ChakraInputRightElement>
+			</ChakraInputGroup>
+		);
+	}
+);
 
 export const Textarea = React.forwardRef((props, ref) => (
 	<ChakraTextarea focusBorderColor={focusBorderColor} {...props} ref={ref} />
