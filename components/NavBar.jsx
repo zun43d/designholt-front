@@ -68,7 +68,7 @@ export default function NavBar({ home, noCart /*categories*/ }) {
 						/>
 					</NextLink>
 				</Flex>
-				<HStack as="nav" spacing="" ml="8">
+				<HStack as="nav" spacing="" ml="8" display={['none', 'none', 'flex']}>
 					<NextLink href={'/'} passHref>
 						<Button
 							as="a"
@@ -149,7 +149,7 @@ export default function NavBar({ home, noCart /*categories*/ }) {
 					)} */}
 				</HStack>
 				<Spacer />
-				<HStack spacing={2}>
+				<HStack spacing={2} display={['none', 'none', 'flex']}>
 					{/* <IconButton
 						icon={colorMode === 'light' ? <MoonIcon /> : <SunIcon />}
 						color="gray.400"

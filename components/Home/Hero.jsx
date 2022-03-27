@@ -19,7 +19,7 @@ export default function Hero() {
 		// <Container>
 		<Flex
 			minH="sm"
-			h={['3xl', 'md']}
+			h={['3xl', null, 'md']}
 			bgGradient="linear(to-br, gray.100, gray.200)"
 			// bg="gray.200"
 			// color="white"
@@ -38,6 +38,7 @@ export default function Hero() {
 					flexDir="column"
 					justifyContent="center"
 					alignItems={['center', 'start']}
+					textAlign={['center', 'center', 'left']}
 					// w={['auto', '80%']}
 				>
 					<Heading
@@ -70,8 +71,9 @@ export default function Hero() {
 					>
 						<Input
 							{...register('search', { required: true })}
-							w={['40', 'lg']}
-							size="lg"
+							w={['45', 'lg']}
+							px="4"
+							size={['md', 'md', 'lg']}
 							bgColor="white"
 							border="1px"
 							borderColor="gray.50"
@@ -102,7 +104,7 @@ export default function Hero() {
 					gridGap={10}
 				>
 					<Box display="flex" flexDir="row" gridGap={10} ml="-20">
-						<Box w="32" boxShadow="lg" borderRadius="xl">
+						<Box w={['24', '24', '32']} boxShadow="lg" borderRadius="xl">
 							<Image
 								src="/001.svg"
 								width={300}
@@ -111,7 +113,7 @@ export default function Hero() {
 								alt="Logo"
 							/>
 						</Box>
-						<Box w="32" boxShadow="lg" borderRadius="xl">
+						<Box w={['24', '24', '32']} boxShadow="lg" borderRadius="xl">
 							<Image
 								src="/002.svg"
 								width={300}
@@ -122,7 +124,7 @@ export default function Hero() {
 						</Box>
 					</Box>
 					<Box display="flex" flexDir="row" gridGap={10}>
-						<Box w="32" boxShadow="lg" borderRadius="xl">
+						<Box w={['24', '24', '32']} boxShadow="lg" borderRadius="xl">
 							<Image
 								src="/003.svg"
 								width={300}
@@ -131,7 +133,7 @@ export default function Hero() {
 								alt="Logo"
 							/>
 						</Box>
-						<Box w="32" boxShadow="lg" borderRadius="xl">
+						<Box w={['24', '24', '32']} boxShadow="lg" borderRadius="xl">
 							<Image
 								src="/004.svg"
 								width={300}
