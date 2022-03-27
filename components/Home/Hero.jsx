@@ -19,7 +19,7 @@ export default function Hero() {
 		// <Container>
 		<Flex
 			minH="sm"
-			h="45vh"
+			h={['3xl', 'md']}
 			bgGradient="linear(to-br, gray.100, gray.200)"
 			// bg="gray.200"
 			// color="white"
@@ -28,7 +28,7 @@ export default function Hero() {
 				maxW="7xl"
 				mx="auto"
 				display="flex"
-				flexDir="row"
+				flexDir={['column', 'row']}
 				justifyContent="space-between"
 				alignItems="center"
 			>
@@ -37,17 +37,26 @@ export default function Hero() {
 					display="flex"
 					flexDir="column"
 					justifyContent="center"
-					w="60%"
+					alignItems={['center', 'start']}
+					// w={['auto', '80%']}
 				>
 					<Heading
-						size="2xl"
+						as="h2"
+						maxW={['sm', '80%']}
+						fontSize={['2xl', '5xl']}
 						mb="4"
+						mx={['5', '0']}
 						lineHeight="shorter"
 						fontWeight="extrabold"
 					>
 						Get modern and premium logos only for $37
 					</Heading>
-					<Text maxW="xl" fontSize="lg" mb="8" color="gray.700">
+					<Text
+						maxW={['md', 'xl']}
+						fontSize={['sm', 'lg']}
+						mb="8"
+						color="gray.700"
+					>
 						Introduce your brand to the global audience with our hand picked
 						modern logos by expert designers.
 					</Text>
@@ -61,7 +70,7 @@ export default function Hero() {
 					>
 						<Input
 							{...register('search', { required: true })}
-							w="lg"
+							w={['40', 'lg']}
 							size="lg"
 							bgColor="white"
 							border="1px"
