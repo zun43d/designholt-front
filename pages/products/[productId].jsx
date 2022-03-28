@@ -23,8 +23,12 @@ import {
 	AccordionPanel,
 	AccordionIcon,
 } from '@chakra-ui/react';
-import { Breadcrumb, Link } from '@/components/uiComponents';
-import { Button } from '@/components/uiComponents';
+import {
+	Breadcrumb,
+	Link,
+	Button,
+	IconButton,
+} from '@/components/uiComponents';
 import { DownloadIcon } from '@chakra-ui/icons';
 
 export const getStaticProps = async (context) => {
@@ -105,8 +109,14 @@ export default function ProductPage({ product }) {
 				</Box>
 			</Box>
 			{product && (
-				<Grid templateColumns="672px auto" maxW="6xl" mx="auto" gridGap={8}>
-					<GridItem minW="2xl" mt="-20">
+				<Grid
+					templateRows={['1fr auto', null, null, 'none']}
+					templateColumns={[null, null, null, '672px auto']}
+					maxW="6xl"
+					mx="auto"
+					gridGap={8}
+				>
+					<GridItem maxW="2xl" mt="-20" mx="auto">
 						<Box
 							bg="gray.50"
 							borderRadius="lg"
@@ -120,18 +130,32 @@ export default function ProductPage({ product }) {
 								pt="2"
 								pb="2.5"
 								px="4"
+								display="flex"
+								alignItems="center"
+								justifyContent="space-between"
 							>
-								<Heading size="lg" mb="2">
-									{product.title}
-								</Heading>
-								<Text color="gray.500" fontSize="sm" as="i">
-									Created by{' '}
-									<Text display="inline" color="purple.600">
-										<NextLink href={`/seller/${product.creator._id}`} passHref>
-											<Link>{product.creator.fullName}</Link>
-										</NextLink>
+								<Box>
+									<Heading size="lg" mb="2">
+										{product.title}
+									</Heading>
+									<Text color="gray.500" fontSize="sm">
+										Created by{' '}
+										<Text display="inline" color="purple.600">
+											<NextLink
+												href={`/seller/${product.creator._id}`}
+												passHref
+											>
+												<Link>{product.creator.fullName}</Link>
+											</NextLink>
+										</Text>
 									</Text>
-								</Text>
+								</Box>
+								<IconButton
+									display={[null, null, null, 'none']}
+									icon={<DownloadIcon fontSize="20" />}
+									colorScheme="purple"
+									onClick={onBuy}
+								/>
 							</Box>
 							<Image
 								src={product?.productImage?.presentation}
@@ -231,7 +255,7 @@ export default function ProductPage({ product }) {
 							<Box display="flex" gridGap={2}>
 								<Button
 									leftIcon={<DownloadIcon />}
-									colorScheme="green"
+									colorScheme="purple"
 									w="full"
 									noOutline={true}
 									onClick={onBuy}

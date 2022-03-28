@@ -100,8 +100,17 @@ export default function CheckOut() {
 
 			<Box my="5" w="full">
 				{/* <Heading>Checkout</Heading> */}
-				<Flex gridGap={4} alignItems="start" w="full" my="3">
-					<Box flexGrow="5">
+				<Flex
+					gridGap={4}
+					flexDir={['column-reverse', null, null, 'row']}
+					alignItems={['center', null, null, 'start']}
+					w="full"
+					my="3"
+				>
+					<Box
+						flexGrow={['10', null, null, null, '5']}
+						w={['96', null, null, 'auto']}
+					>
 						<Box
 							py="4"
 							px="6"
