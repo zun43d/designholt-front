@@ -26,7 +26,7 @@ export default function TopPicks({ products }) {
 					<Heading size="2xl" mb="5">
 						Our top picks
 					</Heading>
-					<Text fontSize="md" color="gray.600">
+					<Text fontSize="md" color="gray.600" mx="3">
 						Best of our collection, hand-picked by our design team.
 					</Text>
 				</Box>

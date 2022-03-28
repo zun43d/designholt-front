@@ -34,6 +34,7 @@ import {
 	MdPersonAdd,
 	MdKeyboardArrowDown,
 } from 'react-icons/md';
+import { HamburgerIcon } from '@chakra-ui/icons';
 
 export default function NavBar({ home, noCart /*categories*/ }) {
 	const { colorMode, toggleColorMode } = useColorMode();
@@ -52,22 +53,33 @@ export default function NavBar({ home, noCart /*categories*/ }) {
 		>
 			<Container
 				maxW="8xl"
-				h="20"
+				h={['14', null, '20']}
 				px={[4, 4, 8, 8, 8, 4]}
 				display="flex"
 				alignItems="center"
 				justifyContent="space-between"
 			>
 				<Flex mt="-1" cursor="pointer">
-					<NextLink href="/">
-						<Branding
-							isDark={colorMode === 'dark' ? true : false}
-							style={{
-								curson: 'pointer',
-							}}
-						/>
+					<NextLink href="/" passHref>
+						<Box as="a" w={['32', null, '40']}>
+							<Branding
+								isDark={colorMode === 'dark' ? true : false}
+								style={{
+									curson: 'pointer',
+								}}
+							/>
+						</Box>
 					</NextLink>
 				</Flex>
+
+				<Spacer display={[null, null, 'none']} />
+				<IconButton
+					size="sm"
+					icon={<HamburgerIcon fontSize="md" />}
+					variant="outline"
+					display={[null, null, 'none']}
+				/>
+
 				<HStack as="nav" spacing="" ml="8" display={['none', 'none', 'flex']}>
 					<NextLink href={'/'} passHref>
 						<Button
@@ -148,7 +160,7 @@ export default function NavBar({ home, noCart /*categories*/ }) {
 						</Menu>
 					)} */}
 				</HStack>
-				<Spacer />
+				<Spacer display={['none', 'none', 'block']} />
 				<HStack spacing={2} display={['none', 'none', 'flex']}>
 					{/* <IconButton
 						icon={colorMode === 'light' ? <MoonIcon /> : <SunIcon />}

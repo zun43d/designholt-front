@@ -15,7 +15,7 @@ export default function Featured({ products }) {
 				<Heading size="2xl" mb="4">
 					Featured for you
 				</Heading>
-				<Text fontSize="md" color="gray.500">
+				<Text fontSize="md" color="gray.500" mx="5">
 					Feeling lazy to pick something out of an ocean of logos? We can feel
 					you! <br /> That&apos;s why, in this section, our incredible design
 					team hand-picked the best logos from our entire collection, just for
