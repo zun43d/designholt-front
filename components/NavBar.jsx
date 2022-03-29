@@ -22,6 +22,13 @@ import {
 	useDisclosure,
 	Grid,
 	GridItem,
+	Drawer,
+	DrawerOverlay,
+	DrawerContent,
+	DrawerCloseButton,
+	DrawerHeader,
+	DrawerBody,
+	Collapse,
 } from '@chakra-ui/react';
 import { Button, Link, IconButton } from '@/components/uiComponents.jsx';
 import CategoryItem from '@/components/CategoryItem';
@@ -33,12 +40,14 @@ import {
 	MdLogin,
 	MdPersonAdd,
 	MdKeyboardArrowDown,
+	MdKeyboardArrowUp,
 } from 'react-icons/md';
 import { HamburgerIcon } from '@chakra-ui/icons';
 
 export default function NavBar({ home, noCart /*categories*/ }) {
 	const { colorMode, toggleColorMode } = useColorMode();
 	const { isOpen, onOpen, onClose } = useDisclosure();
+	const { isOpen: isOpenDW, onToggle: onToggleDW } = useDisclosure();
 	const { authUser, signUserOut } = useAuth();
 	const {
 		state: { categories },
@@ -78,6 +87,7 @@ export default function NavBar({ home, noCart /*categories*/ }) {
 					icon={<HamburgerIcon fontSize="md" />}
 					variant="outline"
 					display={[null, null, 'none']}
+					onClick={onOpen}
 				/>
 
 				<HStack as="nav" spacing="" ml="8" display={['none', 'none', 'flex']}>
@@ -244,6 +254,68 @@ export default function NavBar({ home, noCart /*categories*/ }) {
 					)}
 				</HStack>
 			</Container>
+
+			<Drawer onClose={onClose} isOpen={isOpen} size="xl">
+				<DrawerOverlay />
+				<DrawerContent>
+					<DrawerCloseButton />
+					<DrawerHeader></DrawerHeader>
+
+					<DrawerBody mt="5">
+						<NextLink href={'/'} passHref>
+							<Button
+								as="a"
+								variant="outline"
+								h="14"
+								w="full"
+								justifyContent="flex-start"
+								px="5"
+								borderRadius="xl"
+								fontSize="lg"
+							>
+								Home
+							</Button>
+						</NextLink>
+
+						<Button
+							mt="3"
+							variant="outline"
+							rightIcon={
+								isOpenDW ? (
+									<MdKeyboardArrowUp size="25" />
+								) : (
+									<MdKeyboardArrowDown size="25" />
+								)
+							}
+							h="14"
+							w="full"
+							justifyContent="space-between"
+							px="5"
+							borderRadius="xl"
+							fontSize="lg"
+							onClick={onToggleDW}
+						>
+							Category
+						</Button>
+						<Collapse in={isOpenDW} animateOpacity>
+							<Box
+								py="3"
+								px="5"
+								fontWeight="semibold"
+								border="1px"
+								borderColor="gray.200"
+								borderRadius="xl"
+								mt="3"
+							>
+								<Text>Real Estate</Text>
+								<Text>Cloud</Text>
+								<Text>Animal</Text>
+								<Text>Abstruct</Text>
+							</Box>
+						</Collapse>
+					</DrawerBody>
+				</DrawerContent>
+			</Drawer>
 		</Box>
 	);
 }
