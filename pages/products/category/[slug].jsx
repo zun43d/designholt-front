@@ -124,7 +124,7 @@ export default function Category({ categoryName, productsByCategory }) {
 									onChange={(e) => setProducts(onSort(e, products))}
 								>
 									<MenuItemOption value="most-sold">Most Sold</MenuItemOption>
-									<MenuItemOption value="less-sold">Less Sold</MenuItemOption>
+									<MenuItemOption value="less-sold">Least Sold</MenuItemOption>
 									<MenuItemOption value="recently-added">
 										Recently Added
 									</MenuItemOption>

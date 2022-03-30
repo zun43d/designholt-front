@@ -49,7 +49,7 @@ export default function Product({
 							bgGradient="linear-gradient(0deg,rgba(0,0,0,.2) 0,transparent 80px)"
 							opacity="0.5"
 							transition="all"
-							transitionDuration="0.4s"
+							transitionDuration="0.2s"
 							zIndex="1"
 							_hover={{
 								opacity: '1',

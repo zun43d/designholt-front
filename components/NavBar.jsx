@@ -47,6 +47,11 @@ import { HamburgerIcon } from '@chakra-ui/icons';
 export default function NavBar({ home, noCart /*categories*/ }) {
 	const { colorMode, toggleColorMode } = useColorMode();
 	const { isOpen, onOpen, onClose } = useDisclosure();
+	const {
+		isOpen: isOpenMenu,
+		onOpen: onOpenMenu,
+		onClose: onCloseMenu,
+	} = useDisclosure();
 	const { isOpen: isOpenDW, onToggle: onToggleDW } = useDisclosure();
 	const { authUser, signUserOut } = useAuth();
 	const {
@@ -87,7 +92,7 @@ export default function NavBar({ home, noCart /*categories*/ }) {
 					icon={<HamburgerIcon fontSize="md" />}
 					variant="outline"
 					display={[null, null, 'none']}
-					onClick={onOpen}
+					onClick={onOpenMenu}
 				/>
 
 				<HStack as="nav" spacing="" ml="8" display={['none', 'none', 'flex']}>
@@ -255,7 +260,7 @@ export default function NavBar({ home, noCart /*categories*/ }) {
 				</HStack>
 			</Container>
 
-			<Drawer onClose={onClose} isOpen={isOpen} size="xl">
+			<Drawer onClose={onCloseMenu} isOpen={isOpenMenu} size="xl">
 				<DrawerOverlay />
 				<DrawerContent>
 					<DrawerCloseButton />
