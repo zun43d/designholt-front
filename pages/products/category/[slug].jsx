@@ -97,60 +97,62 @@ export default function Category({ categoryName, productsByCategory }) {
 				</Box>
 			</Box>
 
-			<Box maxW="8xl" mx="auto" my="5">
-				<Box
-					display="flex"
-					flexDir={['column-reverse', null, 'row']}
-					alignItems="center"
-					gridGap={['2', null, null, '4']}
-					px="5"
-				>
-					<Menu closeOnSelect={false}>
-						<MenuButton
-							as={Button}
-							// size="sm"
-							leftIcon={<BiSortAlt2 size="20" />}
-							variant="outline"
-							w="full"
-							justifyContent="center"
-						>
-							Sort
-						</MenuButton>
-						<MenuList minWidth="240px" zIndex="5">
-							<MenuOptionGroup
-								title="Order"
-								type="radio"
-								onChange={(e) => setProducts(onSort(e, products))}
+			<Box bg="#fcfcfc">
+				<Box maxW="8xl" mx="auto" py="5">
+					<Box
+						display="flex"
+						flexDir={['column-reverse', null, 'row']}
+						alignItems="center"
+						gridGap={['2', null, null, '4']}
+						px="5"
+					>
+						<Menu closeOnSelect={false}>
+							<MenuButton
+								as={Button}
+								// size="sm"
+								leftIcon={<BiSortAlt2 size="20" />}
+								variant="outline"
+								w={['full', null, null, 'auto']}
+								justifyContent="center"
 							>
-								<MenuItemOption value="most-sold">Most Sold</MenuItemOption>
-								<MenuItemOption value="less-sold">Less Sold</MenuItemOption>
-								<MenuItemOption value="recently-added">
-									Recently Added
-								</MenuItemOption>
-							</MenuOptionGroup>
-						</MenuList>
-					</Menu>
+								Sort
+							</MenuButton>
+							<MenuList minWidth="240px" zIndex="5">
+								<MenuOptionGroup
+									title="Order"
+									type="radio"
+									onChange={(e) => setProducts(onSort(e, products))}
+								>
+									<MenuItemOption value="most-sold">Most Sold</MenuItemOption>
+									<MenuItemOption value="less-sold">Less Sold</MenuItemOption>
+									<MenuItemOption value="recently-added">
+										Recently Added
+									</MenuItemOption>
+								</MenuOptionGroup>
+							</MenuList>
+						</Menu>
 
-					<Box as="form" w="full" onSubmit={onSearch}>
-						<InputGroup
-							size="md"
-							placeholder="Search to get more specific results"
-							rightButton={
-								<IconButton
-									type="submit"
-									borderLeftRadius="none"
-									icon={<RiSearchLine size="24" />}
-									size="md"
-									colorScheme="purple"
-								/>
-							}
-						/>
+						<Box as="form" w="full" onSubmit={onSearch}>
+							<InputGroup
+								size="md"
+								placeholder="Search to get more specific results"
+								rightButton={
+									<IconButton
+										type="submit"
+										borderLeftRadius="none"
+										icon={<RiSearchLine size="24" />}
+										size="md"
+										colorScheme="purple"
+									/>
+								}
+							/>
+						</Box>
 					</Box>
 				</Box>
-			</Box>
 
-			<Box maxW="8xl" mx="auto" mb="10">
-				<ProductList products={products} mx="auto" />
+				<Box maxW="8xl" mx="auto" mb="10">
+					<ProductList products={products} mx="auto" />
+				</Box>
 			</Box>
 		</Layout>
 	);

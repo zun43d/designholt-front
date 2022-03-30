@@ -17,7 +17,7 @@ export default function ProductList({ products, gridCol, ...rest }) {
 			]}
 			// templateRows="repeat(1, 1fr)"
 			gridAutoColumns="320px"
-			gap={8}
+			gap={9}
 			w="min-content"
 			{...rest}
 		>

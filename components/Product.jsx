@@ -4,7 +4,8 @@ import { useAuth } from '@/context/AuthUserContext';
 import { useCart } from 'react-use-cart';
 
 import { Box, Text, Heading, useToast } from '@chakra-ui/react';
-import { Button, Link } from '@/components/uiComponents';
+import { IconButton, Button, Link } from '@/components/uiComponents';
+import { DownloadIcon } from '@chakra-ui/icons';
 
 export default function Product({
 	image,
@@ -25,7 +26,19 @@ export default function Product({
 	const productUrl = `/products/${id}`;
 
 	return (
-		<Box w="full" boxShadow="md" borderRadius="sm" overflow="hidden" {...rest}>
+		<Box
+			w="full"
+			boxShadow="md"
+			borderRadius="sm"
+			overflow="hidden"
+			{...rest}
+			_hover={{
+				transform: 'translateY(-3px) scale(1.005)',
+				// transform: 'scale(1.01)',
+				transition: 'all 0.25s linear',
+				boxShadow: 'lg',
+			}}
+		>
 			<NextLink href={productUrl} passHref>
 				<Link>
 					<Box w="full" height="xs" overflow="hidden" position="relative">
@@ -56,7 +69,7 @@ export default function Product({
 				</Link>
 			</NextLink>
 			<Box px="4" bg="white">
-				<Box py="3" textAlign="left">
+				<Box py="5" textAlign="left">
 					<NextLink href={productUrl} passHref>
 						<Link>
 							<Heading as="h4" size="sm" isTruncated>
@@ -72,18 +85,29 @@ export default function Product({
 					</Text>
 				</Box>
 				<Box
-					pb="4"
+					pb="6"
 					display="flex"
 					justifyContent="space-between"
-					alignItems="end"
+					alignItems="center"
 				>
 					<Text fontWeight="bold" fontSize="xl">
 						${price}
 					</Text>
-					<Button
+					<IconButton
 						colorScheme="purple"
-						size="sm"
+						size="md"
+						variant="outline"
+						icon={<DownloadIcon />}
+						bg="purple.50"
+						color="purple.700"
+						border="1px"
+						borderColor="purple.200"
 						isDisabled={creator._id === authUser?.uid}
+						_hover={{
+							backgroundColor: 'purple.500',
+							color: 'white',
+							borderColor: 'purple.500',
+						}}
 						onClick={() => {
 							if (!inCart(id)) {
 								addItem({ id, title, price, thumbnail, creator });
@@ -104,9 +128,7 @@ export default function Product({
 								isClosable: true,
 							});
 						}}
-					>
-						Add to cart
-					</Button>
+					/>
 				</Box>
 			</Box>
 		</Box>
