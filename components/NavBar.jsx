@@ -300,17 +300,36 @@ export default function NavBar({ home, noCart /*categories*/ }) {
 						<Collapse in={isOpenDW} animateOpacity>
 							<Box
 								py="3"
-								px="5"
+								px="3"
 								fontWeight="semibold"
 								border="1px"
 								borderColor="gray.200"
 								borderRadius="xl"
 								mt="3"
 							>
-								<Text>Real Estate</Text>
-								<Text>Cloud</Text>
-								<Text>Animal</Text>
-								<Text>Abstruct</Text>
+								{categories.map((category) => (
+									<NextLink
+										href={`products/category/${category.slug}`}
+										passHref
+										key={category._id}
+									>
+										<Link
+											display="block"
+											py="2"
+											px="2"
+											borderRadius="lg"
+											_hover={{
+												backgroundColor: 'gray.100',
+												textDecoration: 'underline',
+											}}
+											_focus={{
+												textDecoration: 'underline',
+											}}
+										>
+											{category.categoryName}
+										</Link>
+									</NextLink>
+								))}
 							</Box>
 						</Collapse>
 					</DrawerBody>

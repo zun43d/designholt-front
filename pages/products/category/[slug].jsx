@@ -72,15 +72,19 @@ export default function Category({ categoryName, productsByCategory }) {
 			</Head>
 
 			<Box bg="gray.100">
-				<Box maxW="8xl" mx="auto" px="10" py="8">
+				<Box maxW="8xl" mx="auto" px="10" py={['5', null, null, '8']}>
 					<Breadcrumb
 						paths={['Home', 'Categories', categoryName]}
-						fontSize="sm"
+						fontSize={['xs', null, 'sm']}
 					/>
-					<Heading fontWeight="bold" pt="5">
+					<Heading
+						fontWeight="bold"
+						fontSize={['2xl', null, null, '3xl']}
+						pt="5"
+					>
 						{categoryName}
 					</Heading>
-					<Text py="3" color="gray.600">
+					<Text py="3" color="gray.600" fontSize="sm">
 						Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo,
 						officiis ipsam eligendi doloribus debitis aperiam sapiente dolorum
 						dicta porro corrupti facilis ipsum commodi at eum eius maxime
@@ -94,12 +98,21 @@ export default function Category({ categoryName, productsByCategory }) {
 			</Box>
 
 			<Box maxW="8xl" mx="auto" my="5">
-				<Box display="flex" alignItems="center" gridGap="4" px="5">
+				<Box
+					display="flex"
+					flexDir={['column-reverse', null, 'row']}
+					alignItems="center"
+					gridGap={['2', null, null, '4']}
+					px="5"
+				>
 					<Menu closeOnSelect={false}>
 						<MenuButton
 							as={Button}
+							// size="sm"
 							leftIcon={<BiSortAlt2 size="20" />}
 							variant="outline"
+							w="full"
+							justifyContent="center"
 						>
 							Sort
 						</MenuButton>
