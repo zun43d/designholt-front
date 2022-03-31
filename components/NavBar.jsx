@@ -86,15 +86,6 @@ export default function NavBar({ home, noCart /*categories*/ }) {
 					</NextLink>
 				</Flex>
 
-				<Spacer display={[null, null, 'none']} />
-				<IconButton
-					size="sm"
-					icon={<HamburgerIcon fontSize="md" />}
-					variant="outline"
-					display={[null, null, 'none']}
-					onClick={onOpenMenu}
-				/>
-
 				<HStack as="nav" spacing="" ml="8" display={['none', 'none', 'flex']}>
 					<NextLink href={'/'} passHref>
 						<Button
@@ -195,6 +186,7 @@ export default function NavBar({ home, noCart /*categories*/ }) {
 							</Portal>
 						</Box>
 					)}
+
 					{!authUser && (
 						<Menu id="seller-menu" position="relative">
 							<MenuButton
@@ -258,6 +250,16 @@ export default function NavBar({ home, noCart /*categories*/ }) {
 						</Menu>
 					)}
 				</HStack>
+
+				<Spacer display={[null, null, 'none']} />
+
+				<IconButton
+					size="sm"
+					icon={<HamburgerIcon fontSize="md" />}
+					variant="outline"
+					display={[null, null, 'none']}
+					onClick={onOpenMenu}
+				/>
 			</Container>
 
 			<Drawer onClose={onCloseMenu} isOpen={isOpenMenu} size="xl">
@@ -340,6 +342,22 @@ export default function NavBar({ home, noCart /*categories*/ }) {
 					</DrawerBody>
 				</DrawerContent>
 			</Drawer>
+
+			<IconButton
+				position="fixed"
+				bottom="4"
+				right="2"
+				borderRadius="full"
+				p="5"
+				h="16"
+				w="16"
+				mr="2"
+				bg="white"
+				onClick={onOpen}
+				variant="outline"
+				zIndex="5"
+				icon={<Icon as={MdOutlineShoppingCart} w={8} h={8} />}
+			/>
 		</Box>
 	);
 }
