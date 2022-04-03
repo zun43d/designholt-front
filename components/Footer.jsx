@@ -7,7 +7,7 @@ import Branding from '@/components/BrandingSVG.jsx';
 
 export default function Footer({ categories }) {
 	return (
-		<Box borderTop="1px" borderColor="gray.100" bg="gray.50">
+		<Box borderTop="1px" borderColor="gray.100" bg="gray.100">
 			<Box maxW="8xl" mx="auto">
 				<Box
 					display="flex"

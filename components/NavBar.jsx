@@ -244,6 +244,9 @@ export default function NavBar({ home, noCart /*categories*/ }) {
 								<NextLink href={`/seller/dashboard/upload`} passHref>
 									<MenuItem as="a">Upload new logo</MenuItem>
 								</NextLink>
+								<NextLink href={`/seller/dashboard/settings`} passHref>
+									<MenuItem as="a">Account settings</MenuItem>
+								</NextLink>
 								<MenuDivider />
 								<MenuItem onClick={signUserOut}>Log Out</MenuItem>
 							</MenuList>

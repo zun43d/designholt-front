@@ -41,7 +41,7 @@ export default function CheckOut() {
 	const payingAmount = totalPrice;
 	const currency = 'USD';
 	const style = { layout: 'horizontal' };
-	const fundingSources = ['paypal' /*, 'card'*/];
+	const fundingSources = ['paypal', 'card'];
 
 	const getUserInfo = () =>
 		setUserInfo(JSON.parse(localStorage.getItem('userInfo')));
