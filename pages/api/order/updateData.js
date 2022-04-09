@@ -1,3 +1,5 @@
+import { productsAndVendors } from '@/lib/sanityAdmin.js';
+
 export default async function handler(req, res) {
 	if (req.method === 'POST') {
 		const { items } = req.body;
