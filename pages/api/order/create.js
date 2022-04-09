@@ -37,11 +37,17 @@ export default async function handler(req, res) {
 				// update everything
 				await axios({
 					method: 'POST',
-					url: 'http://localhost:3000.com/api/order/updateData',
+					url: 'https://designholt.com/api/order/updateData',
 					data: {
 						items: products,
 					},
-				});
+				})
+					.then((data) => {
+						console.log('updateData function worked');
+					})
+					.catch((err) => {
+						console.log('updateData function failed\n', err);
+					});
 
 				// send the logo to the user
 				return await axios({
