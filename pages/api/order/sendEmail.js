@@ -69,14 +69,16 @@ export default async function handler(req, res) {
 									's5d1a4sd56aw' /* userid goes here */
 								}">Download</a></td>
               </tr>
-            `
+              `
 							)
 							.join('')}
-          </table>
-        `,
+              </table>
+              `,
 			};
 
-			await sgEmail
+			console.log('Here in the middle');
+
+			return await sgEmail
 				.send(msg)
 				.then((data) => {
 					console.log('sendEmail function worked');
@@ -84,15 +86,6 @@ export default async function handler(req, res) {
 				})
 				.catch((err) => console.log(err));
 
-			console.log('Here in the middle');
-
-			return await productsAndVendors(items)
-				.then((result) => {
-					console.log('Products and vendors data updated');
-				})
-				.catch((err) => {
-					console.log('productsAndVendors\n', err);
-				});
 			// ------------------
 		} catch (err) {
 			console.log('sendProductEmail\n', err);

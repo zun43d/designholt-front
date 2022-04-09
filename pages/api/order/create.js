@@ -34,6 +34,15 @@ export default async function handler(req, res) {
 					})
 					.catch((err) => console.log('updateBoughtItem\n', err));
 
+				// update everything
+				await axios({
+					method: 'POST',
+					url: 'http://localhost:3000.com/api/order/updateData',
+					data: {
+						items: products,
+					},
+				});
+
 				// send the logo to the user
 				return await axios({
 					method: 'POST',
