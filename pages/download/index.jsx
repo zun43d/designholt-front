@@ -6,7 +6,7 @@ export const getServerSideProps = async (ctx) => {
 	} = ctx;
 
 	const { data } = await axios.get(
-		`http://localhost:3000/api/download?productId=${productId}&userId=${userId}`
+		`https://designholt.com/api/download?productId=${productId}&userId=${userId}`
 	);
 
 	return data.message
