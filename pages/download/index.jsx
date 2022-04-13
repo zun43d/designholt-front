@@ -12,7 +12,7 @@ export const getServerSideProps = async (ctx) => {
 	return data.message
 		? {
 				props: {
-					error: message,
+					error: data.message,
 					URL: null,
 				},
 		  }
