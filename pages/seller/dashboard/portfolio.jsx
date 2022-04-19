@@ -132,11 +132,11 @@ export default function Portfolio() {
 							<Box display="flex" alignItems="center">
 								<Text pr="2">Filtered By</Text>
 								<Select variant="filled" size="sm" maxW="36">
-									<option value="approved" selected>
-										Approved
+									<option value="all" selected>
+										All Logo
 									</option>
+									<option value="approved">Approved</option>
 									<option value="pending">Pending Approval</option>
-									<option value="option3">All Logo</option>
 								</Select>
 							</Box>
 						</Box>
