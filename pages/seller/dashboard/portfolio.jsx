@@ -25,6 +25,7 @@ import { Button } from '@/components/uiComponents';
 
 export default function Portfolio() {
 	const [portfolioItems, setPortfolioItems] = useState(null);
+	const [allPortfolio, setAllPortfolio] = useState([]);
 	const [uploading, setUploading] = useState(false);
 	const { authUser } = useAuth();
 	const toast = useToast();
@@ -66,13 +67,29 @@ export default function Portfolio() {
 				.then((res) => res.json())
 				.then((res) => {
 					const items = res.data;
+					setAllPortfolio(items);
 					setPortfolioItems(items);
 				})
 				.catch((err) => {
 					console.log(err);
 				});
 		}
+		return () => setPortfolioItems(null);
 	}, [authUser]);
+
+	//  TODO: incomplete code here...
+	// const onFilter = (data) {
+	// 	const { filter } = data;
+
+	// 	switch (filter) {
+	// 		case all:
+				
+	// 			break;
+		
+	// 		default:
+	// 			break;
+	// 	}
+	// }
 
 	return (
 		<VendorPanel maxW="container.lg" my="10" mx="auto">
