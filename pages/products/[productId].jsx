@@ -226,7 +226,7 @@ export default function ProductPage({ product }) {
 								</Box>
 							</Box>
 							<Heading size="lg" mt="8" mb="3">
-								Logo licence
+								Logo license
 							</Heading>
 							<Text>
 								Single, non-exclusive logo license (used in unlimited ways) A
