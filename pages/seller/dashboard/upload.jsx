@@ -24,7 +24,7 @@ import {
 } from '@/components/uiComponents';
 import { Textarea } from '@/components/uiComponents';
 
-export const getServerSideProps = async () => {
+export const getStaticProps = async () => {
 	const categories = await getAllCategories();
 
 	return {

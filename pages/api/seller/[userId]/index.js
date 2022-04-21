@@ -10,11 +10,11 @@ async function provideUserItems(req, res) {
 		const { userId } = req.query;
 
 		try {
-			await getUserItems(userId).then((response) => {
-				res.status(200).json({ data: response });
+			return await getUserItems(userId).then((response) => {
+				return res.status(200).json({ data: response });
 			});
 		} catch (err) {
-			res.status(400).json({ message: 'Something went really wrong!' });
+			return res.status(400).json({ message: 'Something went really wrong!' });
 		}
 	}
 }

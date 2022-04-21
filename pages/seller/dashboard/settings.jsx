@@ -7,6 +7,7 @@ import {
 	Box,
 	FormControl,
 	FormLabel,
+	FormHelperText,
 } from '@chakra-ui/react';
 import { Link, Input, Button } from '@/components/uiComponents';
 
@@ -18,26 +19,20 @@ export default function Settings() {
 			<br />
 			<Box>
 				<Heading fontWeight="bold" size="md">
-					Basic Settings
+					Account Login
 				</Heading>
 				<Box my="5">
 					<FormControl>
-						<FormLabel>Full Name</FormLabel>
-						<Box display="flex" alignItems="center" gridGap={2}>
-							<Input placeholder="Change your full name" value="Zunaed Ahmed" />
-							<Button>Change</Button>
-						</Box>
-					</FormControl>
-					<br />
-					<FormControl>
-						<FormLabel>Profile Picture</FormLabel>
-						<Text fontSize="sm" color="gray.400">
-							To change your profile picture, go to your{' '}
-							<NextLink href="/seller/dashboard/portfolio" passHref>
-								<Link color="purple.500">Portfolio</Link>
+						<FormLabel>Change your password</FormLabel>
+						<FormHelperText>
+							To change your password click on the button below and you will be
+							redirected to the forgot-password page.
+						</FormHelperText>
+						<Box display="flex" alignItems="center" gridGap={2} mt="5">
+							<NextLink href="/seller/forgot-password" passHref>
+								<Button as="a">Change Password</Button>
 							</NextLink>
-							.
-						</Text>
+						</Box>
 					</FormControl>
 				</Box>
 			</Box>

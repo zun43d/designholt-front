@@ -78,18 +78,32 @@ export default function Portfolio() {
 	}, [authUser]);
 
 	//  TODO: incomplete code here...
-	// const onFilter = (data) {
-	// 	const { filter } = data;
+	const onFilter = (data) => {
+		// console.log(data.target.value);
+		const filter = data.target.value;
 
-	// 	switch (filter) {
-	// 		case all:
-				
-	// 			break;
-		
-	// 		default:
-	// 			break;
-	// 	}
-	// }
+		switch (filter) {
+			case 'all':
+				setPortfolioItems(allPortfolio);
+				break;
+
+			case 'approved':
+				setPortfolioItems(null);
+				setPortfolioItems(
+					allPortfolio.filter((item) => item.isApproved === 'approved')
+				);
+				break;
+
+			case 'pending':
+				setPortfolioItems(null);
+				setPortfolioItems(
+					allPortfolio.filter((item) => item.isApproved === 'pending')
+				);
+
+			default:
+				break;
+		}
+	};
 
 	return (
 		<VendorPanel maxW="container.lg" my="10" mx="auto">
@@ -148,7 +162,12 @@ export default function Portfolio() {
 							</Text>
 							<Box display="flex" alignItems="center">
 								<Text pr="2">Filtered By</Text>
-								<Select variant="filled" size="sm" maxW="36">
+								<Select
+									variant="filled"
+									size="sm"
+									maxW="36"
+									onChange={(e) => onFilter(e)}
+								>
 									<option value="all" selected>
 										All Logo
 									</option>

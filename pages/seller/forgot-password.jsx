@@ -18,7 +18,7 @@ export default function Reset() {
 		handleSubmit,
 		formState: { isSubmitting },
 	} = useForm();
-	const { forgotPassword } = useAuth();
+	const { forgotPassword, authUser } = useAuth();
 	const toast = useToast();
 
 	const handleEmail = async ({ email }) => {
@@ -64,7 +64,10 @@ export default function Reset() {
 						<FormControl>
 							<FormLabel>Email address</FormLabel>
 							<Input
-								{...register('email', { required: 'true' })}
+								{...register('email', {
+									required: 'true',
+									value: authUser?.email,
+								})}
 								placeholder="Enter your email"
 							/>
 						</FormControl>
