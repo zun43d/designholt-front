@@ -13,6 +13,17 @@ export default function TopPicks({ products }) {
 		'Top Number Logos',
 	];
 
+	const sectionCatSlug = [
+		'animal',
+		'real-estate',
+		'tech',
+		'security',
+		'vahicle',
+		'health-and-wellness',
+		'abstract',
+		'numbers',
+	];
+
 	return (
 		<Flex
 			py="20"
@@ -38,6 +49,7 @@ export default function TopPicks({ products }) {
 									key={index}
 									heading={sectionNames[index] || 'Top picks'}
 									sectionedProducts={product}
+									catSlug={sectionCatSlug[index]}
 								/>
 							);
 						}
