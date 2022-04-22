@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import Head from 'next/head';
 import Layout from '@/layout/layout';
@@ -55,8 +55,16 @@ export const getStaticPaths = async () => {
 };
 
 export default function Category({ categoryName, productsByCategory }) {
-	const [products, setProducts] = useState(productsByCategory);
+	const [products, setProducts] = useState([]);
 	const router = useRouter();
+
+	useEffect(() => {
+		setProducts(productsByCategory);
+
+		return () => {
+			setProducts([]);
+		};
+	}, [productsByCategory, router]);
 
 	const onSearch = (e) => {
 		e.preventDefault();
