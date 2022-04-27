@@ -319,7 +319,7 @@ export default function NavBar({ home, noCart /*categories*/ }) {
 							>
 								{categories.map((category) => (
 									<NextLink
-										href={`products/category/${category.slug}`}
+										href={`/products/category/${category.slug}`}
 										passHref
 										key={category._id}
 									>
@@ -335,6 +335,7 @@ export default function NavBar({ home, noCart /*categories*/ }) {
 											_focus={{
 												textDecoration: 'underline',
 											}}
+											onClick={onCloseMenu}
 										>
 											{category.categoryName}
 										</Link>
