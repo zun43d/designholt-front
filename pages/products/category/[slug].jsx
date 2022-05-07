@@ -168,7 +168,12 @@ export default function Category({
 				<Box maxW="8xl" mx="auto" mb="10">
 					<ProductList mx="auto" products={products} />
 					{/* this goes goest to another compoenent */}
-					<Box display="flex" justifyContent="center" alignItems="center">
+					<Box
+						display="flex"
+						justifyContent="center"
+						alignItems="center"
+						mt="5"
+					>
 						<Pagination totalProduct={totalProduct} />
 					</Box>
 				</Box>
