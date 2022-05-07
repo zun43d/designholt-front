@@ -26,6 +26,7 @@ import {
 	IconButton,
 	InputGroup,
 } from '@/components/uiComponents';
+import Pagination from '@/components/Pagination';
 import { BiSortAlt2 } from 'react-icons/bi';
 import { RiSearchLine } from 'react-icons/ri';
 
@@ -37,6 +38,7 @@ export const getStaticProps = async ({ params }) => {
 		props: {
 			categoryName,
 			productsByCategory,
+			totalProduct: productsByCategory.length,
 		},
 	};
 };
@@ -54,7 +56,11 @@ export const getStaticPaths = async () => {
 	};
 };
 
-export default function Category({ categoryName, productsByCategory }) {
+export default function Category({
+	categoryName,
+	productsByCategory,
+	totalProduct,
+}) {
 	const [products, setProducts] = useState([]);
 	const router = useRouter();
 
@@ -159,7 +165,11 @@ export default function Category({ categoryName, productsByCategory }) {
 				</Box>
 
 				<Box maxW="8xl" mx="auto" mb="10">
-					<ProductList products={products} mx="auto" />
+					<ProductList mx="auto" products={products} />
+					{/* this goes goest to another compoenent */}
+					<Box display="flex" justifyContent="center" alignItems="center">
+						<Pagination totalProduct={totalProduct} />
+					</Box>
 				</Box>
 			</Box>
 		</Layout>
