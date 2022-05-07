@@ -12,7 +12,7 @@ import { productsPerPage } from '@/data/bussiness-data';
 
 export default function PaginationComponent({ totalProduct }) {
 	const { currentPage, setCurrentPage, pagesCount, pages } = usePagination({
-		total: 500 /*totalProduct*/,
+		total: totalProduct,
 		limits: {
 			inner: 2,
 			outer: 2,
