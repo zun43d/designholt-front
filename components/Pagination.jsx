@@ -40,7 +40,10 @@ export default function PaginationComponent({
 		<Pagination
 			pagesCount={pagesCount}
 			currentPage={currentPage}
-			onPageChange={(nextPage) => handlePageIndexChange(nextPage)}
+			onPageChange={(nextPage) => {
+				scrollTo(0, 0);
+				handlePageIndexChange(nextPage);
+			}}
 		>
 			<PaginationContainer
 				my="5"
