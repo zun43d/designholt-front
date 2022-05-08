@@ -69,16 +69,24 @@ export default function Category({
 	totalProduct,
 }) {
 	const [products, setProducts] = useState([]);
-	const [pageIndex, setPageIndex] = useState(1);
+	// const [pageIndex, setPageIndex] = useState(1);
 
 	const router = useRouter();
+	const { query } = router;
+	const pageIndex = +query.index;
 
 	const { data } = useSwr(
 		`/api/products/category?name=${categorySlug}&pIndex=${pageIndex}`,
 		fetcher
 	);
 
+	const setIndex = (i) => {
+		router.query.index = i;
+		router.push(router);
+	};
+
 	useEffect(() => {
+		!pageIndex && setIndex(1);
 		if (pageIndex === 1) {
 			setProducts(productsByCategory);
 		} else {
@@ -88,16 +96,18 @@ export default function Category({
 		return () => {
 			setProducts([]);
 		};
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [productsByCategory, data, pageIndex]);
 
 	// Just to reset the page index number whenever the category is changed
-	useEffect(() => {
-		setPageIndex(1);
-	}, [categoryName]);
+	// useEffect(() => {
+	// 	setPageIndex(1);
+	// }, [categoryName]);
 
 	const handlePageChange = (nextPage) => {
 		console.log(nextPage);
-		setPageIndex(nextPage);
+		setIndex(nextPage);
+		// setPageIndex(nextPage);
 	};
 
 	const onSearch = (e) => {
