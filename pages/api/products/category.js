@@ -2,11 +2,11 @@ import { getProductsByCategory } from '@/lib/sanityDb';
 import { productsPerPage } from '@/data/bussiness-data';
 
 const getProducts = async (req, res) => {
-	const { name, index } = req.query;
+	const { name, pIndex } = req.query;
 
-	if (!name && !index) return res.status(400).send('Bad Request');
+	if (!name && !pIndex) return res.status(400).send('Bad Request');
 
-	const products = await getProductsByCategory(name, index, productsPerPage);
+	const products = await getProductsByCategory(name, pIndex, productsPerPage);
 
 	return res.status(200).json({ products });
 };

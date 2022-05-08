@@ -29,15 +29,17 @@ import {
 import Pagination from '@/components/Pagination';
 import { BiSortAlt2 } from 'react-icons/bi';
 import { RiSearchLine } from 'react-icons/ri';
+import { productsPerPage } from '@/data/bussiness-data';
 
 export const getStaticProps = async ({ params }) => {
 	const { categoryName } = await slugToCategory(params.slug);
 	const productsByCategory = await getProductsByCategory(params.slug);
+	const products = await getProductsByCategory(params.slug, 1, productsPerPage);
 
 	return {
 		props: {
 			categoryName,
-			productsByCategory,
+			productsByCategory: products,
 			totalProduct: productsByCategory.length,
 		},
 		revalidate: 3600,
