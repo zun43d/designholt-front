@@ -93,7 +93,7 @@ export default function Category({
 	// Just to reset the page index number whenever the category is changed
 	useEffect(() => {
 		setPageIndex(1);
-	}, [router]);
+	}, [categoryName]);
 
 	const handlePageChange = (nextPage) => {
 		console.log(nextPage);
