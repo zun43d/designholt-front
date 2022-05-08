@@ -3,7 +3,7 @@ import NextLink from 'next/link';
 import { useAuth } from '@/context/AuthUserContext';
 import { useCart } from 'react-use-cart';
 
-import { Box, Text, Heading, useToast } from '@chakra-ui/react';
+import { Box, Text, Heading, Skeleton, useToast } from '@chakra-ui/react';
 import { IconButton, Button, Link } from '@/components/uiComponents';
 import { DownloadIcon } from '@chakra-ui/icons';
 

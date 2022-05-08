@@ -30,15 +30,18 @@ import Pagination from '@/components/Pagination';
 import { BiSortAlt2 } from 'react-icons/bi';
 import { RiSearchLine } from 'react-icons/ri';
 import { productsPerPage } from '@/data/bussiness-data';
+import useSwr from 'swr';
+import fetcher from '@/utils/fetcher';
 
 export const getStaticProps = async ({ params }) => {
-	const { categoryName } = await slugToCategory(params.slug);
+	const { categoryName, slug } = await slugToCategory(params.slug);
 	const productsByCategory = await getProductsByCategory(params.slug);
 	const products = await getProductsByCategory(params.slug, 1, productsPerPage);
 
 	return {
 		props: {
 			categoryName,
+			categorySlug: slug,
 			productsByCategory: products,
 			totalProduct: productsByCategory.length,
 		},
@@ -61,19 +64,41 @@ export const getStaticPaths = async () => {
 
 export default function Category({
 	categoryName,
+	categorySlug,
 	productsByCategory,
 	totalProduct,
 }) {
 	const [products, setProducts] = useState([]);
+	const [pageIndex, setPageIndex] = useState(1);
+
 	const router = useRouter();
 
+	const { data } = useSwr(
+		`/api/products/category?name=${categorySlug}&pIndex=${pageIndex}`,
+		fetcher
+	);
+
 	useEffect(() => {
-		setProducts(productsByCategory);
+		if (pageIndex === 1) {
+			setProducts(productsByCategory);
+		} else {
+			data ? setProducts(data.products) : setProducts([]);
+		}
 
 		return () => {
 			setProducts([]);
 		};
-	}, [productsByCategory, router]);
+	}, [productsByCategory, data, pageIndex]);
+
+	// Just to reset the page index number whenever the category is changed
+	useEffect(() => {
+		setPageIndex(1);
+	}, [router]);
+
+	const handlePageChange = (nextPage) => {
+		console.log(nextPage);
+		setPageIndex(nextPage);
+	};
 
 	const onSearch = (e) => {
 		e.preventDefault();
@@ -176,7 +201,11 @@ export default function Category({
 						alignItems="center"
 						mt="5"
 					>
-						<Pagination totalProduct={totalProduct} />
+						<Pagination
+							totalProduct={totalProduct}
+							handlePageIndexChange={handlePageChange}
+							pageIndex={pageIndex}
+						/>
 					</Box>
 				</Box>
 			</Box>

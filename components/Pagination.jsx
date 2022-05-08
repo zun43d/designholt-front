@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import {
 	Pagination,
 	usePagination,
@@ -10,7 +11,11 @@ import {
 } from '@ajna/pagination';
 import { productsPerPage } from '@/data/bussiness-data';
 
-export default function PaginationComponent({ totalProduct }) {
+export default function PaginationComponent({
+	totalProduct,
+	handlePageIndexChange,
+	pageIndex,
+}) {
 	const { currentPage, setCurrentPage, pagesCount, pages } = usePagination({
 		total: totalProduct,
 		limits: {
@@ -23,11 +28,19 @@ export default function PaginationComponent({ totalProduct }) {
 		},
 	});
 
+	useEffect(() => {
+		setCurrentPage(pageIndex);
+
+		return () => {
+			setCurrentPage(1);
+		};
+	}, [pageIndex, setCurrentPage]);
+
 	return (
 		<Pagination
 			pagesCount={pagesCount}
 			currentPage={currentPage}
-			onPageChange={setCurrentPage}
+			onPageChange={(nextPage) => handlePageIndexChange(nextPage)}
 		>
 			<PaginationContainer
 				my="5"
@@ -52,6 +65,7 @@ export default function PaginationComponent({ totalProduct }) {
 							_current={{
 								bg: 'purple.500',
 								color: 'white',
+								pointerEvents: 'none',
 								_hover: {
 									bg: 'purple.500',
 								},
