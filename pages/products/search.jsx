@@ -36,6 +36,7 @@ export default function SeachResults() {
 
 	const onSearch = (e) => {
 		e.preventDefault();
+		setLoading(true);
 
 		const searchValue = e.target[0].value;
 		router.push(`/products/search?query=${searchValue}`);
@@ -118,9 +119,7 @@ export default function SeachResults() {
 
 				<Box px={[null, null, null, '7']} mt="5">
 					<Box maxW="8xl" mt="5" mb="10" mx="auto">
-						{!loading && products.length !== 0 ? (
-							<ProductList products={products} mx="auto" />
-						) : (
+						{!loading && products.length === 0 ? (
 							<>
 								<Text
 									fontSize="xl"
@@ -132,6 +131,8 @@ export default function SeachResults() {
 									No results found for &quot;{query}&quot;
 								</Text>
 							</>
+						) : (
+							<ProductList products={products} mx="auto" />
 						)}
 					</Box>
 				</Box>
