@@ -7,8 +7,6 @@ import fetcher from '@/utils/fetcher';
 import {
 	Text,
 	Box,
-	Spinner,
-	Center,
 	Menu,
 	MenuButton,
 	MenuList,
@@ -44,13 +42,6 @@ export default function SeachResults() {
 
 	useEffect(() => {
 		setLoading(true);
-		// fetch(`/api/products?search=${query}`)
-		// 	.then((res) => res.json())
-		// 	.then((data) => {
-		// 		setProducts(data.searchResult);
-		// 		setLoading(false);
-		// 	});
-		console.log(data);
 		data ? setProducts(data.searchResult) : setProducts([]);
 		data && setLoading(false);
 		return () => setProducts([]);
