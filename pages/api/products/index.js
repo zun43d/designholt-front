@@ -5,36 +5,51 @@ const getSearchResult = async (req, res) => {
 	const { search } = req.query;
 
 	if (!search || search === '') {
-		return res.status(200).json({ searchResult: allProducts });
+		return res.status(404).send('No search query provided');
 	}
 
-	const searchResult = allProducts.filter((product) => {
-		const { title, tags } = product;
-		const titleString = title.toLowerCase();
-		const searchString = search.toLowerCase();
+	const searchStringArr = search.toLowerCase().split(' ');
 
-		let result = [];
+	const searchResult = allProducts
+		.filter((product) => {
+			const { title, tags, productCategory } = product;
+			const titleString = title.toLowerCase();
+			const productCategoryStr = productCategory.join().toLowerCase();
 
-		if (titleString.includes(searchString)) {
-			return true;
-		}
+			let points = 0;
 
-		const searchToArray = searchString.split(' ');
-
-		tags.forEach((tag) => {
-			const tagString = tag.toLowerCase();
-
-			searchToArray.forEach((search) => {
-				if (tagString.includes(search)) {
-					return true;
+			searchStringArr.map((search) => {
+				if (search !== 'logo' && search !== 'logos') {
+					if (productCategoryStr.includes(search)) {
+						points += 100;
+					}
+					if (titleString.includes(search)) {
+						points++;
+					}
+					if (tags.includes(search)) {
+						points++;
+					}
 				}
 			});
+
+			if (points > 0) {
+				product.priority = points;
+				return true;
+			} else {
+				return false;
+			}
+		})
+		.sort((a, b) => {
+			return b.priority - a.priority;
 		});
-	});
+
+	// console.log(searchResult);
 
 	return res.status(200).json({ searchResult });
 };
 
-export default function handler(req, res) {
-	req.method === 'GET' ? getSearchResult(req, res) : res.status(404).send('');
+export default async function handler(req, res) {
+	req.method === 'GET'
+		? await getSearchResult(req, res)
+		: res.status(404).send('');
 }

@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import Head from 'next/head';
+import useSWR from 'swr';
+import fetcher from '@/utils/fetcher';
 
 import {
 	Text,
@@ -27,6 +29,11 @@ export default function SeachResults() {
 	const router = useRouter();
 	const query = router.query.query;
 
+	const { data, error } = useSWR(
+		query ? `/api/products?search=${query}` : null,
+		fetcher
+	);
+
 	const onSearch = (e) => {
 		e.preventDefault();
 
@@ -36,26 +43,25 @@ export default function SeachResults() {
 
 	useEffect(() => {
 		setLoading(true);
-		fetch(`/api/products?search=${query}`)
-			.then((res) => res.json())
-			.then((data) => {
-				setProducts(data.searchResult);
-			})
-			.finally(() => setLoading(false));
-
+		// fetch(`/api/products?search=${query}`)
+		// 	.then((res) => res.json())
+		// 	.then((data) => {
+		// 		setProducts(data.searchResult);
+		// 		setLoading(false);
+		// 	});
+		console.log(data);
+		data ? setProducts(data.searchResult) : setProducts([]);
+		data && setLoading(false);
 		return () => setProducts([]);
-	}, [query]);
+	}, [data]);
 
 	return (
-		<Layout maxW="8xl">
+		<Layout>
 			<Head>
-				<title>
-					Search results {products.length > 0 ? `for ${query}` : ''} |
-					DesignHolt
-				</title>
+				<title>Search results {query ? `for ${query}` : ''} | DesignHolt</title>
 			</Head>
 
-			<Box w="full" px={['3', null, null, '7']} mt="8">
+			<Box mt="8" mx="auto">
 				{/* <ShowCategory maxW="2xs" /> */}
 
 				<Box
@@ -63,6 +69,8 @@ export default function SeachResults() {
 					flexDir={['column-reverse', null, 'row']}
 					alignItems="center"
 					gridGap={['2', null, null, '4']}
+					maxW="8xl"
+					mx="auto"
 					px="5"
 				>
 					<Menu closeOnSelect={false}>
@@ -108,46 +116,24 @@ export default function SeachResults() {
 					</Box>
 				</Box>
 
-				<Box w="full" px={[null, null, null, '7']} mt="5">
-					{loading ? (
-						<>
-							<Text fontSize="xl" fontWeight="semibold" textAlign="center">
-								Searching...
-							</Text>
-							<Box w="full" mt="5" mb="10" h="70vh" py="20">
-								<Center>
-									<Spinner size="xl" color="purple.500" thickness="4px" />
-								</Center>
-							</Box>
-						</>
-					) : products.length > 0 ? (
-						<>
-							<Text fontSize="xl" fontWeight="semibold">
-								Search results for &quot;{query}&quot;
-							</Text>
-							<Box w="full" mt="5" mb="10" mx="auto">
-								<ProductList products={products} mx="auto" />
-							</Box>
-						</>
-					) : products.length === 0 && !loading ? (
-						<>
-							<Text
-								fontSize="xl"
-								fontWeight="semibold"
-								textAlign="center"
-								h="96"
-								py="5"
-							>
-								No results found for &quot;{query}&quot;
-							</Text>
-						</>
-					) : (
-						<>
-							<Text fontSize="xl" fontWeight="semibold">
-								Please wait...
-							</Text>
-						</>
-					)}
+				<Box px={[null, null, null, '7']} mt="5">
+					<Box maxW="8xl" mt="5" mb="10" mx="auto">
+						{!loading && products.length !== 0 ? (
+							<ProductList products={products} mx="auto" />
+						) : (
+							<>
+								<Text
+									fontSize="xl"
+									fontWeight="semibold"
+									textAlign="center"
+									h="96"
+									py="5"
+								>
+									No results found for &quot;{query}&quot;
+								</Text>
+							</>
+						)}
+					</Box>
 				</Box>
 			</Box>
 		</Layout>
