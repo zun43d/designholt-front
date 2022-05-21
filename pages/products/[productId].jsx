@@ -1,7 +1,9 @@
+import { useState } from 'react';
 import { useRouter } from 'next/router';
 import Head from 'next/head';
 import Image from 'next/image';
 import NextLink from 'next/link';
+import { ChromePicker } from 'react-color';
 import { useAuth } from '@/context/AuthUserContext';
 import { useCart } from 'react-use-cart';
 import Layout from '@/layout/layout';
@@ -22,6 +24,7 @@ import {
 	AccordionButton,
 	AccordionPanel,
 	AccordionIcon,
+	Checkbox,
 } from '@chakra-ui/react';
 import {
 	Breadcrumb,
@@ -67,6 +70,12 @@ export default function ProductPage({ product }) {
 	const { authUser } = useAuth();
 	const toast = useToast();
 	const { addItem, emptyCart, inCart } = useCart();
+
+	const [custom, setCustom] = useState(false);
+	const [primaryColor, setPrimaryColor] = useState('');
+	const [secondaryColor, setSecondaryColor] = useState('');
+	const [primaryColorPicker, setPrimaryColorPicker] = useState(false);
+	const [secondaryColorPicker, setSecondaryColorPicker] = useState(false);
 
 	const itemsToAdd = { id: _id, title, price, thumbnail, creator };
 
@@ -252,6 +261,121 @@ export default function ProductPage({ product }) {
 									(Price is in US dollars and excludes tax)
 								</Text>
 							</Text>
+							<Box mb="5">
+								<Checkbox
+									size="md"
+									colorScheme="purple"
+									onChange={(e) => setCustom(e.target.checked)}
+								>
+									Add <b>$5</b> and customize the color of the logo
+								</Checkbox>
+								{custom && (
+									<Box pt="3">
+										<Box
+											display="flex"
+											alignItems="center"
+											justifyContent="center"
+											gridGap="2"
+											position="relative"
+										>
+											<Box
+												bg="white"
+												border="1px"
+												borderColor="gray.200"
+												borderRadius="10"
+												display="flex"
+												alignItems="center"
+												justifyContent="center"
+												gridGap="2"
+												w="max-content"
+												py="2"
+												px="3"
+												cursor="pointer"
+												onClick={() => setPrimaryColorPicker(true)}
+											>
+												<Box
+													borderRadius="10"
+													w="7"
+													h="7"
+													bg={primaryColor}
+													border="1px"
+													borderColor="gray.300"
+												></Box>
+												<Text fontSize="sm" fontWeight="semibold">
+													Primary Color
+												</Text>
+											</Box>
+
+											{primaryColorPicker && (
+												<Box position="absolute" top="12" zIndex="2">
+													<Box
+														position="fixed"
+														top="0"
+														right="0"
+														left="0"
+														bottom="0"
+														onClick={() => setPrimaryColorPicker(false)}
+													></Box>
+													<ChromePicker
+														disableAlpha={true}
+														color={primaryColor}
+														onChange={(color, event) =>
+															setPrimaryColor(color.hex)
+														}
+													/>
+												</Box>
+											)}
+
+											<Box
+												bg="white"
+												border="1px"
+												borderColor="gray.200"
+												borderRadius="10"
+												display="flex"
+												alignItems="center"
+												justifyContent="center"
+												gridGap="2"
+												w="max-content"
+												py="2"
+												px="3"
+												cursor="pointer"
+												onClick={() => setSecondaryColorPicker(true)}
+											>
+												<Box
+													borderRadius="10"
+													w="7"
+													h="7"
+													bg={secondaryColor}
+													border="1px"
+													borderColor="gray.300"
+												></Box>
+												<Text fontSize="sm" fontWeight="semibold">
+													Secondary Color
+												</Text>
+											</Box>
+											{secondaryColorPicker && (
+												<Box position="absolute" zIndex="2" top="12">
+													<Box
+														position="fixed"
+														top="0"
+														right="0"
+														left="0"
+														bottom="0"
+														onClick={() => setSecondaryColorPicker(false)}
+													></Box>
+													<ChromePicker
+														disableAlpha={true}
+														color={secondaryColor}
+														onChange={(color, event) =>
+															setSecondaryColor(color.hex)
+														}
+													/>
+												</Box>
+											)}
+										</Box>
+									</Box>
+								)}
+							</Box>
 							<Box display="flex" gridGap={2}>
 								<Button
 									leftIcon={<DownloadIcon />}
