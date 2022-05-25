@@ -69,7 +69,7 @@ export default function ProductPage({ product }) {
 	const router = useRouter();
 	const { authUser } = useAuth();
 	const toast = useToast();
-	const { addItem, emptyCart, inCart } = useCart();
+	const { addItem, emptyCart, inCart, items } = useCart();
 
 	const [custom, setCustom] = useState(false);
 	const [primaryColor, setPrimaryColor] = useState('');
@@ -78,6 +78,13 @@ export default function ProductPage({ product }) {
 	const [secondaryColorPicker, setSecondaryColorPicker] = useState(false);
 
 	const itemsToAdd = { id: _id, title, price, thumbnail, creator };
+	const whenCustom = {
+		custom: {
+			isCustom: true,
+			primaryColor,
+			secondaryColor,
+		},
+	};
 
 	// const errorToast = () => {
 	// 	toast({
@@ -91,7 +98,8 @@ export default function ProductPage({ product }) {
 
 	const onBuy = () => {
 		emptyCart();
-		addItem(itemsToAdd);
+		custom ? addItem({ ...whenCustom, ...itemsToAdd }) : addItem(itemsToAdd);
+		console.log(items);
 		router.push('/checkout');
 	};
 
@@ -267,7 +275,7 @@ export default function ProductPage({ product }) {
 									colorScheme="purple"
 									onChange={(e) => setCustom(e.target.checked)}
 								>
-									Add <b>$5</b> and customize the color of the logo
+									Add extra <b>$5</b> and customize the color of the logo
 								</Checkbox>
 								{custom && (
 									<Box pt="3">
@@ -610,7 +618,7 @@ export default function ProductPage({ product }) {
 			<Center
 				flexDirection="column"
 				borderRadius="lg"
-				maxW="5xl"
+				maxW={['sm', null, '5xl']}
 				mx="auto"
 				my="8"
 				bg="gray.50"
@@ -618,8 +626,15 @@ export default function ProductPage({ product }) {
 				borderColor="gray.200"
 				p="10"
 			>
-				<Heading mb="5">Payment methods</Heading>
-				<Box display="flex" w="96" alignItems="center" gridGap={8}>
+				<Heading mb="5" textAlign="center">
+					Payment methods
+				</Heading>
+				<Box
+					display="flex"
+					w={['56', null, '96']}
+					alignItems="center"
+					gridGap={8}
+				>
 					<Box w="full">
 						<Image
 							src="/visa.png"

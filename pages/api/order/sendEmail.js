@@ -63,11 +63,7 @@ export default async function handler(req, res) {
                   border: 1px solid #dddddd;
                 text-align: left;
                 padding: 8px;
-                "><a href="https://designholt.com/download?productId=${
-									item.id
-								}&userId=${
-									's5d1a4sd56aw' /* userid goes here */
-								}">Download</a></td>
+                "><a href="https://designholt.com/download?productId=${item.id}&userId=${item.creator._ref}">Download</a></td>
               </tr>
               `
 							)
