@@ -6,7 +6,7 @@ import axios from 'axios';
 import { useForm } from 'react-hook-form';
 import { useCart } from 'react-use-cart';
 import { PayPalScriptProvider, PayPalButtons } from '@paypal/react-paypal-js';
-import { handlingFee } from 'data/bussiness-data';
+import { handlingFee, customFee } from 'data/bussiness-data';
 import PhoneInput from 'react-phone-number-input';
 import Layout from '@/layout/layout';
 import {
@@ -36,7 +36,8 @@ export default function CheckOut() {
 	const [isPaid, setIsPaid] = useState(false);
 
 	const itemPrice = cartTotal;
-	const totalPrice = (+itemPrice + handlingFee).toFixed(2);
+	const totalPrice =
+		+itemPrice + handlingFee + +(items[0]?.custom.isCustom ? customFee : 0);
 
 	const payingAmount = totalPrice;
 	const currency = 'USD';
@@ -351,6 +352,15 @@ export default function CheckOut() {
 									<Spacer />
 									<Text>${itemPrice}</Text>
 								</Box>
+
+								{items[0]?.custom.isCustom && (
+									<Box display="flex" mb="2">
+										<Text>Customization Fee</Text>
+										<Spacer />
+										<Text>${customFee}</Text>
+									</Box>
+								)}
+
 								<Box display="flex">
 									<Text>Handling fee</Text>
 									<Spacer />

@@ -264,7 +264,7 @@ export default function ProductPage({ product }) {
 								mb="4"
 								lineHeight="short"
 							>
-								{product.price}$
+								{custom ? +product.price + 5 : product.price}$
 								<Text as="i" display="block" fontSize="xs" fontWeight="normal">
 									(Price is in US dollars and excludes tax)
 								</Text>
@@ -273,7 +273,9 @@ export default function ProductPage({ product }) {
 								<Checkbox
 									size="md"
 									colorScheme="purple"
-									onChange={(e) => setCustom(e.target.checked)}
+									onChange={(e) => {
+										setCustom(e.target.checked);
+									}}
 								>
 									Add extra <b>$5</b> and customize the color of the logo
 								</Checkbox>
@@ -394,30 +396,32 @@ export default function ProductPage({ product }) {
 								>
 									Download
 								</Button>
-								<Button
-									variant="outline"
-									minW="32"
-									onClick={() =>
-										inCart(_id)
-											? toast({
-													title: 'Already in cart',
-													status: 'warning',
-													duration: 5000,
-													isClosable: true,
-											  })
-											: (() => {
-													addItem(itemsToAdd);
-													toast({
-														title: 'Added to cart',
-														status: 'success',
+								{!custom && (
+									<Button
+										variant="outline"
+										minW="32"
+										onClick={() =>
+											inCart(_id)
+												? toast({
+														title: 'Already in cart',
+														status: 'warning',
 														duration: 5000,
 														isClosable: true,
-													});
-											  })()
-									}
-								>
-									Add to cart
-								</Button>
+												  })
+												: (() => {
+														addItem(itemsToAdd);
+														toast({
+															title: 'Added to cart',
+															status: 'success',
+															duration: 5000,
+															isClosable: true,
+														});
+												  })()
+										}
+									>
+										Add to cart
+									</Button>
+								)}
 							</Box>
 						</Box>
 						<Box
