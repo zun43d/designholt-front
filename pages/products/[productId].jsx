@@ -31,6 +31,7 @@ import {
 	Link,
 	Button,
 	IconButton,
+	Input,
 } from '@/components/uiComponents';
 import { DownloadIcon } from '@chakra-ui/icons';
 
@@ -280,7 +281,14 @@ export default function ProductPage({ product }) {
 									Add extra <b>$5</b> and customize the color of the logo
 								</Checkbox>
 								{custom && (
-									<Box pt="3">
+									<Box
+										pt="3"
+										display="flex"
+										flexDir="column"
+										justifyContent="center"
+										alignItems="center"
+										gridGap="2"
+									>
 										<Box
 											display="flex"
 											alignItems="center"
@@ -382,6 +390,20 @@ export default function ProductPage({ product }) {
 													/>
 												</Box>
 											)}
+										</Box>
+										<Box>
+											<Input
+												placeholder="Enter your brand name"
+												bg="white"
+												w="80"
+											/>
+										</Box>
+										<Box>
+											<Input
+												placeholder="Enter logo font name"
+												bg="white"
+												w="80"
+											/>
 										</Box>
 									</Box>
 								)}

@@ -32,7 +32,10 @@ export default async function handler(req, res) {
 						// 	}
 						// );
 					})
-					.catch((err) => console.log('updateBoughtItem\n', err));
+					.catch((err) => {
+						res.status(404).json({ message: err });
+						console.log('updateBoughtItem\n', err);
+					});
 
 				// update everything
 				await axios({
