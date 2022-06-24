@@ -1,3 +1,4 @@
+import NextLink from 'next/link';
 import { getAllBlogs } from '@/lib/sanityDb';
 import Layout from '@/layout/layout';
 import {
@@ -16,7 +17,6 @@ import {
 	Container,
 	VStack,
 } from '@chakra-ui/react';
-import { PortableText, toPlainText } from '@portabletext/react';
 
 export const getStaticProps = async () => {
 	const allBlogs = await getAllBlogs();
@@ -109,16 +109,18 @@ export default function Blogs({ posts, featuredPost }) {
 									alignItems="center"
 									borderRadius="lg"
 								>
-									<Link
-										textDecoration="none"
-										_hover={{ textDecoration: 'none' }}
-									>
-										<Image
-											src={featuredPost.mainImage}
-											alt="some good alt text"
-											objectFit="contain"
-										/>
-									</Link>
+									<NextLink href={`/blogs/${featuredPost.slug}`} passHref>
+										<Link
+											textDecoration="none"
+											_hover={{ textDecoration: 'none' }}
+										>
+											<Image
+												src={featuredPost.mainImage.img}
+												alt={featuredPost.mainImage.imageAlt}
+												objectFit="contain"
+											/>
+										</Link>
+									</NextLink>
 								</Box>
 								<Box zIndex="1" width="100%" position="absolute" height="100%">
 									<DesignEl />
@@ -133,12 +135,14 @@ export default function Blogs({ posts, featuredPost }) {
 							>
 								<BlogTags tags={featuredPost.tags} />
 								<Heading marginTop="1">
-									<Link
-										textDecoration="none"
-										_hover={{ textDecoration: 'none' }}
-									>
-										{featuredPost.title}
-									</Link>
+									<NextLink href={`/blogs/${featuredPost.slug}`} passHref>
+										<Link
+											textDecoration="none"
+											_hover={{ textDecoration: 'none' }}
+										>
+											{featuredPost.title}
+										</Link>
+									</NextLink>
 								</Heading>
 								<Text as="p" marginTop="2" color="gray.700" fontSize="lg">
 									{featuredPost.description || 'Click to read more'}
@@ -162,64 +166,70 @@ export default function Blogs({ posts, featuredPost }) {
 					// justifyContent="space-between"
 					// alignItems="center"
 					>
-						{posts.map((post) => (
-							<>
-								<Wrap spacing="30px" marginTop="5">
-									<WrapItem
-										width={{ base: '100%', sm: '45%', md: '45%', lg: '30%' }}
-									>
-										<Box w="100%">
-											<Box
-												borderRadius="lg"
-												overflow="hidden"
-												height="80"
-												// width="sm"
-												display="flex"
-												justifyContent="center"
-												alignItems="center"
-											>
+						<Wrap spacing="30px" marginTop="5">
+							{posts.map((post) => (
+								<WrapItem
+									width={{ base: '100%', sm: '45%', md: '45%', lg: '30%' }}
+									key={post._id}
+								>
+									<Box w="100%">
+										<Box
+											borderRadius="lg"
+											overflow="hidden"
+											height="80"
+											// width="sm"
+											display="flex"
+											justifyContent="center"
+											alignItems="center"
+										>
+											<NextLink href={`/blogs/${post.slug}`} passHref>
 												<Link
 													textDecoration="none"
 													_hover={{ textDecoration: 'none' }}
 												>
-													<Image
-														transform="scale(1.0)"
-														src={post.mainImage}
-														alt="some text"
-														objectFit="contain"
-														width="100%"
-														transition="0.3s ease-in-out"
-														_hover={{
-															transform: 'scale(1.05)',
-														}}
-													/>
+													<Box>
+														<Image
+															transform="scale(1.0)"
+															src={post.mainImage.img}
+															alt={post.mainImage.imageAlt}
+															objectFit="contain"
+															width="100%"
+															height="100%"
+															transition="0.3s ease-in-out"
+															_hover={{
+																transform: 'scale(1.05)',
+															}}
+														/>
+													</Box>
 												</Link>
-											</Box>
-											<BlogTags tags={post.tags} marginTop="3" />
-											<Heading fontSize="xl" marginTop="2">
+											</NextLink>
+										</Box>
+										<BlogTags tags={post.tags} marginTop="3" />
+										<Heading fontSize="xl" marginTop="2">
+											<NextLink href={`/blogs/${post.slug}`} passHref>
 												<Link
 													textDecoration="none"
 													_hover={{ textDecoration: 'none' }}
 												>
 													{post.title}
 												</Link>
-											</Heading>
-											<Text as="p" fontSize="md" marginTop="2">
-												{featuredPost.description || 'Click to read more'}
-											</Text>
-											{/* Uncomment bottom code to use author */}
-											{/* <BlogAuthor
+											</NextLink>
+										</Heading>
+										<Text as="p" fontSize="md" marginTop="2">
+											{featuredPost.description || 'Click to read more'}
+										</Text>
+										{/* Uncomment bottom code to use author */}
+										{/* <BlogAuthor
                     name="John Doe"
                     date={new Date('2021-04-06T19:01:27Z')}
                   /> */}
-										</Box>
-									</WrapItem>
-								</Wrap>
-							</>
-						))}
+									</Box>
+								</WrapItem>
+							))}
+						</Wrap>
 					</Box>
 				</Box>
-				<VStack paddingTop="40px" spacing="2" alignItems="flex-start">
+				{/* <VStack paddingTop="40px" spacing="2" alignItems="flex-start">
 					<Heading as="h2">What we write about</Heading>
 					<Text as="p" fontSize="lg">
 						Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec
@@ -245,7 +255,7 @@ export default function Blogs({ posts, featuredPost }) {
 						sapien. Suspendisse placerat vulputate posuere. Curabitur neque
 						tortor, mattis nec lacus non, placerat congue elit.
 					</Text>
-				</VStack>
+				</VStack> */}
 			</Container>
 		</Layout>
 	);
