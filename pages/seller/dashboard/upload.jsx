@@ -223,6 +223,97 @@ export default function Upload({ categories }) {
 						Add logo files
 					</Heading>
 
+					<FormControl isInvalid={errors.main_file}>
+						<FormLabel>
+							1. Main Files(s)*
+							<Text fontWeight="normal" fontSize="sm" color="gray.400">
+								Main files should be zip file that includes Ai & Eps format of
+								the Logo Template, Read Me.txt & Information.txt
+							</Text>
+						</FormLabel>
+						<UploadComponent
+							{...register('main_file', {
+								required: 'You forgot to upload a file',
+								validate: (value) => {
+									const isOk = value[0].size <= 3145728;
+									if (!isOk) {
+										return 'Maximum file size is 3MB.';
+									}
+									return true;
+								},
+							})}
+							accept=".zip"
+							watchFile={main_file_w}
+						>
+							Choose logo zip file
+						</UploadComponent>{' '}
+						<FormErrorMessage>
+							{errors.main_file && errors.main_file.message}
+						</FormErrorMessage>
+					</FormControl>
+
+					<br />
+
+					<FormControl isInvalid={errors.presentation_img}>
+						<FormLabel>
+							2. Presentation Image*
+							<Text fontWeight="normal" fontSize="sm" color="gray.400">
+								Presentation image is a single image (5 megabyte max) that
+								includes 2 mockup & 3 preview image accoding to &quot;Designholt
+								Presentation Template.&quot;
+							</Text>
+						</FormLabel>
+						<UploadComponent
+							{...register('presentation_img', {
+								required: 'You must enter an image for presentation',
+								validate: (value) => {
+									const isOk = value[0].size <= 5242880;
+									if (!isOk) {
+										return 'Maximum file size is 5MB.';
+									}
+									return true;
+								},
+							})}
+							accept=".jpg"
+							watchFile={presentation_img_w}
+						>
+							Choose an image
+						</UploadComponent>
+
+						<FormErrorMessage>
+							{errors.presentation_img && errors.presentation_img.message}
+						</FormErrorMessage>
+
+						<Box mt="3">
+							<li>Only jpg format is supported.</li>
+							<li>Highest acceptable file size is 5MB.</li>
+						</Box>
+					</FormControl>
+
+					<br />
+
+					<FormControl isInvalid={errors.presentationAltText}>
+						<FormLabel>
+							Alternative text for presentation image
+							<Text fontWeight="normal" fontSize="sm" color="gray.400">
+								Ass some words that desrives your presentation. Such as
+								Billboard Logo Mockup, Real Estate Logo, Paper Logo Mockup etc.
+								Describe elements of the presentation in words. This will help
+								your logo to rank higher in the engine.
+							</Text>
+						</FormLabel>
+						<Input
+							{...register('presentationAltText')}
+							placeholder="Presentation ALT text"
+						/>
+
+						<FormErrorMessage>
+							{errors.presentationAltText && errors.presentationAltText.message}
+						</FormErrorMessage>
+					</FormControl>
+
+					<br />
+
 					<FormControl isInvalid={errors.thumbnail_img}>
 						<FormLabel>
 							3. Thumbnail*
@@ -254,99 +345,8 @@ export default function Upload({ categories }) {
 
 						<Box mt="3">
 							<li>Only jpg format is supported.</li>
-							<li>This image is basically a thumbnail of your logo</li>
+							<li>Highest acceptable file size is 5MB.</li>
 						</Box>
-					</FormControl>
-
-					<br />
-
-					<FormControl isInvalid={errors.presentation_img}>
-						<FormLabel>
-							2. Presentation Image*
-							<Text fontWeight="normal" fontSize="sm" color="gray.400">
-								Presentation image is a single image (5 megabte max) that
-								includes 2 mockup & 3 preview image accoding to &quot;Designholt
-								Presentation Template.&quot;
-							</Text>
-						</FormLabel>
-						<UploadComponent
-							{...register('presentation_img', {
-								required: 'You must enter an image for presentation',
-								validate: (value) => {
-									const isOk = value[0].size <= 5242880;
-									if (!isOk) {
-										return 'Maximum file size is 5MB.';
-									}
-									return true;
-								},
-							})}
-							accept=".jpg"
-							watchFile={presentation_img_w}
-						>
-							Choose an image
-						</UploadComponent>
-
-						<FormErrorMessage>
-							{errors.presentation_img && errors.presentation_img.message}
-						</FormErrorMessage>
-
-						<Box mt="3">
-							<li>Only jpg format is supported.</li>
-							<li>Presentation will represent your logo to the buyer.</li>
-						</Box>
-					</FormControl>
-
-					<br />
-
-					<FormControl isInvalid={errors.presentationAltText}>
-						<FormLabel>
-							Alternative text for presentation image
-							<Text fontWeight="normal" fontSize="sm" color="gray.400">
-								Ass some words that desrives your presentation. Such as
-								Billboard Logo Mockup, Real Estate Logo, Paper Logo Mockup etc.
-								Describe elements of the presentation in words. This will help
-								your logo to rank higher in the engine.
-							</Text>
-						</FormLabel>
-						<Input
-							{...register('presentationAltText')}
-							placeholder="Presentation ALT text"
-						/>
-
-						<FormErrorMessage>
-							{errors.presentationAltText && errors.presentationAltText.message}
-						</FormErrorMessage>
-					</FormControl>
-
-					<br />
-
-					<FormControl isInvalid={errors.main_file}>
-						<FormLabel>
-							1. Main Files(s)*
-							<Text fontWeight="normal" fontSize="sm" color="gray.400">
-								Main files should be zip file that includes Ai & Eps format of
-								the Logo Template, Read Me.txt & Information.txt
-							</Text>
-						</FormLabel>
-						<UploadComponent
-							{...register('main_file', {
-								required: 'You forgot to upload a file',
-								validate: (value) => {
-									const isOk = value[0].size <= 3145728;
-									if (!isOk) {
-										return 'Maximum file size is 3MB.';
-									}
-									return true;
-								},
-							})}
-							accept=".zip"
-							watchFile={main_file_w}
-						>
-							Choose logo zip file
-						</UploadComponent>{' '}
-						<FormErrorMessage>
-							{errors.main_file && errors.main_file.message}
-						</FormErrorMessage>
 					</FormControl>
 
 					<br />
