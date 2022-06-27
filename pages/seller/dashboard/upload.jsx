@@ -135,11 +135,42 @@ export default function Upload({ categories }) {
 				</Text>
 				<br />
 				<Box as="form" onSubmit={handleSubmit(handleUpload)}>
+					<FormControl isInvalid={errors.title}>
+						<FormLabel>Logo Name*</FormLabel>
+						<Input
+							{...register('title', {
+								required: 'You must enter the logo name',
+							})}
+							placeholder='Enter the exact name you used in the "Logo Template"'
+						/>
+
+						<FormErrorMessage>
+							{errors.title && errors.title.message}
+						</FormErrorMessage>
+					</FormControl>
+
+					<br />
+
+					<FormControl isInvalid={errors.description}>
+						<FormLabel>Description</FormLabel>
+						<Textarea
+							{...register('description')}
+							placeholder="Enter a detailed description about the logo template. This description will be visible to the buyer & will also help them to find your logo. So try to include as much details as possible for increasing sells."
+							rows="8"
+						/>
+
+						<FormErrorMessage>
+							{errors.description && errors.description.message}
+						</FormErrorMessage>
+					</FormControl>
+
+					<br />
+
 					<FormControl id="category" isInvalid={errors.category}>
 						<FormLabel>
 							Logo category*{' '}
 							<Text fontWeight="normal" fontSize="sm" color="gray.400">
-								<i>(Multiple categories can be selected)</i>
+								You can choose more than one category if the logo is relevant.
 							</Text>
 						</FormLabel>
 						<CheckboxGroup colorScheme="purple">
@@ -161,15 +192,16 @@ export default function Upload({ categories }) {
 							{errors.category && errors.category.message}
 						</Text>
 					</FormControl>
+
 					<br />
+
 					<FormControl isInvalid={errors.tags}>
 						<FormLabel>
 							Tags*
 							<Text fontWeight="normal" fontSize="sm" color="gray.400">
-								<i>
-									(Enter comma seperated tags.Tags are generally used for search
-									query.)
-								</i>
+								Enter comma seperated tags. Enter relevant tags. Think how
+								customer will search for this logo. It will help your logo to
+								rank high in search results & eventually increase sells.
 							</Text>
 						</FormLabel>
 						<Input
@@ -184,34 +216,21 @@ export default function Upload({ categories }) {
 							{errors.tags && errors.tags.message}
 						</FormErrorMessage>
 					</FormControl>
-					<br />
-					<FormControl isInvalid={errors.title}>
-						<FormLabel>Title*</FormLabel>
-						<Input
-							{...register('title', { required: 'Enter a logo title' })}
-							placeholder="Enter logo title"
-						/>
 
-						<FormErrorMessage>
-							{errors.title && errors.title.message}
-						</FormErrorMessage>
-					</FormControl>
 					<br />
-					<FormControl isInvalid={errors.description}>
-						<FormLabel>Description</FormLabel>
-						<Textarea
-							{...register('description')}
-							placeholder="Enter a description about the logo"
-							rows="8"
-						/>
 
-						<FormErrorMessage>
-							{errors.description && errors.description.message}
-						</FormErrorMessage>
-					</FormControl>
-					<br />
+					<Heading size="lg" mt="5" mb="3">
+						Add logo files
+					</Heading>
+
 					<FormControl isInvalid={errors.thumbnail_img}>
-						<FormLabel>Thumbnail preview of your logo*</FormLabel>
+						<FormLabel>
+							3. Thumbnail*
+							<Text fontWeight="normal" fontSize="sm" color="gray.400">
+								Thumbnail is a small 80x80 px image that includes only the logo
+								icon (no text).
+							</Text>
+						</FormLabel>
 						<UploadComponent
 							{...register('thumbnail_img', {
 								required: 'You must select a thumbnail image',
@@ -238,9 +257,18 @@ export default function Upload({ categories }) {
 							<li>This image is basically a thumbnail of your logo</li>
 						</Box>
 					</FormControl>
+
 					<br />
+
 					<FormControl isInvalid={errors.presentation_img}>
-						<FormLabel>Presentation for the logo*</FormLabel>
+						<FormLabel>
+							2. Presentation Image*
+							<Text fontWeight="normal" fontSize="sm" color="gray.400">
+								Presentation image is a single image (5 megabte max) that
+								includes 2 mockup & 3 preview image accoding to &quot;Designholt
+								Presentation Template.&quot;
+							</Text>
+						</FormLabel>
 						<UploadComponent
 							{...register('presentation_img', {
 								required: 'You must enter an image for presentation',
@@ -267,15 +295,17 @@ export default function Upload({ categories }) {
 							<li>Presentation will represent your logo to the buyer.</li>
 						</Box>
 					</FormControl>
+
 					<br />
+
 					<FormControl isInvalid={errors.presentationAltText}>
 						<FormLabel>
 							Alternative text for presentation image
 							<Text fontWeight="normal" fontSize="sm" color="gray.400">
-								<i>
-									(Carefully enter the text, this is for improving the logo
-									search results)
-								</i>
+								Ass some words that desrives your presentation. Such as
+								Billboard Logo Mockup, Real Estate Logo, Paper Logo Mockup etc.
+								Describe elements of the presentation in words. This will help
+								your logo to rank higher in the engine.
 							</Text>
 						</FormLabel>
 						<Input
@@ -287,9 +317,17 @@ export default function Upload({ categories }) {
 							{errors.presentationAltText && errors.presentationAltText.message}
 						</FormErrorMessage>
 					</FormControl>
+
 					<br />
+
 					<FormControl isInvalid={errors.main_file}>
-						<FormLabel>Upload main zip file for the logo*</FormLabel>
+						<FormLabel>
+							1. Main Files(s)*
+							<Text fontWeight="normal" fontSize="sm" color="gray.400">
+								Main files should be zip file that includes Ai & Eps format of
+								the Logo Template, Read Me.txt & Information.txt
+							</Text>
+						</FormLabel>
 						<UploadComponent
 							{...register('main_file', {
 								required: 'You forgot to upload a file',
@@ -310,7 +348,30 @@ export default function Upload({ categories }) {
 							{errors.main_file && errors.main_file.message}
 						</FormErrorMessage>
 					</FormControl>
+
 					<br />
+
+					<FormControl isInvalid={errors.agreement} mt="3" mb="1">
+						<Checkbox
+							{...register('agreement', {
+								required:
+									'You must agree with this. Please check the box above.',
+							})}
+							value="true"
+						>
+							All images or other elements that are not my own work, have been
+							appropiately licensed for use in the presentation or main
+							download. Other than these items, this work is entirely my own and
+							I have full rights to sell it on Designholt.
+						</Checkbox>
+
+						<FormErrorMessage>
+							{errors.agreement && errors.agreement.message}
+						</FormErrorMessage>
+					</FormControl>
+
+					<br />
+
 					<Button
 						isLoading={isSubmitting}
 						type="submit"
