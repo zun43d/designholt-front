@@ -16,15 +16,17 @@ export default function Terms() {
 				</Heading>
 				<OrderedList>
 					<ListItem fontSize="lg">
-						Hi, we’re Desigholt and welcome! We’re happy to have you here. When
-						we say ‘we’, ‘us’ or ‘Designholt’ it’s because that’s who we are and
+						Hi, we&apos;re Desigholt and welcome! We&apos;re happy to have you
+						here. When we say &quot;we&quot;, &quot;us&quot; or
+						&quot;Designholt&quot; it&apos;s because that&apos;s who we are and
 						we own and run the Designholt.com.
 					</ListItem>
 					<ListItem fontSize="lg">
-						You need to be 16 years or over to browse Designholt.com. We don’t
-						knowingly collect any information from anyone aged 16 or under. When
-						browsing the site you agree to follow our guidelines or instructions
-						and keep in mind that these terms apply to any use of Designholt.
+						You need to be 16 years or over to browse Designholt.com. We
+						don&apos;t knowingly collect any information from anyone aged 16 or
+						under. When browsing the site you agree to follow our guidelines or
+						instructions and keep in mind that these terms apply to any use of
+						Designholt.
 					</ListItem>
 					<ListItem fontSize="lg">
 						The items on Designholt are owned by the sellers, not by us. The
@@ -35,10 +37,10 @@ export default function Terms() {
 					<ListItem fontSize="lg">
 						During your time with us you agree to follow the ground rules
 						outlined in these terms so please read and understand them. If you
-						don’t accept the terms then we’ll be sad, but you will need to leave
-						because your presence on and use of Designholt is conditional on
-						your acceptance to be bound by these terms and the Acceptable Use
-						Policy.
+						don&apos;t accept the terms then we&apos;ll be sad, but you will
+						need to leave because your presence on and use of Designholt is
+						conditional on your acceptance to be bound by these terms and the
+						Acceptable Use Policy.
 					</ListItem>
 					<ListItem fontSize="lg">
 						Preview Files: If you stream or download a preview file from
@@ -48,11 +50,11 @@ export default function Terms() {
 						a purchase from Designholt site and not for any other purpose.
 					</ListItem>
 					<ListItem fontSize="lg">
-						You need to be 18 years or over to buy items. If you’re under 18,
-						you will need to get a parent or guardian to buy items or use the
-						account of a parent or legal guardian who is at least 18 years of
-						age, with their permission, and this adult will be responsible for
-						all of your activities.
+						You need to be 18 years or over to buy items. If you&apos;re under
+						18, you will need to get a parent or guardian to buy items or use
+						the account of a parent or legal guardian who is at least 18 years
+						of age, with their permission, and this adult will be responsible
+						for all of your activities.
 					</ListItem>
 					<ListItem fontSize="lg">
 						Your responsibility: You promise that the information you give us is
@@ -61,33 +63,34 @@ export default function Terms() {
 						(including a current email address). You are responsible for any use
 						of the Designholt site including any activity that occurs in
 						conjunction with your username and password, if you have a
-						Designholt account, so keep your password secure and don’t let any
-						other person use your username or password. If you realise there’s
-						any unauthorized use of your password or any breach of security, you
-						need to let us know immediately. You must not use a virtual private
-						network or VPN or any other means to avoid compliance with these
-						terms and conditions, or for any fraudulent or illegal reasons.
+						Designholt account, so keep your password secure and don&apos;t let
+						any other person use your username or password. If you realise
+						there&apos;s any unauthorized use of your password or any breach of
+						security, you need to let us know immediately. You must not use a
+						virtual private network or VPN or any other means to avoid
+						compliance with these terms and conditions, or for any fraudulent or
+						illegal reasons.
 					</ListItem>
 					<ListItem fontSize="lg">
 						License: When you buy an item, you acquire the right to use that
-						item; you're not actually acquiring the item itself. What you get
-						includes a license directly from the seller to use that item. Items
-						are subject to specific terms of use, and these terms are the
-						‘license’ that we set on Designholt. This license also applies to
-						you if you download an item that someone else has bought for you
-						(because anyone buying an item needs to accept all terms of
+						item; you&apos;re not actually acquiring the item itself. What you
+						get includes a license directly from the seller to use that item.
+						Items are subject to specific terms of use, and these terms are the
+						&quot;license&quot; that we set on Designholt. This license also
+						applies to you if you download an item that someone else has bought
+						for you (because anyone buying an item needs to accept all terms of
 						Designholt).
 					</ListItem>
 					<ListItem fontSize="lg">
 						Currency conversion costs: You are responsible for all costs of
 						currency conversion relating to a transaction on Designholt. Your
 						financial institution does the currency conversion and may charge
-						you additional fees (we don’t control either the conversion rates or
-						your financial institution’s fees).
+						you additional fees (we don&apos;t control either the conversion
+						rates or your financial institution&apos;s fees).
 					</ListItem>
 					<ListItem fontSize="lg">
-						Terms of buying: When you buy a Designholt item you’re doing so on
-						the following terms:
+						Terms of buying: When you buy a Designholt item you&apos;re doing so
+						on the following terms:
 						<OrderedList styleType="lower-alpha" my="1">
 							<ListItem fontSize="lg">
 								you cannot cancel a completed purchase of an item;
@@ -118,11 +121,11 @@ export default function Terms() {
 							<ListItem fontSize="lg">
 								Our team is constantly trying to make sure that no seller is
 								submitting any copied item on Designholt site from the internet.
-								But we won’t be responsible for any legal complications
+								But we won&apos;t be responsible for any legal complications
 								regarding copyright or any other issue related to the item once
 								you buy it. We recommend you to do some research before buying
-								any item. Sorry to say that but we won’t take any responsibility
-								about any item once it’s sold.
+								any item. Sorry to say that but we won&apos;t take any
+								responsibility about any item once it&apos;s sold.
 							</ListItem>
 						</OrderedList>
 					</ListItem>
@@ -145,7 +148,7 @@ export default function Terms() {
 						<OrderedList styleType="lower-alpha" my="1">
 							<ListItem fontSize="lg">
 								the item is of acceptable quality and fit for the purpose for
-								which it is 'sold';
+								which it is &quot;sold&quot;;
 							</ListItem>
 							<ListItem fontSize="lg">
 								the item matches the description given by the seller on the item
@@ -191,9 +194,9 @@ export default function Terms() {
 						our reasonable efforts, items may occasionally be listed at an
 						incorrect price or with incorrect information. If this happens, we
 						may cancel or reverse a transaction, even after it is completed and
-						a payment has been processed. If we do this, we’ll promptly arrange
-						for any payment to be credited or refunded and you must not use the
-						item unless you re-purchase it at the correct price.
+						a payment has been processed. If we do this, we&apos;ll promptly
+						arrange for any payment to be credited or refunded and you must not
+						use the item unless you re-purchase it at the correct price.
 					</ListItem>
 					<ListItem fontSize="lg">
 						Refund: Given the nature of digital content, a refund or credit on a
@@ -230,8 +233,8 @@ export default function Terms() {
 								any way not expressly stated in these terms.
 							</ListItem>
 							<ListItem fontSize="lg">
-								What we don’t own: We do not own the items uploaded by sellers
-								on Designholt; our sellers do. Items are uploaded at the
+								What we don&apos;t own: We do not own the items uploaded by
+								sellers on Designholt; our sellers do. Items are uploaded at the
 								direction of the seller. So we cannot take responsibility for
 								the quality, safety or legality of the items. We do not warrant
 								that the items or any member content, code, data or materials
@@ -243,10 +246,10 @@ export default function Terms() {
 						</OrderedList>
 					</ListItem>
 					<ListItem fontSize="lg">
-						Platform Service Charge: We will take 50% of the item’s price on
-						each sale as platform service charge. This charge will be taken from
-						the seller. We don’t take “Platform Service Charge” from buyer. But
-						we’ll take a handling fee from the buyer.
+						Platform Service Charge: We will take 50% of the item&apos;s price
+						on each sale as platform service charge. This charge will be taken
+						from the seller. We don&apos;t take “Platform Service Charge” from
+						buyer. But we&quot;ll take a handling fee from the buyer.
 					</ListItem>
 					<ListItem fontSize="lg">
 						Changes to Designholt Terms: We may change these terms at any time.
@@ -298,10 +301,10 @@ export default function Terms() {
 								Upload or transmit (or attempt to upload or to transmit)
 								viruses, Trojan horses, or other material, including excessive
 								use of capital letters and spamming (continuous posting of
-								repetitive text), that interferes with any party’s uninterrupted
-								use and enjoyment of the Site or modifies, impairs, disrupts,
-								alters, or interferes with the use, features, functions,
-								operation, or maintenance of the Site.
+								repetitive text), that interferes with any party&apos;s
+								uninterrupted use and enjoyment of the Site or modifies,
+								impairs, disrupts, alters, or interferes with the use, features,
+								functions, operation, or maintenance of the Site.
 							</ListItem>
 							<ListItem fontSize="lg">
 								Engage in any automated use of the system, such as using scripts
@@ -337,8 +340,8 @@ export default function Terms() {
 								or restrict access to the Site, or any portion of the Site.
 							</ListItem>
 							<ListItem fontSize="lg">
-								Copy or adapt the Site’s software, including but not limited to
-								Flash, PHP, HTML, JavaScript, or other code.
+								Copy or adapt the Site&apos;s software, including but not
+								limited to Flash, PHP, HTML, JavaScript, or other code.
 							</ListItem>
 							<ListItem fontSize="lg">
 								Except as permitted by applicable law, decipher, decompile,
@@ -437,7 +440,7 @@ export default function Terms() {
 					Designholt.
 				</Text>
 				<Text fontSize="lg">
-					<b>Buyer:</b> a person who ‘buys’ items on Designholt.
+					<b>Buyer:</b> a person who &quot;buys&quot; items on Designholt.
 				</Text>
 			</Box>
 		</Layout>
