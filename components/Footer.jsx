@@ -48,9 +48,9 @@ export default function Footer({ categories }) {
 							<NextLink href="/about" passHref>
 								<Link>About us</Link>
 							</NextLink>
-							<NextLink href="/contact" passHref>
+							{/* <NextLink href="/contact" passHref>
 								<Link>Contact us</Link>
-							</NextLink>
+							</NextLink> */}
 						</Box>
 						<Box display="flex" flexDirection="column">
 							<NextLink href="/privacy" passHref>
