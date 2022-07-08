@@ -140,10 +140,12 @@ const chakraPortableComponents = {
 
 export default function BlogPost({ blog }) {
 	const { width, height } = getImageDimensions(blog.mainImage.img);
+	const blogTitle = `${blog.title} | DesignHolt`;
+
 	return (
 		<Layout my="10">
 			<Head>
-				<title>{blog.title} | DesignHolt</title>
+				<title>{blogTitle}</title>
 			</Head>
 
 			<Box>

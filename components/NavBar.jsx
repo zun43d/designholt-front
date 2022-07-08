@@ -271,7 +271,7 @@ export default function NavBar({ home, noCart /*categories*/ }) {
 					<DrawerCloseButton />
 					<DrawerHeader></DrawerHeader>
 
-					<DrawerBody mt="5">
+					<DrawerBody mt="5" mb="10" display="flex" flexDir="column">
 						<NextLink href={'/'} passHref>
 							<Button
 								as="a"
@@ -343,6 +343,40 @@ export default function NavBar({ home, noCart /*categories*/ }) {
 								))}
 							</Box>
 						</Collapse>
+
+						<Spacer />
+
+						<NextLink href={'/seller/login'} passHref>
+							<Button
+								as="a"
+								mb="3"
+								variant="outline"
+								h="14"
+								w="full"
+								justifyContent="flex-start"
+								px="5"
+								borderRadius="xl"
+								fontSize="lg"
+							>
+								Login as a seller
+							</Button>
+						</NextLink>
+
+						<NextLink href={'/seller/signup'} passHref>
+							<Button
+								as="a"
+								variant="solid"
+								colorScheme="purple"
+								h="14"
+								w="full"
+								justifyContent="flex-start"
+								px="5"
+								borderRadius="xl"
+								fontSize="lg"
+							>
+								Become a seller
+							</Button>
+						</NextLink>
 					</DrawerBody>
 				</DrawerContent>
 			</Drawer>
