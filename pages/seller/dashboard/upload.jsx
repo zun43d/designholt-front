@@ -1,4 +1,5 @@
 import { useRouter } from 'next/router';
+import NextLink from 'next/link';
 import { useRef } from 'react';
 import { useForm } from 'react-hook-form';
 import { useAuth } from '@/context/AuthUserContext';
@@ -17,6 +18,7 @@ import {
 import {
 	Input,
 	Button,
+	Link,
 	FormLabel,
 	Select,
 	Checkbox,
@@ -126,13 +128,6 @@ export default function Upload({ categories }) {
 				Upload Center
 			</Heading>
 			<Box maxW="container.md" my="10" mx="auto">
-				<Heading size="md">
-					Fill up everything carefully to get your logo approved.
-				</Heading>
-				<Text py="1" color="gray.600">
-					After submitting you wont&apos;t get any chnace to modify. So fill
-					everything up keeping that in mind.
-				</Text>
 				<br />
 				<Box as="form" onSubmit={handleSubmit(handleUpload)}>
 					<FormControl isInvalid={errors.title}>
@@ -155,13 +150,19 @@ export default function Upload({ categories }) {
 						<FormLabel>Description</FormLabel>
 						<Textarea
 							{...register('description')}
-							placeholder="Enter a detailed description about the logo template. This description will be visible to the buyer & will also help them to find your logo. So try to include as much details as possible for increasing sells."
+							placeholder="Enter a detailed description about the logo template. This description will be visible to the buyer & also help them to find your logo. So try to include as much details as possible for increasing sells."
 							rows="8"
 						/>
 
 						<FormErrorMessage>
 							{errors.description && errors.description.message}
 						</FormErrorMessage>
+						<Text fontWeight="semibold" textAlign="center" mt="1.5">
+							To know more about this, read our{' '}
+							<NextLink href="/seller/upload-guideline" passHref>
+								<Link color="purple.600">Seller Upload Guideline</Link>
+							</NextLink>
+						</Text>
 					</FormControl>
 
 					<br />
@@ -228,7 +229,11 @@ export default function Upload({ categories }) {
 							1. Main Files(s)*
 							<Text fontWeight="normal" fontSize="sm" color="gray.400">
 								Main files should be zip file that includes Ai & Eps format of
-								the Logo Template, Read Me.txt & Information.txt
+								the Logo Template, Read Me.txt & Information.txt file. To know
+								more read our{' '}
+								<NextLink href="/seller/upload-guideline" passHref>
+									<Link color="purple.600">Seller Upload Guideline</Link>
+								</NextLink>
 							</Text>
 						</FormLabel>
 						<UploadComponent
@@ -260,7 +265,10 @@ export default function Upload({ categories }) {
 							<Text fontWeight="normal" fontSize="sm" color="gray.400">
 								Presentation image is a single image (5 megabyte max) that
 								includes 2 mockup & 3 preview image accoding to &quot;Designholt
-								Presentation Template.&quot;
+								Presentation Template.&quot; To know more read our{' '}
+								<NextLink href="/seller/upload-guideline" passHref>
+									<Link color="purple.600">Seller Upload Guideline</Link>
+								</NextLink>
 							</Text>
 						</FormLabel>
 						<UploadComponent
@@ -296,10 +304,10 @@ export default function Upload({ categories }) {
 						<FormLabel>
 							Alternative text for presentation image
 							<Text fontWeight="normal" fontSize="sm" color="gray.400">
-								Ass some words that desrives your presentation. Such as
-								Billboard Logo Mockup, Real Estate Logo, Paper Logo Mockup etc.
-								Describe elements of the presentation in words. This will help
-								your logo to rank higher in the engine.
+								Some words that describes your presentation. Such as Billboard
+								Logo Mockup, Real Estate Logo, Paper Logo Mockup etc. Describe
+								elements of the presentation in words. This will help your logo
+								to rank higher in the search engine.
 							</Text>
 						</FormLabel>
 						<Input
@@ -319,7 +327,10 @@ export default function Upload({ categories }) {
 							3. Thumbnail*
 							<Text fontWeight="normal" fontSize="sm" color="gray.400">
 								Thumbnail is a small 80x80 px image that includes only the logo
-								icon (no text).
+								icon (no text). To know more read our{' '}
+								<NextLink href="/seller/upload-guideline" passHref>
+									<Link color="purple.600">Seller Upload Guideline</Link>
+								</NextLink>
 							</Text>
 						</FormLabel>
 						<UploadComponent

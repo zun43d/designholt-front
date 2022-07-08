@@ -118,7 +118,7 @@ export default function Earnings() {
 				borderBottom="1px"
 				borderBottomColor="gray.200"
 			>
-				Upload Center
+				Earnings
 			</Heading>
 			<Box maxW="container.md" my="10" mx="auto">
 				<Box display="grid" gridTemplateColumns="repeat(3, 1fr)" gridGap={4}>

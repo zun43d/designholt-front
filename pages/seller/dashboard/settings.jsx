@@ -16,17 +16,16 @@ export default function Settings() {
 		<VendorPanel maxW="container.md" mx="auto">
 			<Heading my="5">Settings</Heading>
 			<Divider />
-			<br />
+			{/* <br /> */}
 			<Box>
-				<Heading fontWeight="bold" size="md">
+				{/* <Heading fontWeight="bold" size="md">
 					Account Login
-				</Heading>
+				</Heading> */}
 				<Box my="5">
 					<FormControl>
 						<FormLabel>Change your password</FormLabel>
 						<FormHelperText>
-							To change your password click on the button below and you will be
-							redirected to the forgot-password page.
+							Is your account in danger? Protect it by reseting your password
 						</FormHelperText>
 						<Box display="flex" alignItems="center" gridGap={2} mt="5">
 							<NextLink href="/seller/forgot-password" passHref>

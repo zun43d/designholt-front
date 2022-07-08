@@ -232,7 +232,7 @@ export default function NavBar({ home, noCart /*categories*/ }) {
 									/>
 								</Button>
 							</MenuButton>
-							<MenuList>
+							<MenuList zIndex="5">
 								<MenuGroup title={authUser?.name}>
 									{/* <NextLink href="/seller/dashboard" passHref>
 										<MenuItem as="a">Dashboard</MenuItem>
