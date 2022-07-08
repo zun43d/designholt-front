@@ -1,3 +1,4 @@
+import Head from 'next/head';
 import Image from 'next/image';
 import NextLink from 'next/link';
 import Layout from '@/layout/layout';
@@ -73,34 +74,39 @@ const chakraPortableComponents = {
 		},
 	},
 	block: {
-		normal: ({ children }) => <Text fontSize="lg">{children}</Text>,
+		normal: ({ children }) => (
+			<>
+				<Text fontSize="xl">{children}</Text>
+				<br />
+			</>
+		),
 		h1: ({ children }) => (
-			<Heading as="h1" fontSize="3xl">
+			<Heading as="h1" fontSize="4xl">
 				{children}
 			</Heading>
 		),
 		h2: ({ children }) => (
-			<Heading as="h2" fontSize="2xl">
+			<Heading as="h2" fontSize="3xl">
 				{children}
 			</Heading>
 		),
 		h3: ({ children }) => (
-			<Heading as="h3" fontSize="xl">
+			<Heading as="h3" fontSize="2xl">
 				{children}
 			</Heading>
 		),
 		h4: ({ children }) => (
-			<Heading as="h4" fontSize="lg">
+			<Heading as="h4" fontSize="xl">
 				{children}
 			</Heading>
 		),
 		h5: ({ children }) => (
-			<Heading as="h5" fontSize="md">
+			<Heading as="h5" fontSize="lg">
 				{children}
 			</Heading>
 		),
 		h6: ({ children }) => (
-			<Heading as="h6" fontSize="sm">
+			<Heading as="h6" fontSize="md">
 				{children}
 			</Heading>
 		),
@@ -135,19 +141,28 @@ const chakraPortableComponents = {
 export default function BlogPost({ blog }) {
 	const { width, height } = getImageDimensions(blog.mainImage.img);
 	return (
-		<Layout maxW="5xl" my="10">
+		<Layout my="10">
+			<Head>
+				<title>{blog.title} | DesignHolt</title>
+			</Head>
+
 			<Box>
 				<Heading
+					maxW={['xl', null, null, '7xl']}
+					mx="auto"
+					px="5"
 					as="h1"
-					size="2xl"
+					size={['2xl', null, '3xl', '4xl']}
+					fontWeight="extrabold"
 					lineHeight="normal"
-					textAlign="center"
-					my="5"
+					textAlign={['left', null, null, 'center']}
+					mt={['5', null, '12']}
+					mb={['10', null, '16']}
 				>
 					{blog.title}
 				</Heading>
 
-				<Box w="100%" my="8">
+				<Box w="100%" my="8" maxW="4xl" mx="auto" px="5">
 					<Image
 						src={blog.mainImage.img}
 						alt={blog.mainImage.imageAlt}
@@ -159,7 +174,12 @@ export default function BlogPost({ blog }) {
 					/>
 				</Box>
 
-				<PortableText value={blog.body} components={chakraPortableComponents} />
+				<Box maxW="4xl" mx="auto" px="5">
+					<PortableText
+						value={blog.body}
+						components={chakraPortableComponents}
+					/>
+				</Box>
 			</Box>
 		</Layout>
 	);

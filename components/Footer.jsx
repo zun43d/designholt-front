@@ -13,7 +13,7 @@ export default function Footer({ categories }) {
 					display="flex"
 					flexDir={['column-reverse', null, 'row']}
 					justifyContent="space-evenly"
-					mt="12"
+					mt="14"
 				>
 					<Box w="60" mx={['auto', 'auto', 0]}>
 						<Box w="40" mx={['auto', 'auto', 0]}>
@@ -41,7 +41,7 @@ export default function Footer({ categories }) {
 						alignItems={['center', null, 'flex-start']}
 						justifyContent={['center', null, 'flex-start']}
 						spacing={[0, null, 20]}
-						mb="10"
+						mb="12"
 						textAlign={['center', null, 'left']}
 					>
 						<Box display="flex" flexDirection="column" mb={['5', null, '0']}>

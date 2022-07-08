@@ -75,7 +75,7 @@ export default function SellerLogin() {
 				<Box
 					h="xl"
 					mx="5"
-					my="12"
+					my="16"
 					display="flex"
 					justifyContent="space-around"
 					alignItems="center"
@@ -93,9 +93,9 @@ export default function SellerLogin() {
 
 					<Box>
 						<Heading as="h2">Seller login panel</Heading>
-						<Text mt="1" color="gray.500">
+						{/* <Text mt="1" color="gray.500">
 							Login to make yourself motivated!
-						</Text>
+						</Text> */}
 						<Stack
 							as="form"
 							name="seller-login"
@@ -152,6 +152,12 @@ export default function SellerLogin() {
 							>
 								Log In
 							</Button>
+							<br />
+							<NextLink href="/seller/signup" passHref>
+								<Link color="purple.500" fontSize="sm" w="max-content">
+									Sign up as a seller
+								</Link>
+							</NextLink>
 							<NextLink href="/seller/forgot-password" passHref>
 								<Link color="purple.500" fontSize="sm" w="max-content">
 									Can&apos;t remember your password?

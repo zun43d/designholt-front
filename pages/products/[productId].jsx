@@ -251,8 +251,13 @@ export default function ProductPage({ product }) {
 								handling fee will be added to the item price.
 							</Text>
 							<Text fontWeight="medium" py="3">
-								<NextLink href="/terms" passHref>
-									<Link color="purple.600">License Details</Link>
+								<NextLink
+									href="https://docs.google.com/document/d/18JbZTFvpG0HMMX7gNmeTyNAq5S5nQtoPlgIvwFjp9yk/edit"
+									passHref
+								>
+									<Link color="purple.600" target="_blank">
+										License Details
+									</Link>
 								</NextLink>{' '}
 								|{' '}
 								<NextLink href="/about" passHref>
@@ -393,14 +398,14 @@ export default function ProductPage({ product }) {
 										</Box>
 										<Box>
 											<Input
-												placeholder="Enter your brand name"
+												placeholder="Enter your logo text"
 												bg="white"
 												w="80"
 											/>
 										</Box>
 										<Box>
 											<Input
-												placeholder="Enter logo font name"
+												placeholder="Enter logo logo font (Free Font)"
 												bg="white"
 												w="80"
 											/>
@@ -578,8 +583,13 @@ export default function ProductPage({ product }) {
 										can see the logo before buying & get various options. Which
 										is not possible by hiring a logo designer. If you want to
 										know more about stock logo templates,{' '}
-										<NextLink href="/blogs" passHref>
-											<Link color="purple.600">read our blog here</Link>
+										<NextLink
+											href="/blogs/why-should-you-buy-a-stock-logo-template"
+											passHref
+										>
+											<Link color="purple.600" target="_blank">
+												read our blog here
+											</Link>
 										</NextLink>
 									</AccordionPanel>
 								</AccordionItem>
@@ -631,8 +641,13 @@ export default function ProductPage({ product }) {
 										ways. You can print the logo, use it on your website, use it
 										on social media & other business purposes. For more
 										information, read our{' '}
-										<NextLink href="/logo-license" passHref>
-											<Link color="purple.600">Stock Logo License here</Link>
+										<NextLink
+											href="https://docs.google.com/document/d/18JbZTFvpG0HMMX7gNmeTyNAq5S5nQtoPlgIvwFjp9yk/edit"
+											passHref
+										>
+											<Link color="purple.600" target="_blank">
+												Stock Logo License here
+											</Link>
 										</NextLink>
 									</AccordionPanel>
 								</AccordionItem>

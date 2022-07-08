@@ -64,7 +64,7 @@ export default function SignUp() {
 					my="20"
 				>
 					<Box w="xl">
-						<Heading>Create seller account</Heading>
+						<Heading>Register as a seller</Heading>
 						<Text color="gray.500">
 							Join us and start your creative earning today.
 						</Text>
@@ -142,7 +142,7 @@ export default function SignUp() {
 							<FormControl id="country">
 								<FormLabel>Country</FormLabel>
 								<Select
-									placeholder="Select the country you are from"
+									placeholder="Select your country"
 									{...register('country', {
 										required: 'You must select a country',
 									})}
