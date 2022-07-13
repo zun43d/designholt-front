@@ -253,7 +253,24 @@ export default function CheckOut() {
 									display="flex"
 									justifyContent="space-evenly"
 									alignItems="center"
-								></Box>
+									pt="8"
+									pb="5"
+								>
+									<Box
+										border="2px"
+										borderColor="purple.500"
+										borderRadius="md"
+										py="5"
+										px="8"
+									>
+										<Image
+											src="/paypal.png"
+											alt="PayPal"
+											width="150"
+											height="39.75"
+										/>
+									</Box>
+								</Box>
 							)}
 						</Box>
 					</Box>
@@ -271,12 +288,12 @@ export default function CheckOut() {
 							</Heading>
 							<Box>
 								<Text fontSize="sm" color="gray.400">
-									{/* {totalItems || '0'} items */}
+									{totalItems || '0'} items
 								</Text>
 							</Box>
 							<Divider my="3" />
 							<Box>
-								{/* {items.map((item) => (
+								{items.map((item) => (
 									<Box
 										key={item.id}
 										mb="3"
@@ -319,23 +336,23 @@ export default function CheckOut() {
 											</Box>
 										</Box>
 									</Box>
-								))} */}
+								))}
 							</Box>
 							<Divider my="3" />
 							<Box fontSize="md">
 								<Box display="flex" mb="2">
 									<Text>Subtotal</Text>
 									<Spacer />
-									{/* <Text>${itemPrice}</Text> */}
+									<Text>${itemPrice}</Text>
 								</Box>
 
-								{/* {items[0]?.custom?.isCustom && (
+								{items[0]?.custom?.isCustom && (
 									<Box display="flex" mb="2">
 										<Text>Customization Fee</Text>
 										<Spacer />
 										<Text>${customFee}</Text>
 									</Box>
-								)} */}
+								)}
 
 								<Box display="flex">
 									<Text>Handling fee</Text>
@@ -349,7 +366,7 @@ export default function CheckOut() {
 									Total (USD)
 								</Text>
 								<Spacer />
-								{/* <Text fontWeight="semibold">${totalPrice}</Text> */}
+								<Text fontWeight="semibold">${totalPrice}</Text>
 							</Box>
 						</Box>
 					</Box>
