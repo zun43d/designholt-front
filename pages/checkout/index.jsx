@@ -37,7 +37,7 @@ export default function CheckOut() {
 
 	const itemPrice = cartTotal;
 	const totalPrice =
-		+itemPrice + handlingFee + +(items[0]?.custom.isCustom ? customFee : 0);
+		+itemPrice + handlingFee + +(items[0]?.custom?.isCustom ? customFee : 0);
 
 	const payingAmount = totalPrice;
 	const currency = 'USD';
@@ -119,7 +119,9 @@ export default function CheckOut() {
 							borderColor="gray.200"
 							borderRadius="md"
 						>
-							<Heading size="md">Billing details</Heading>
+							<Heading as="h2" size="md">
+								Billing details
+							</Heading>
 							{userInfo ? (
 								<Box my="3">
 									<Text>Name: {userInfo.fullname}</Text>
@@ -163,12 +165,14 @@ export default function CheckOut() {
 
 									<FormControl>
 										<FormLabel>Phone number</FormLabel>
-										{/* <Input
-											{...register('phone', {
-												required: true,
-											})}
-											placeholder="Enter your phone number"
-										/> */}
+										{
+											// <Input
+											//{...register('phone', {
+											//		required: true,
+											//	})}
+											//	placeholder="Enter your phone number"
+											///>
+										}
 										<PhoneInput
 											international
 											countryCallingCodeEditable={false}
@@ -249,43 +253,11 @@ export default function CheckOut() {
 									display="flex"
 									justifyContent="space-evenly"
 									alignItems="center"
-								>
-									<table
-										border="0"
-										cellPadding="10"
-										cellSpacing="0"
-										align="center"
-									>
-										<tr>
-											<td align="center"></td>
-										</tr>
-										<tr>
-											<td align="center">
-												<a
-													href="https://www.paypal.com/webapps/mpp/paypal-popup"
-													title="How PayPal Works"
-													onClick={() => {
-														window.open(
-															'https://www.paypal.com/webapps/mpp/paypal-popup',
-															'WIPaypal',
-															'toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=yes, resizable=yes, width=1060, height=700'
-														);
-														return false;
-													}}
-												>
-													<img
-														src="https://www.paypalobjects.com/webstatic/mktg/logo/AM_SbyPP_mc_vs_dc_ae.jpg"
-														border="0"
-														alt="PayPal Acceptance Mark"
-													/>
-												</a>
-											</td>
-										</tr>
-									</table>
-								</Box>
+								></Box>
 							)}
 						</Box>
 					</Box>
+
 					<Box w="96">
 						<Box
 							py="4"
@@ -294,13 +266,17 @@ export default function CheckOut() {
 							borderColor="gray.200"
 							borderRadius="md"
 						>
-							<Heading size="md">Order summary</Heading>
-							<Text fontSize="sm" color="gray.400">
-								{totalItems} items
-							</Text>
+							<Heading as="h2" size="md">
+								Order summary
+							</Heading>
+							<Box>
+								<Text fontSize="sm" color="gray.400">
+									{/* {totalItems || '0'} items */}
+								</Text>
+							</Box>
 							<Divider my="3" />
 							<Box>
-								{items.map((item) => (
+								{/* {items.map((item) => (
 									<Box
 										key={item.id}
 										mb="3"
@@ -343,23 +319,23 @@ export default function CheckOut() {
 											</Box>
 										</Box>
 									</Box>
-								))}
+								))} */}
 							</Box>
 							<Divider my="3" />
 							<Box fontSize="md">
 								<Box display="flex" mb="2">
 									<Text>Subtotal</Text>
 									<Spacer />
-									<Text>${itemPrice}</Text>
+									{/* <Text>${itemPrice}</Text> */}
 								</Box>
 
-								{items[0]?.custom.isCustom && (
+								{/* {items[0]?.custom?.isCustom && (
 									<Box display="flex" mb="2">
 										<Text>Customization Fee</Text>
 										<Spacer />
 										<Text>${customFee}</Text>
 									</Box>
-								)}
+								)} */}
 
 								<Box display="flex">
 									<Text>Handling fee</Text>
@@ -373,7 +349,7 @@ export default function CheckOut() {
 									Total (USD)
 								</Text>
 								<Spacer />
-								<Text fontWeight="semibold">${totalPrice}</Text>
+								{/* <Text fontWeight="semibold">${totalPrice}</Text> */}
 							</Box>
 						</Box>
 					</Box>
