@@ -587,7 +587,9 @@ export default function CheckOut() {
 										</TabList>
 										<TabPanels>
 											<TabPanel>
-												{userInfo && !isEmpty && <StripeWrapper />}
+												{userInfo && !isEmpty && (
+													<StripeWrapper items={items} />
+												)}
 											</TabPanel>
 											<TabPanel>
 												<Box w="full" mx="auto" mt="8">
