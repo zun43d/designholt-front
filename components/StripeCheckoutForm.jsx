@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { useCart } from 'react-use-cart';
 import {
 	PaymentElement,
 	useStripe,
@@ -13,6 +14,8 @@ export default function CheckoutForm() {
 
 	const [message, setMessage] = useState(null);
 	const [isLoading, setIsLoading] = useState(false);
+
+	const { emptyCart } = useCart();
 
 	useEffect(() => {
 		if (!stripe) {
@@ -57,13 +60,15 @@ export default function CheckoutForm() {
 
 		setIsLoading(true);
 
-		const { error } = await stripe.confirmPayment({
-			elements,
-			confirmParams: {
-				// Make sure to change this to your payment completion page
-				return_url: 'https://www.designholt.com/checkout/order-success/',
-			},
-		});
+		const { error } = await stripe
+			.confirmPayment({
+				elements,
+				confirmParams: {
+					// Make sure to change this to your payment completion page
+					return_url: 'https://www.designholt.com/checkout/order-success/',
+				},
+			})
+			.then(() => emptyCart());
 
 		// This point will only be reached if there is an immediate error when
 		// confirming the payment. Otherwise, your customer will be redirected to

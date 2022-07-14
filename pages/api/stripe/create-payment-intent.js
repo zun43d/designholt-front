@@ -1,5 +1,6 @@
 import { client } from '@/lib/sanity';
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
+import { handlingFee } from '@/data/bussiness-data';
 
 const calculateOrderAmount = async (items) => {
 	// Replace this constant with a calculation of the order's amount
@@ -13,19 +14,23 @@ const calculateOrderAmount = async (items) => {
     price
   }`;
 	const params = { ids };
-	console.log('ids of items -----------------------------------', ids);
 
 	return await client
 		.fetch(query, params)
 		.then((res) => {
-			const total = res.reduce((acc, item) => {
-				return acc + item.price;
+			let total = res.reduce((acc, item) => {
+				return acc + +item.price;
 			}, 0);
+
+			total += handlingFee;
 			console.log(total);
 			return total * 100;
 		})
 		.catch((err) => {
-			console.log(err);
+			console.log(
+				'calculateOrderAmount#####################################',
+				err
+			);
 		});
 	// return 1400;
 };
