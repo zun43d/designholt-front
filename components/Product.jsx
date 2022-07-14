@@ -72,7 +72,7 @@ export default function Product({
 				<Box py="5" textAlign="left">
 					<NextLink href={productUrl} passHref>
 						<Link>
-							<Heading as="h4" size="sm" isTruncated>
+							<Heading as="h4" size="sm">
 								{title}
 							</Heading>
 						</Link>

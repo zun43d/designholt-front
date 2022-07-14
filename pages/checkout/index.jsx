@@ -287,12 +287,12 @@ export default function CheckOut() {
 								Order summary
 							</Heading>
 							<Box>
-								<Text fontSize="sm" color="gray.400">
+								<Text fontSize="sm" color="gray.400" suppressHydrationWarning>
 									{totalItems || '0'} items
 								</Text>
 							</Box>
 							<Divider my="3" />
-							<Box>
+							<Box suppressHydrationWarning>
 								{items.map((item) => (
 									<Box
 										key={item.id}
@@ -320,7 +320,11 @@ export default function CheckOut() {
 												/>
 											</Box>
 											<Box ml="5" flexGrow="1">
-												<Text fontWeight="semibold" fontSize="sm">
+												<Text
+													fontWeight="semibold"
+													fontSize="sm"
+													suppressHydrationWarning
+												>
 													{item.title}
 												</Text>
 											</Box>
@@ -330,6 +334,7 @@ export default function CheckOut() {
 													fontSize="md"
 													fontWeight="medium"
 													color="gray.500"
+													suppressHydrationWarning
 												>
 													{item.price}$
 												</Text>
@@ -343,21 +348,23 @@ export default function CheckOut() {
 								<Box display="flex" mb="2">
 									<Text>Subtotal</Text>
 									<Spacer />
-									<Text>${itemPrice}</Text>
+									<Text suppressHydrationWarning>${itemPrice}</Text>
 								</Box>
 
 								{items[0]?.custom?.isCustom && (
 									<Box display="flex" mb="2">
 										<Text>Customization Fee</Text>
 										<Spacer />
-										<Text>${customFee}</Text>
+										<Text suppressHydrationWarning>${customFee}</Text>
 									</Box>
 								)}
 
 								<Box display="flex">
 									<Text>Handling fee</Text>
 									<Spacer />
-									<Text>${handlingFee.toFixed(2)}</Text>
+									<Text suppressHydrationWarning>
+										${handlingFee.toFixed(2)}
+									</Text>
 								</Box>
 							</Box>
 							<Divider my="3" />
@@ -366,7 +373,9 @@ export default function CheckOut() {
 									Total (USD)
 								</Text>
 								<Spacer />
-								<Text fontWeight="semibold">${totalPrice}</Text>
+								<Text fontWeight="semibold" suppressHydrationWarning>
+									${totalPrice}
+								</Text>
 							</Box>
 						</Box>
 					</Box>
