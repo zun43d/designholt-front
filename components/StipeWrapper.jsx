@@ -10,7 +10,7 @@ const stripePromise = loadStripe(
 	process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY
 );
 
-export default function StripeWrapper({ items }) {
+export default function StripeWrapper({ items, email }) {
 	const [clientSecret, setClientSecret] = useState('');
 
 	useEffect(() => {
@@ -39,7 +39,7 @@ export default function StripeWrapper({ items }) {
 		<Box>
 			{clientSecret ? (
 				<Elements options={options} stripe={stripePromise}>
-					<StripeCheckoutForm />
+					<StripeCheckoutForm email={email} />
 				</Elements>
 			) : (
 				<Loading />

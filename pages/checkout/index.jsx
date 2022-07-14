@@ -588,7 +588,7 @@ export default function CheckOut() {
 										<TabPanels>
 											<TabPanel>
 												{userInfo && !isEmpty && (
-													<StripeWrapper items={items} />
+													<StripeWrapper items={items} email={userInfo.email} />
 												)}
 											</TabPanel>
 											<TabPanel>
