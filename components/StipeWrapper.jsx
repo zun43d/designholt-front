@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { loadStripe } from '@stripe/stripe-js';
 import { Elements } from '@stripe/react-stripe-js';
 import { Box } from '@chakra-ui/react';
+import Loading from '@/components/Loading';
 
 import StripeCheckoutForm from './StripeCheckoutForm';
 
@@ -36,10 +37,12 @@ export default function StripeWrapper({ items }) {
 
 	return (
 		<Box>
-			{clientSecret && (
+			{clientSecret ? (
 				<Elements options={options} stripe={stripePromise}>
 					<StripeCheckoutForm />
 				</Elements>
+			) : (
+				<Loading />
 			)}
 		</Box>
 	);
