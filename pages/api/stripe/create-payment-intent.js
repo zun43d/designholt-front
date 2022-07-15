@@ -24,7 +24,7 @@ const calculateOrderAmount = async (items) => {
 
 			total += handlingFee;
 			console.log(total);
-			return total * 100;
+			return Math.trunc(total * 100);
 		})
 		.catch((err) => {
 			console.log(

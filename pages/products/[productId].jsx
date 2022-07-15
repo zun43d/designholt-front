@@ -101,7 +101,9 @@ export default function ProductPage({ product }) {
 		emptyCart();
 		custom ? addItem({ ...whenCustom, ...itemsToAdd }) : addItem(itemsToAdd);
 		console.log(items);
-		router.push('/checkout');
+		setTimeout(() => {
+			router.push('/checkout');
+		}, 500);
 	};
 
 	const descriptionBuilder = (description) => {
