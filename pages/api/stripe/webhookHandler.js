@@ -5,7 +5,6 @@ import axios from 'axios';
 import Stripe from 'stripe';
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY, {
-	// https://github.com/stripe/stripe-node#configuration
 	apiVersion: '2020-08-27',
 });
 
@@ -26,9 +25,15 @@ const handler = async (req, res) => {
 		const buf = await buffer(req);
 		const sig = req.headers['stripe-signature'];
 
+		// console.log('➡️ buffer', buf.toString());
+		// console.log('🪧 Signature', sig);
+		console.log('🗝️ webhook secret', webhookSecret);
+		console.log('🗝️ stripe secret', process.env.STRIPE_SECRET_KEY);
+
 		let event;
 
 		try {
+			console.log('📦 Event');
 			event = stripe.webhooks.constructEvent(
 				buf.toString(),
 				sig,
