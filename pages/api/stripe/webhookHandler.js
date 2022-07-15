@@ -76,9 +76,6 @@ const handler = async (req, res) => {
 			console.log(
 				`❌ Payment failed: ${paymentIntent.last_payment_error?.message}`
 			);
-		} else if (event.type === 'charge.succeeded') {
-			const charge = event.data.object;
-			console.log(`💵 Charge id: ${charge.id}`);
 		} else {
 			console.warn(`🤷‍♀️ Unhandled event type: ${event.type}`);
 		}
