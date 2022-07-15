@@ -52,6 +52,7 @@ const handler = async (req, res) => {
 		// Cast event data to Stripe object.
 		if (event.type === 'payment_intent.succeeded') {
 			const paymentIntent = event.data.object;
+			console.log('ℹ️ PaymentIntent', paymentIntent);
 			console.log(`💰 PaymentIntent status: ${paymentIntent.status}`);
 
 			// Process after receiving the payment

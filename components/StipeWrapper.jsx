@@ -10,7 +10,11 @@ const stripePromise = loadStripe(
 	process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY
 );
 
-export default function StripeWrapper({ items, email }) {
+export default function StripeWrapper({
+	items,
+	userInfo,
+	handlePaymentConfirm,
+}) {
 	const [clientSecret, setClientSecret] = useState('');
 
 	useEffect(() => {
@@ -18,11 +22,11 @@ export default function StripeWrapper({ items, email }) {
 		fetch('/api/stripe/create-payment-intent', {
 			method: 'POST',
 			headers: { 'Content-Type': 'application/json' },
-			body: JSON.stringify({ items: items }),
+			body: JSON.stringify({ items, userInfo }),
 		})
 			.then((res) => res.json())
 			.then((data) => setClientSecret(data.clientSecret));
-	}, [items]);
+	}, [items, userInfo]);
 
 	const appearance = {
 		theme: 'stripe',
@@ -39,7 +43,11 @@ export default function StripeWrapper({ items, email }) {
 		<Box>
 			{clientSecret ? (
 				<Elements options={options} stripe={stripePromise}>
-					<StripeCheckoutForm email={email} />
+					<StripeCheckoutForm
+						userInfo={userInfo}
+						paymentIntentId={clientSecret}
+						handlePaymentConfirm={handlePaymentConfirm}
+					/>
 				</Elements>
 			) : (
 				<Loading />

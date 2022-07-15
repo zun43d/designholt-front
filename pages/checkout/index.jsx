@@ -588,7 +588,11 @@ export default function CheckOut() {
 										<TabPanels>
 											<TabPanel>
 												{userInfo && !isEmpty && (
-													<StripeWrapper items={items} email={userInfo.email} />
+													<StripeWrapper
+														items={items}
+														userInfo={userInfo}
+														handlePaymentConfirm={handlePaymentConfirm}
+													/>
 												)}
 											</TabPanel>
 											<TabPanel>

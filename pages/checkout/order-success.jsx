@@ -13,13 +13,13 @@ import { Button } from '@/components/uiComponents';
 export default function OrderSuccess() {
 	const router = useRouter();
 
-	useEffect(() => {
-		const raw = localStorage.getItem('checkout');
-		const checkout = JSON.parse(raw);
-		checkout?.isPaid ? null : router.push('/');
-		localStorage.removeItem('checkout');
-		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, []);
+	// useEffect(() => {
+	// 	const raw = localStorage.getItem('checkout');
+	// 	const checkout = JSON.parse(raw);
+	// 	checkout?.isPaid ? null : router.push('/');
+	// 	localStorage.removeItem('checkout');
+	// 	// eslint-disable-next-line react-hooks/exhaustive-deps
+	// }, []);
 
 	return (
 		<Layout maxW="6xl">
