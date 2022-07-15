@@ -86,4 +86,4 @@ const handler = async (req, res) => {
 	}
 };
 
-export default cors(webhookHandler);
+export default cors(handler);
