@@ -3,7 +3,7 @@ import { createBuyer, updateBoughtItems } from '@/lib/sanityAdmin';
 
 export default async function handler(req, res) {
 	const { authorization } = req.headers;
-	const { tnxId, products, userInfo } = req.body;
+	const { tnxId, products, userInfo, totalPrice } = req.body;
 
 	const { fullname, email, phone } = userInfo;
 
@@ -19,10 +19,12 @@ export default async function handler(req, res) {
 			return unauthorized();
 		}
 
-		return await createBuyer(userInfo)
+		const isCustom = products.some((product) => product.custom?.isCustom);
+
+		return await createBuyer(userInfo, isCustom)
 			.then(async (id) => {
 				// update item list in buyer's document
-				await updateBoughtItems(id, products, tnxId)
+				await updateBoughtItems(id, products, tnxId, isCustom, totalPrice)
 					.then(async (result) => {
 						// await sendProductOnEmail(products, fullname, email).then(
 						// 	async (data) => {

@@ -30,6 +30,9 @@ import { Input, Button, Link } from '@/components/uiComponents';
 import Loading from '@/components/Loading';
 import StripeWrapper from '@/components/StipeWrapper';
 
+// everything was added in just one component
+// it can be split into smaller components
+
 export default function CheckOut() {
 	const router = useRouter();
 	const toast = useToast();
@@ -80,6 +83,7 @@ export default function CheckOut() {
 					tnxId: details.id,
 					products: items.map((item) => item),
 					userInfo,
+					totalPrice,
 				},
 			}).then((res) => {
 				setIsPaid(true);

@@ -75,6 +75,8 @@ export default function ProductPage({ product }) {
 	const [custom, setCustom] = useState(false);
 	const [primaryColor, setPrimaryColor] = useState('');
 	const [secondaryColor, setSecondaryColor] = useState('');
+	const [logoText, setLogoText] = useState('');
+	const [logoFont, setLogoFont] = useState('');
 	const [primaryColorPicker, setPrimaryColorPicker] = useState(false);
 	const [secondaryColorPicker, setSecondaryColorPicker] = useState(false);
 
@@ -84,6 +86,8 @@ export default function ProductPage({ product }) {
 			isCustom: true,
 			primaryColor,
 			secondaryColor,
+			logoText,
+			logoFont,
 		},
 	};
 
@@ -403,6 +407,7 @@ export default function ProductPage({ product }) {
 												placeholder="Enter your logo text"
 												bg="white"
 												w="80"
+												onChange={(e) => setLogoText(e.target.value)}
 											/>
 										</Box>
 										<Box>
@@ -410,6 +415,7 @@ export default function ProductPage({ product }) {
 												placeholder="Enter logo logo font (Free Font)"
 												bg="white"
 												w="80"
+												onChange={(e) => setLogoFont(e.target.value)}
 											/>
 										</Box>
 									</Box>
