@@ -78,10 +78,11 @@ export default function Product({
 						</Link>
 					</NextLink>
 					<Text pt="0.5" fontSize="xs" color="gray.500">
-						<i>by</i>{' '}
-						<NextLink href={`/seller/${creator._id}`} passHref>
+						<i>by</i> {/* Creator profile is still not available */}
+						{/* <NextLink href={`/seller/${creator._id}`} passHref>
 							<Link>{creator.fullName}</Link>
-						</NextLink>
+						</NextLink> */}
+						<Text>{creator.fullName}</Text>
 					</Text>
 				</Box>
 				<Box

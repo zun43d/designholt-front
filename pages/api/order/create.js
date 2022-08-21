@@ -36,7 +36,7 @@ export default async function handler(req, res) {
 					})
 					.catch((err) => {
 						res.status(404).json({ message: err });
-						console.log('updateBoughtItem\n', err);
+						console.log('updateBoughtItem\n', id, err);
 					});
 
 				// update everything

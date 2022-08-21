@@ -1,6 +1,6 @@
 import { client } from '@/lib/sanity';
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
-import { handlingFee } from '@/data/bussiness-data';
+import { handlingFee, customFee } from '@/data/bussiness-data';
 
 const calculateOrderAmount = async (items) => {
 	// Replace this constant with a calculation of the order's amount
@@ -8,6 +8,7 @@ const calculateOrderAmount = async (items) => {
 	// people from directly manipulating the amount on the client
 
 	// Gotta do the job after the implementation is done
+	const isCustom = items.some((item) => item.custom?.isCustom);
 	const ids = items.map((item) => item.id);
 	const query = `*[_type == 'products' && _id in $ids] {
     _id,
@@ -22,7 +23,7 @@ const calculateOrderAmount = async (items) => {
 				return acc + +item.price;
 			}, 0);
 
-			total += handlingFee;
+			total += isCustom ? handlingFee + customFee : handlingFee;
 			console.log(total);
 			return Math.trunc(total * 100);
 		})
