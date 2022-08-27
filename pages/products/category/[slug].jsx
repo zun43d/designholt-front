@@ -137,14 +137,9 @@ export default function Category({
 						{categoryName}
 					</Heading>
 					<Text py="3" color="gray.600" fontSize="sm">
-						Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo,
-						officiis ipsam eligendi doloribus debitis aperiam sapiente dolorum
-						dicta porro corrupti facilis ipsum commodi at eum eius maxime
-						placeat suscipit recusandae omnis, possimus ab magni rerum voluptate
-						tempore. Incidunt ullam provident iusto. Voluptates voluptas
-						repellat, ex distinctio consectetur natus unde in doloribus
-						aspernatur sapiente, officiis mollitia, modi alias! Ipsa, asperiores
-						dolor.
+						Download your preferred {categoryName.toLowerCase()} logo, place your company name & start using
+						it from today! If you can't customize it by yourself, don't worry, our team will
+						customize it for you. What are you waiting for? Start exploring!
 					</Text>
 				</Box>
 			</Box>
