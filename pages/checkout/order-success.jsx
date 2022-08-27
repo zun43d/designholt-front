@@ -79,7 +79,7 @@ export default function OrderSuccess() {
 				</Box>
 				<Box textAlign="center" my="5">
 					<Heading color="gray.900">Thank you for purchasing!</Heading>
-					<Text my="2">The product has been sent to your provided email.</Text>
+					<Text my="2">The product has been sent to your provided email. You may receive it within 5-10 minutes.</Text>
 				</Box>
 				<NextLink href="/" passHref>
 					<Button
@@ -88,14 +88,14 @@ export default function OrderSuccess() {
 						variant="ghost"
 						colorScheme="purple"
 					>
-						Go back to home page
+						Go back to the home page
 					</Button>
 				</NextLink>
 				<Alert status="warning" variant="left-accent" fontSize="sm" my="10">
 					In case if you can&apos;t find the email-
 					<br />
 					&gt; Check Spam Folder. <br />
-					&gt; Email us at- contact@designholt.com
+					&gt; Email us at- contact@designholt.net
 				</Alert>
 			</Box>
 		</Layout>
