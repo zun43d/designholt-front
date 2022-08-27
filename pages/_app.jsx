@@ -20,9 +20,9 @@ function MyApp({ Component, pageProps }) {
 
 	const categories = [
 		{
-			_id: '049bdcbe-6309-411e-91bc-90dc131f7bbd',
-			categoryName: 'Crests',
-			slug: 'crests',
+			_id: 'da77d34d-0de5-46ca-b7ee-1a0e98160132',
+			categoryName: 'Numbers',
+			slug: 'numbers',
 		},
 		{
 			_id: '08180d09-4bb2-402c-84ce-47d3bf84431c',
@@ -90,9 +90,9 @@ function MyApp({ Component, pageProps }) {
 			slug: 'buildings',
 		},
 		{
-			_id: 'da77d34d-0de5-46ca-b7ee-1a0e98160132',
-			categoryName: 'Numbers',
-			slug: 'numbers',
+			_id: '049bdcbe-6309-411e-91bc-90dc131f7bbd',
+			categoryName: 'Crests',
+			slug: 'crests',
 		},
 		{
 			_id: 'da7aea80-6975-49cc-98c5-faa9130ecfb0',
