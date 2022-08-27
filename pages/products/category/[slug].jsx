@@ -1,14 +1,14 @@
-import { useState, useEffect } from 'react';
-import { useRouter } from 'next/router';
-import Head from 'next/head';
-import Layout from '@/layout/layout';
+import { useState, useEffect } from 'react'
+import { useRouter } from 'next/router'
+import Head from 'next/head'
+import Layout from '@/layout/layout'
 import {
 	getAllCategories,
 	getProductsByCategory,
 	slugToCategory,
-} from '@/lib/sanityDb';
-import onSort from '@/utils/onSort';
-import ProductList from '@/components/ProductList';
+} from '@/lib/sanityDb'
+import onSort from '@/utils/onSort'
+import ProductList from '@/components/ProductList'
 import {
 	Box,
 	Heading,
@@ -18,25 +18,25 @@ import {
 	MenuList,
 	MenuOptionGroup,
 	MenuItemOption,
-} from '@chakra-ui/react';
+} from '@chakra-ui/react'
 import {
 	Breadcrumb,
 	Button,
 	Input,
 	IconButton,
 	InputGroup,
-} from '@/components/uiComponents';
-import Pagination from '@/components/Pagination';
-import { BiSortAlt2 } from 'react-icons/bi';
-import { RiSearchLine } from 'react-icons/ri';
-import { productsPerPage } from '@/data/bussiness-data';
-import useSwr from 'swr';
-import fetcher from '@/utils/fetcher';
+} from '@/components/uiComponents'
+import Pagination from '@/components/Pagination'
+import { BiSortAlt2 } from 'react-icons/bi'
+import { RiSearchLine } from 'react-icons/ri'
+import { productsPerPage } from '@/data/bussiness-data'
+import useSwr from 'swr'
+import fetcher from '@/utils/fetcher'
 
 export const getStaticProps = async ({ params }) => {
-	const { categoryName, slug } = await slugToCategory(params.slug);
-	const productsByCategory = await getProductsByCategory(params.slug);
-	const products = await getProductsByCategory(params.slug, 1, productsPerPage);
+	const { categoryName, slug } = await slugToCategory(params.slug)
+	const productsByCategory = await getProductsByCategory(params.slug)
+	const products = await getProductsByCategory(params.slug, 1, productsPerPage)
 
 	return {
 		props: {
@@ -46,11 +46,11 @@ export const getStaticProps = async ({ params }) => {
 			totalProduct: productsByCategory.length,
 		},
 		revalidate: 3600,
-	};
-};
+	}
+}
 
 export const getStaticPaths = async () => {
-	const allCategories = await getAllCategories();
+	const allCategories = await getAllCategories()
 
 	return {
 		paths: allCategories.map((category) => ({
@@ -59,8 +59,8 @@ export const getStaticPaths = async () => {
 			},
 		})),
 		fallback: 'blocking',
-	};
-};
+	}
+}
 
 export default function Category({
 	categoryName,
@@ -68,36 +68,36 @@ export default function Category({
 	productsByCategory,
 	totalProduct,
 }) {
-	const [products, setProducts] = useState([]);
+	const [products, setProducts] = useState([])
 	// const [pageIndex, setPageIndex] = useState(1);
 
-	const router = useRouter();
-	const { query } = router;
-	const pageIndex = +query.index;
+	const router = useRouter()
+	const { query } = router
+	const pageIndex = +query.index
 
 	const { data } = useSwr(
 		`/api/products/category?name=${categorySlug}&pIndex=${pageIndex}`,
 		fetcher
-	);
+	)
 
 	const setIndex = (i) => {
-		router.query.index = i;
-		router.push(router);
-	};
+		router.query.index = i
+		router.push(router)
+	}
 
 	useEffect(() => {
-		!pageIndex && setIndex(1);
+		!pageIndex && setIndex(1)
 		if (pageIndex === 1) {
-			setProducts(productsByCategory);
+			setProducts(productsByCategory)
 		} else {
-			data ? setProducts(data.products) : setProducts([]);
+			data ? setProducts(data.products) : setProducts([])
 		}
 
 		return () => {
-			setProducts([]);
-		};
+			setProducts([])
+		}
 		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [productsByCategory, data, pageIndex]);
+	}, [productsByCategory, data, pageIndex])
 
 	// Just to reset the page index number whenever the category is changed
 	// useEffect(() => {
@@ -105,17 +105,17 @@ export default function Category({
 	// }, [categoryName]);
 
 	const handlePageChange = (nextPage) => {
-		console.log(nextPage);
-		setIndex(nextPage);
+		console.log(nextPage)
+		setIndex(nextPage)
 		// setPageIndex(nextPage);
-	};
+	}
 
 	const onSearch = (e) => {
-		e.preventDefault();
+		e.preventDefault()
 
-		const searchValue = e.target[0].value;
-		router.push(`/products/search?query=${searchValue}`);
-	};
+		const searchValue = e.target[0].value
+		router.push(`/products/search?query=${searchValue}`)
+	}
 
 	return (
 		<Layout>
@@ -137,9 +137,10 @@ export default function Category({
 						{categoryName}
 					</Heading>
 					<Text py="3" color="gray.600" fontSize="sm">
-						Download your preferred {categoryName.toLowerCase()} logo, place your company name & start using
-						it from today! If you can't customize it by yourself, don't worry, our team will
-						customize it for you. What are you waiting for? Start exploring!
+						Download your preferred {categoryName} logo, place your company name
+						& start using it from today! If you can&apos;t customize it by
+						yourself, don&apos;t worry, our team will customize it for you. What
+						are you waiting for? Start exploring!
 					</Text>
 				</Box>
 			</Box>
@@ -215,5 +216,5 @@ export default function Category({
 				</Box>
 			</Box>
 		</Layout>
-	);
+	)
 }
