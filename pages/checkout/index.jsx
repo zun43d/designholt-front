@@ -1,14 +1,14 @@
-import { useState, useEffect } from 'react';
-import Head from 'next/head';
-import { useRouter } from 'next/router';
-import Image from 'next/image';
-import axios from 'axios';
-import { useForm } from 'react-hook-form';
-import { useCart } from 'react-use-cart';
-import { PayPalScriptProvider, PayPalButtons } from '@paypal/react-paypal-js';
-import { handlingFee, customFee } from 'data/bussiness-data';
-import PhoneInput from 'react-phone-number-input';
-import Layout from '@/layout/layout';
+import { useState, useEffect } from 'react'
+import Head from 'next/head'
+import { useRouter } from 'next/router'
+import Image from 'next/image'
+import axios from 'axios'
+import { useForm } from 'react-hook-form'
+import { useCart } from 'react-use-cart'
+import { PayPalScriptProvider, PayPalButtons } from '@paypal/react-paypal-js'
+import { handlingFee, customFee } from 'data/bussiness-data'
+import PhoneInput from 'react-phone-number-input'
+import Layout from '@/layout/layout'
 import {
 	Heading,
 	Box,
@@ -25,52 +25,52 @@ import {
 	Tab,
 	TabPanels,
 	TabPanel,
-} from '@chakra-ui/react';
-import { Input, Button, Link } from '@/components/uiComponents';
-import Loading from '@/components/Loading';
-import StripeWrapper from '@/components/StipeWrapper';
+} from '@chakra-ui/react'
+import { Input, Button, Link } from '@/components/uiComponents'
+import Loading from '@/components/Loading'
+import StripeWrapper from '@/components/StipeWrapper'
 
 // everything was added in just one component
 // it can be split into smaller components
 
 export default function CheckOut() {
-	const router = useRouter();
-	const toast = useToast();
+	const router = useRouter()
+	const toast = useToast()
 
-	const { isEmpty, items, totalItems, emptyCart, cartTotal } = useCart();
-	const { register, handleSubmit, errors, setValue } = useForm();
+	const { isEmpty, items, totalItems, emptyCart, cartTotal } = useCart()
+	const { register, handleSubmit, errors, setValue } = useForm()
 
-	const [userInfo, setUserInfo] = useState(null);
-	const [isLoading, setIsLoading] = useState(false);
-	const [isPaid, setIsPaid] = useState(false);
+	const [userInfo, setUserInfo] = useState(null)
+	const [isLoading, setIsLoading] = useState(false)
+	const [isPaid, setIsPaid] = useState(false)
 
-	const itemPrice = cartTotal;
+	const itemPrice = cartTotal
 	const totalPrice =
-		+itemPrice + handlingFee + +(items[0]?.custom?.isCustom ? customFee : 0);
+		+itemPrice + handlingFee + +(items[0]?.custom?.isCustom ? customFee : 0)
 
-	const payingAmount = totalPrice;
-	const currency = 'USD';
-	const style = { layout: 'vertical', color: 'gold' };
-	const fundingSources = ['paypal' /*, 'card'*/];
+	const payingAmount = totalPrice
+	const currency = 'USD'
+	const style = { layout: 'vertical', color: 'gold' }
+	const fundingSources = ['paypal' /*, 'card'*/]
 
 	const getUserInfo = () =>
-		setUserInfo(JSON.parse(localStorage.getItem('userInfo')));
+		setUserInfo(JSON.parse(localStorage.getItem('userInfo')))
 	const clearUserInfo = () => {
-		localStorage.removeItem('userInfo');
-		setUserInfo(null);
-	};
+		localStorage.removeItem('userInfo')
+		setUserInfo(null)
+	}
 
 	useEffect(() => {
-		getUserInfo();
-	}, []);
+		getUserInfo()
+	}, [])
 
 	const handleUserInfo = (data) => {
-		localStorage.setItem('userInfo', JSON.stringify(data));
-		getUserInfo();
-	};
+		localStorage.setItem('userInfo', JSON.stringify(data))
+		getUserInfo()
+	}
 
 	const handlePaymentConfirm = (details) => {
-		setIsLoading(true);
+		setIsLoading(true)
 		if (details) {
 			axios({
 				method: 'POST',
@@ -86,22 +86,22 @@ export default function CheckOut() {
 					totalPrice,
 				},
 			}).then((res) => {
-				setIsPaid(true);
+				setIsPaid(true)
 				toast({
 					title: 'Payment success',
 					description: 'Your order was placed successfully',
 					status: 'success',
 					duration: 5000,
 					isClosable: true,
-				});
-				emptyCart();
-				localStorage.setItem('checkout', JSON.stringify({ isPaid: true }));
-				router.push('/checkout/order-success');
-			});
+				})
+				emptyCart()
+				localStorage.setItem('checkout', JSON.stringify({ isPaid: true }))
+				router.push('/checkout/order-success?tnxId=' + details.id)
+			})
 		} else {
-			console.log('Payment cancelled');
+			console.log('Payment cancelled')
 		}
-	};
+	}
 
 	return (
 		<Layout noCart noFoot maxW="5xl">
@@ -638,16 +638,16 @@ export default function CheckOut() {
 																					})
 																					.then((orderId) => {
 																						// Your code here after create the order
-																						return orderId;
-																					});
+																						return orderId
+																					})
 																			}}
 																			onApprove={function (data, actions) {
 																				return actions.order
 																					.capture()
 																					.then(function (details) {
 																						// Your code here after capture the order
-																						handlePaymentConfirm(details);
-																					});
+																						handlePaymentConfirm(details)
+																					})
 																			}}
 																		/>
 																	)
@@ -772,5 +772,5 @@ export default function CheckOut() {
 				</Flex>
 			</Box>
 		</Layout>
-	);
+	)
 }

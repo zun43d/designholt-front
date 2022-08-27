@@ -1,12 +1,13 @@
-import { ChakraProvider } from '@chakra-ui/react';
-import { CartProvider } from 'react-use-cart';
-import AuthProvider from '@/context/AuthUserContext';
-import AppContext from '@/context/AppContext';
-import { getAllCategories } from '@/lib/sanityDb';
-import { theme } from '@/styles/theme';
-import '@fontsource/inter/variable-full.css';
+import Script from 'next/script'
+import { ChakraProvider } from '@chakra-ui/react'
+import { CartProvider } from 'react-use-cart'
+import AuthProvider from '@/context/AuthUserContext'
+import AppContext from '@/context/AppContext'
+import { getAllCategories } from '@/lib/sanityDb'
+import { theme } from '@/styles/theme'
+import '@fontsource/inter/variable-full.css'
 
-import '@/styles/phone-number-input.css';
+import '@/styles/phone-number-input.css'
 
 // export const getStaticProps = async () => {
 // 	return {
@@ -119,10 +120,27 @@ function MyApp({ Component, pageProps }) {
 			categoryName: 'Single Letter',
 			slug: 'single-letter',
 		},
-	];
+	]
 
 	return (
 		<AuthProvider>
+			<div>
+				{/* <!-- Global site tag (gtag.js) - Google Ads: 10887357969 -->  */}
+				<Script
+					async
+					src="https://www.googletagmanager.com/gtag/js?id=AW-10887357969"
+				></Script>
+				<Script id="google-analytics" strategy="afterInteractive">
+					{`
+							window.dataLayer = window.dataLayer || []
+							function gtag(){dataLayer.push(arguments)}
+							gtag('js', new Date())
+							
+							gtag('config', 'AW-10887357969')
+						`}
+				</Script>
+			</div>
+
 			<AppContext.Provider
 				value={{
 					state: {
@@ -137,7 +155,7 @@ function MyApp({ Component, pageProps }) {
 				</ChakraProvider>
 			</AppContext.Provider>
 		</AuthProvider>
-	);
+	)
 }
 
-export default MyApp;
+export default MyApp

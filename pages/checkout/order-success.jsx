@@ -1,17 +1,17 @@
-import { useEffect } from 'react';
-import NextLink from 'next/link';
-import Head from 'next/head';
-import { useRouter } from 'next/router';
-import Layout from '@/layout/layout';
-import { Box, Text, Heading, Alert } from '@chakra-ui/react';
-import { ArrowBackIcon } from '@chakra-ui/icons';
-import { Button } from '@/components/uiComponents';
+import { useEffect } from 'react'
+import NextLink from 'next/link'
+import Head from 'next/head'
+import { useRouter } from 'next/router'
+import Layout from '@/layout/layout'
+import { Box, Text, Heading, Alert } from '@chakra-ui/react'
+import { ArrowBackIcon } from '@chakra-ui/icons'
+import { Button } from '@/components/uiComponents'
 
 // Thank you for purchasing, the product has been sent to your provided email. If you don't get the email-
 // > Check Spam Folder.
 // > Email us at- Contact@designholt.com
 export default function OrderSuccess() {
-	const router = useRouter();
+	const router = useRouter()
 
 	// useEffect(() => {
 	// 	const raw = localStorage.getItem('checkout');
@@ -20,6 +20,17 @@ export default function OrderSuccess() {
 	// 	localStorage.removeItem('checkout');
 	// 	// eslint-disable-next-line react-hooks/exhaustive-deps
 	// }, []);
+
+	useEffect(() => {
+		if (typeof window !== 'undefined') {
+			const tnxId = router.query.tnxId
+			window.gtag('event', 'conversion', {
+				send_to: 'AW-10887357969/pfefCKbR-dkDEJHMv8co',
+				transaction_id: tnxId,
+			})
+		}
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [])
 
 	return (
 		<Layout maxW="6xl">
@@ -79,7 +90,10 @@ export default function OrderSuccess() {
 				</Box>
 				<Box textAlign="center" my="5">
 					<Heading color="gray.900">Thank you for purchasing!</Heading>
-					<Text my="2">The product has been sent to your provided email. You may receive it within 5-10 minutes.</Text>
+					<Text my="2">
+						The product has been sent to your provided email. You may receive it
+						within 5-10 minutes.
+					</Text>
 				</Box>
 				<NextLink href="/" passHref>
 					<Button
@@ -99,5 +113,5 @@ export default function OrderSuccess() {
 				</Alert>
 			</Box>
 		</Layout>
-	);
+	)
 }
