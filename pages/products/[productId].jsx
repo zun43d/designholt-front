@@ -412,7 +412,7 @@ export default function ProductPage({ product }) {
 										</Box>
 										<Box>
 											<Input
-												placeholder="Enter logo logo font (Free Font)"
+												placeholder="Enter logo font (Free Font)"
 												bg="white"
 												w="80"
 												onChange={(e) => setLogoFont(e.target.value)}
