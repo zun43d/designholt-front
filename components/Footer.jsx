@@ -32,7 +32,7 @@ export default function Footer({ categories }) {
 							mb="5"
 							textAlign={['center', 'center', 'left']}
 						>
-							Copyright &copy; 2021 DesignHolt. All rights reserved.
+							Copyright &copy; 2025 DesignHolt. All rights reserved.
 						</Text>
 					</Box>
 					<Spacer />
